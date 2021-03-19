@@ -1,6 +1,10 @@
 package usa.lafleur.cincospenguinos;
 
 public abstract class Instruction {
+    public static final int NO_OP = 0;
+    public static final int MOVE_IMMEDIATE = 4;
+    public static final int HALT = 15;
+
     private byte _rawByte;
 
     public Instruction (byte raw) {
@@ -11,11 +15,11 @@ public abstract class Instruction {
         int opcode = (rawByte & 0b11110000) >> 4;
 
         switch(opcode) {
-            case 0:
+            case NO_OP:
                 return new NoOpInstruction(rawByte);
-            case 4:
+            case MOVE_IMMEDIATE:
                 return new MoveImmediateInstruction(rawByte);
-            case 15:
+            case HALT:
                 return new HaltInstruction(rawByte);
         }
 
@@ -26,5 +30,9 @@ public abstract class Instruction {
 
     public boolean shouldHalt() {
         return false;
+    }
+
+    protected byte getRawByte() {
+        return _rawByte;
     }
 }

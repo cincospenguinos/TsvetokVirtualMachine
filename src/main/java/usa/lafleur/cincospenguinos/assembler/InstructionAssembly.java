@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.assembler;
 
 public class InstructionAssembly {
     private byte opCode;
@@ -10,7 +10,7 @@ public class InstructionAssembly {
     public InstructionAssembly() {}
 
     public byte build() {
-        byte constructedInstruction = (byte) (opCode << 4);
+        byte constructedInstruction = (byte) (opCode << 5);
 
         if (immediate != null) {
             constructedInstruction |= immediate;

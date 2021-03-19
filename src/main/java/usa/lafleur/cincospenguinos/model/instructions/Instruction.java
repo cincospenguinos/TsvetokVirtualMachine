@@ -15,10 +15,8 @@ public abstract class Instruction {
         switch(opcode) {
             case OpCode.NO_OP:
                 return new NoOpInstruction(rawByte);
-            case OpCode.MOVE_IMMEDIATE:
+            case OpCode.MULTIPLY:
                 return new MoveImmediateInstruction(rawByte);
-            case OpCode.HALT:
-                return new HaltInstruction(rawByte);
         }
 
         return new HaltInstruction(rawByte);

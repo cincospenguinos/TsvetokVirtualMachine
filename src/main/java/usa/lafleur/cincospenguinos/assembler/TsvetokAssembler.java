@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.assembler;
 
 import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.model.TsvetokMachine;
@@ -34,27 +34,17 @@ public class TsvetokAssembler {
             instructionAssembly.setOpCode(opcode);
 
             switch(opcode) {
-                case OpCode.SYSTEM_CALL:
-                case OpCode.MOVE_IMMEDIATE:
-                    instructionAssembly.setImmediate(pieces[1]);
-                    break;
-                case OpCode.STORE:
-                case OpCode.LOAD:
-                    instructionAssembly.setAddress(pieces[1]);
-                    break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:
-                case OpCode.BITWISE_AND:
-                case OpCode.BITWISE_OR:
-                    instructionAssembly.setSecondRegister(pieces[2]);
-                case OpCode.TOGGLE_SIGN:
                     instructionAssembly.setFirstRegister(pieces[1]);
+                    instructionAssembly.setSecondRegister(pieces[2]);
                     break;
             }
 
             _bytes[index] = instructionAssembly.build();
             instructionAssembly.clear();
+            index += 1;
         }
 
         scanner.close();

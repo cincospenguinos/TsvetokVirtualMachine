@@ -37,15 +37,16 @@ public class TsvetokAssembler {
                     byte immediateValue = Byte.parseByte(pieces[1]);
                     instruction |= immediateValue;
                     break;
-                case OpCode.NO_OP:
-                    break;
                 case OpCode.STORE:
-                    byte address = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
-                    instruction |= address;
+                    byte storeAddress = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
+                    instruction |= storeAddress;
                     break;
                 case OpCode.LOAD:
-                    byte register = Byte.parseByte(pieces[1]);
-                    instruction |= (register << 2);
+                    byte loadAddress = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
+                    instruction |= loadAddress;
+                    break;
+                case OpCode.NO_OP:
+                case OpCode.JUMP:
                     break;
             }
 

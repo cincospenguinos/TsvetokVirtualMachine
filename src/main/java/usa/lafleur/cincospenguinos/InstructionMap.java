@@ -14,7 +14,7 @@ public class InstructionMap {
         _opcodes.put("noup", (byte) OpCode.NO_OP);
         _opcodes.put("ld", (byte) OpCode.LOAD);
         _opcodes.put("stou", (byte) OpCode.STORE);
-        _opcodes.put("jmp", (byte) OpCode.JUMP);
+        _opcodes.put("joump", (byte) OpCode.JUMP);
         _opcodes.put("bouj", (byte) OpCode.MOVE_IMMEDIATE);
         _opcodes.put("ad", (byte) OpCode.ADD);
         _opcodes.put("nult", (byte) OpCode.MULTIPLY);

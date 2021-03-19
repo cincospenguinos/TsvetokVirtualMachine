@@ -26,4 +26,11 @@ public class TsvetokExecutableTest {
         byte[] inputBytes = { TSVETOK_T, TSVETOK_V, TSVETOK_M, 97, 71, 12 };
         assertTrue(new TsvetokExecutable(inputBytes).isValid());
     }
+
+    @Test
+    public void test_cannotHaveMoreThan128Bytes() {
+        byte[] inputBytes = new byte[129];
+        System.arraycopy(TsvetokExecutable.VALID_HEADER, 0, inputBytes, 0, 6);
+        assertFalse(new TsvetokExecutable(inputBytes).isValid());
+    }
 }

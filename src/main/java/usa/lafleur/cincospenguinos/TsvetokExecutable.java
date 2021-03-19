@@ -15,6 +15,10 @@ public class TsvetokExecutable {
         byte[] header = new byte[6];
         System.arraycopy(_rawBytes, 0, header, 0, 6);
 
-        return Arrays.equals(header, VALID_HEADER);
+        if (!Arrays.equals(header, VALID_HEADER)) {
+            return false;
+        }
+
+        return _rawBytes.length <= 128;
     }
 }

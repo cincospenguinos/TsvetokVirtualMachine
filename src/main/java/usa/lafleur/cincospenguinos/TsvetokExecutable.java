@@ -24,6 +24,18 @@ public class TsvetokExecutable {
             return false;
         }
 
+        if (_rawBytes[3] != 97) {
+            return false;
+        }
+
+        if (_rawBytes[4] != 71) {
+            return false;
+        }
+
+        if (_rawBytes[5] != 12) {
+            return false;
+        }
+
         return true;
     }
 }

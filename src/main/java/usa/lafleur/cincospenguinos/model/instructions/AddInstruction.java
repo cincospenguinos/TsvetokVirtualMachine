@@ -8,7 +8,8 @@ public class AddInstruction extends Instruction {
     @Override
     public void execute(byte[] memory, byte[] registerArray) {
         if (opFlagSet()) {
-
+            byte immediate = getImmediate();
+            registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX] += immediate;
         } else {
             byte first = registerArray[firstRegisterIndex()];
             byte second = registerArray[secondRegisterIndex()];

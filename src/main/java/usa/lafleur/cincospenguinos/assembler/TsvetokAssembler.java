@@ -47,10 +47,9 @@ public class TsvetokAssembler {
                 case OpCode.ACCESS_MEMORY:
                 case OpCode.LOGICAL_AND:
                 case OpCode.LOGICAL_OR:
+                    boolean isMemory = opcode == OpCode.ACCESS_MEMORY;
                     instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
-
-                    boolean isMemory = opcode == OpCode.ACCESS_MEMORY;
                     instructionAssembly.setOpFlag(pieces[0].contains(isMemory ? "ou" : "our"));
                     break;
                 case OpCode.MOVE:

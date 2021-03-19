@@ -41,16 +41,14 @@ public class TsvetokAssembler {
                 case OpCode.LOAD:
                     instructionAssembly.setAddress(pieces[1]);
                     break;
-                case OpCode.TOGGLE_SIGN:
-                    instructionAssembly.setFirstRegister(pieces[1]);
-                    break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:
                 case OpCode.BITWISE_AND:
                 case OpCode.BITWISE_OR:
-                    instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
+                case OpCode.TOGGLE_SIGN:
+                    instructionAssembly.setFirstRegister(pieces[1]);
                     break;
                 case OpCode.NO_OP:
                 case OpCode.JUMP:

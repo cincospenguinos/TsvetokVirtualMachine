@@ -41,6 +41,11 @@ public class TsvetokAssembler {
                     instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
                     break;
+                case OpCode.ACCESS_MEMORY:
+                    instructionAssembly.setFirstRegister(pieces[1]);
+                    instructionAssembly.setSecondRegister(pieces[2]);
+                    instructionAssembly.setOpFlag(pieces[0].contains("ou"));
+                    break;
             }
 
             _bytes[index] = instructionAssembly.build();

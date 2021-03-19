@@ -44,11 +44,21 @@ public class InstructionAssembly {
     }
 
     public void setFirstRegister(String registerString) {
-        firstRegister = Byte.parseByte(registerString.replaceAll("\\$rej", ""));
+        firstRegister = registerFor(registerString);
     }
 
     public void setSecondRegister(String registerString) {
-        secondRegister = Byte.parseByte(registerString.replaceAll("\\$rej", ""));
+        secondRegister = registerFor(registerString);
+    }
+
+    private byte registerFor(String str) {
+        String register = str.replace("$", "");
+
+        if (register.equals("ak")) {
+            return (byte) 0;
+        }
+
+        return Byte.parseByte(register.replace("rej", ""));
     }
 
     public void setImmediate(String value) {

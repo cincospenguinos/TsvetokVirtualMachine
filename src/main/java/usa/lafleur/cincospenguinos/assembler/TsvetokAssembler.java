@@ -29,43 +29,9 @@ public class TsvetokAssembler {
         InstructionAssembly instructionAssembly = new InstructionAssembly();
 
         while(scanner.hasNextLine()) {
-            String[] pieces = scanner.nextLine().split(WHITESPACE_PATTERN);
-            byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
-            instructionAssembly.setOpCode(opcode);
-
-            boolean hasImmediate = pieces.length == 2;
-
-            switch(opcode) {
-                case OpCode.SYSTEM_CALL:
-                    instructionAssembly.setImmediate(pieces[1]);
-                    break;
-                case OpCode.DIVIDE:
-                case OpCode.JUMP_ON_ZERO:
-                    instructionAssembly.setFirstRegister(pieces[1]);
-                    instructionAssembly.setSecondRegister(pieces[2]);
-                    break;
-                case OpCode.ACCESS_MEMORY:
-                case OpCode.LOGICAL_AND:
-                case OpCode.LOGICAL_OR:
-                    boolean isMemory = opcode == OpCode.ACCESS_MEMORY;
-                    instructionAssembly.setFirstRegister(pieces[1]);
-                    instructionAssembly.setSecondRegister(pieces[2]);
-                    instructionAssembly.setOpFlag(pieces[0].contains(isMemory ? "ou" : "our"));
-                    break;
-                case OpCode.MOVE:
-                case OpCode.ADD:
-                case OpCode.MULTIPLY:
-                    if (hasImmediate) {
-                        instructionAssembly.setImmediate(pieces[1]);
-                        instructionAssembly.setOpFlag(true);
-                    } else {
-                        instructionAssembly.setFirstRegister(pieces[1]);
-                        instructionAssembly.setSecondRegister(pieces[2]);
-                    }
-                    break;
-            }
-
-            _bytes[index] = instructionAssembly.build();
+            String line = scanner.nextLine();
+            byte instruction = instructionFor(line, instructionAssembly);
+            _bytes[index] = instruction;
             instructionAssembly.clear();
             index += 1;
         }
@@ -73,6 +39,49 @@ public class TsvetokAssembler {
         scanner.close();
 
         return this;
+    }
+
+    private byte instructionFor(String line, InstructionAssembly instructionAssembly) {
+        String[] pieces = line.split(WHITESPACE_PATTERN);
+
+        byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
+        instructionAssembly.setOpCode(opcode);
+
+        boolean hasImmediate = pieces.length == 2;
+
+        switch(opcode) {
+            case OpCode.SYSTEM_CALL:
+                instructionAssembly.setImmediate(pieces[1]);
+                break;
+            case OpCode.DIVIDE:
+            case OpCode.JUMP_ON_ZERO:
+                setRegisters(pieces, instructionAssembly);
+                break;
+            case OpCode.ACCESS_MEMORY:
+            case OpCode.LOGICAL_AND:
+            case OpCode.LOGICAL_OR:
+                boolean isMemory = opcode == OpCode.ACCESS_MEMORY;
+                setRegisters(pieces, instructionAssembly);
+                instructionAssembly.setOpFlag(pieces[0].contains(isMemory ? "ou" : "our"));
+                break;
+            case OpCode.MOVE:
+            case OpCode.ADD:
+            case OpCode.MULTIPLY:
+                if (hasImmediate) {
+                    instructionAssembly.setImmediate(pieces[1]);
+                    instructionAssembly.setOpFlag(true);
+                } else {
+                    setRegisters(pieces, instructionAssembly);
+                }
+                break;
+        }
+
+        return instructionAssembly.build();
+    }
+
+    private void setRegisters(String[] pieces, InstructionAssembly instructionAssembly) {
+        instructionAssembly.setFirstRegister(pieces[1]);
+        instructionAssembly.setSecondRegister(pieces[2]);
     }
 
     public byte[] toByteArray() {

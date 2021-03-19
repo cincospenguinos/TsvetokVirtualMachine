@@ -15,6 +15,13 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
+    public void test_assembleHandlesSystemCall() {
+        TsvetokAssembler assembler = new TsvetokAssembler("sis 2");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b00010010, result[6]);
+    }
+
+    @Test
     public void test_assembleHandlesMemoryRead() {
         TsvetokAssembler assembler = new TsvetokAssembler("nens $rej2 $rej1");
         byte[] result = assembler.assemble().toByteArray();
@@ -78,9 +85,23 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
-    public void test_assembleHandlesSystemCall() {
-        TsvetokAssembler assembler = new TsvetokAssembler("sis 2");
+    public void test_assembleHandlesLogicalAnd() {
+        TsvetokAssembler assembler = new TsvetokAssembler("loujet $rej2 $rej1");
         byte[] result = assembler.assemble().toByteArray();
-        assertEquals((byte) 0b00010010, result[6]);
+        assertEquals((byte) 0b10101001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesLogicalOr() {
+        TsvetokAssembler assembler = new TsvetokAssembler("loujour $rej2 $rej1");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10111001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesHalt() {
+        TsvetokAssembler assembler = new TsvetokAssembler("stoup");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11110000, result[6]);
     }
 }

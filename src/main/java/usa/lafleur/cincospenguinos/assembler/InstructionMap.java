@@ -12,6 +12,7 @@ public class InstructionMap {
         _opcodes = new HashMap<>();
 
         _opcodes.put("noup", (byte) OpCode.NO_OP);
+        _opcodes.put("sis", (byte) OpCode.SYSTEM_CALL);
         _opcodes.put("nens", (byte) OpCode.ACCESS_MEMORY);
         _opcodes.put("nensou", (byte) OpCode.ACCESS_MEMORY);
         _opcodes.put("bouj", (byte) OpCode.MOVE);
@@ -20,7 +21,7 @@ public class InstructionMap {
         _opcodes.put("dif", (byte) OpCode.DIVIDE);
         _opcodes.put("loujet", (byte) OpCode.LOGICAL_AND);
         _opcodes.put("loujour", (byte) OpCode.LOGICAL_OR);
-        _opcodes.put("sis", (byte) OpCode.SYSTEM_CALL);
+        _opcodes.put("stoup", (byte) OpCode.HALT);
     }
 
     public byte opcodeFor(String operation) {

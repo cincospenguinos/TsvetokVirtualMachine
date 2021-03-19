@@ -59,6 +59,12 @@ public class TsvetokAssembler {
                         instructionAssembly.setSecondRegister(pieces[2]);
                     }
                     break;
+                case OpCode.LOGICAL_AND:
+                case OpCode.LOGICAL_OR:
+                    instructionAssembly.setFirstRegister(pieces[1]);
+                    instructionAssembly.setSecondRegister(pieces[2]);
+                    instructionAssembly.setOpFlag(pieces[0].contains("our"));
+                    break;
             }
 
             _bytes[index] = instructionAssembly.build();

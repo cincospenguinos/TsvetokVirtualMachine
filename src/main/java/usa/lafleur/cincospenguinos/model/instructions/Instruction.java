@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
 public abstract class Instruction {
+    public static final int ACCUMULATOR_REGISTER_INDEX = 0;
     private final byte _rawByte;
 
     public Instruction (byte raw) {
@@ -28,5 +29,25 @@ public abstract class Instruction {
 
     protected byte getRawByte() {
         return _rawByte;
+    }
+
+    protected int firstRegisterIndex() {
+        return (getRawByte() & 0b00001100) >> 2;
+    }
+
+    protected int secondRegisterIndex() {
+        return (getRawByte() & 0b00000011);
+    }
+
+    protected byte getImmediate() {
+        return (byte) (getRawByte() & 0x0f);
+    }
+
+    protected boolean opFlagSet() {
+        byte rawByte = getRawByte();
+        rawByte &= 0b00010000;
+        rawByte = (byte) (rawByte >> 4);
+
+        return rawByte == (byte) 0x01;
     }
 }

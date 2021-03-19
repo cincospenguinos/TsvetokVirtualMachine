@@ -1,4 +1,6 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.model.instructions;
+
+import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
 
 public class NoOpInstruction extends Instruction {
     public NoOpInstruction(byte raw) {

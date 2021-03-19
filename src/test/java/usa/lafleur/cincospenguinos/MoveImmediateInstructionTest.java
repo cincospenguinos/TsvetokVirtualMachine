@@ -1,6 +1,8 @@
 package usa.lafleur.cincospenguinos;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.model.instructions.Instruction;
+import usa.lafleur.cincospenguinos.model.instructions.MoveImmediateInstruction;
 
 import static org.junit.Assert.*;
 

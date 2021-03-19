@@ -1,4 +1,6 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.model;
+
+import usa.lafleur.cincospenguinos.model.instructions.Instruction;
 
 public class TsvetokMachine {
     public static final byte RETURN_CODE_OK = 0;

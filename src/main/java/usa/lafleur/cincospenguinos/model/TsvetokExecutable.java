@@ -1,4 +1,7 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.model;
+
+import usa.lafleur.cincospenguinos.model.instructions.HaltInstruction;
+import usa.lafleur.cincospenguinos.model.instructions.Instruction;
 
 import java.util.Arrays;
 

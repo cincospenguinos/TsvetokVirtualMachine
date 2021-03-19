@@ -1,6 +1,8 @@
 package usa.lafleur.cincospenguinos;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
+import usa.lafleur.cincospenguinos.model.TsvetokMachine;
 
 import static org.junit.Assert.*;
 

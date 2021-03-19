@@ -1,11 +1,13 @@
-package usa.lafleur.cincospenguinos;
+package usa.lafleur.cincospenguinos.model.instructions;
+
+import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
 
 public abstract class Instruction {
     public static final int NO_OP = 0;
     public static final int MOVE_IMMEDIATE = 4;
     public static final int HALT = 15;
 
-    private byte _rawByte;
+    private final byte _rawByte;
 
     public Instruction (byte raw) {
         _rawByte = raw;

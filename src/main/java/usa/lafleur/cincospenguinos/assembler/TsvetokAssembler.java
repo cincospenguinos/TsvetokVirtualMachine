@@ -33,6 +33,8 @@ public class TsvetokAssembler {
             byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
             instructionAssembly.setOpCode(opcode);
 
+            boolean hasImmediate = pieces.length == 2;
+
             switch(opcode) {
                 case OpCode.SYSTEM_CALL:
                     instructionAssembly.setImmediate(pieces[1]);
@@ -47,7 +49,8 @@ public class TsvetokAssembler {
                     instructionAssembly.setOpFlag(pieces[0].contains("ou"));
                     break;
                 case OpCode.MOVE:
-                    if (pieces.length == 2) {
+                case OpCode.ADD:
+                    if (hasImmediate) {
                         instructionAssembly.setImmediate(pieces[1]);
                         instructionAssembly.setOpFlag(true);
                     } else {

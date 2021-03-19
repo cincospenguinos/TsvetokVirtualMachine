@@ -20,6 +20,11 @@ public class TsvetokExecutable {
         }
     }
 
+    public Instruction getAt(int index) {
+        byte instruction = _rawBytes[index];
+        return new Instruction(instruction);
+    }
+
     public boolean isValid() {
         byte[] header = new byte[6];
         System.arraycopy(_rawBytes, 0, header, 0, 6);

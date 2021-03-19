@@ -2,6 +2,9 @@ package usa.lafleur.cincospenguinos;
 
 import java.util.Arrays;
 
+/**
+ * Representation of a single TVM executable file.
+ */
 public class TsvetokExecutable {
     public static final byte[] VALID_HEADER = new byte[] { 0x54, 0x56, 0x4d, 97, 71, 12 };
 
@@ -9,6 +12,12 @@ public class TsvetokExecutable {
 
     public TsvetokExecutable(byte[] bytes) {
         _rawBytes = bytes;
+
+        if (_rawBytes.length < 128) {
+            byte[] fullExecutable = new byte[128];
+            System.arraycopy(_rawBytes, 0, fullExecutable, 0, _rawBytes.length);
+            _rawBytes = fullExecutable;
+        }
     }
 
     public boolean isValid() {

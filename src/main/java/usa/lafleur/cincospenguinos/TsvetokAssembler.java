@@ -34,6 +34,7 @@ public class TsvetokAssembler {
             instructionAssembly.setOpCode(opcode);
 
             switch(opcode) {
+                case OpCode.SYSTEM_CALL:
                 case OpCode.MOVE_IMMEDIATE:
                     instructionAssembly.setImmediate(pieces[1]);
                     break;
@@ -49,9 +50,6 @@ public class TsvetokAssembler {
                     instructionAssembly.setSecondRegister(pieces[2]);
                 case OpCode.TOGGLE_SIGN:
                     instructionAssembly.setFirstRegister(pieces[1]);
-                    break;
-                case OpCode.NO_OP:
-                case OpCode.JUMP:
                     break;
             }
 

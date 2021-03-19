@@ -81,4 +81,18 @@ public class TsvetokAssemblerTest {
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b11010100, result[6]);
     }
+
+    @Test
+    public void test_assembleHandlesSystemCall() {
+        TsvetokAssembler assembler = new TsvetokAssembler("sis 8");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11101000, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesHalt() {
+        TsvetokAssembler assembler = new TsvetokAssembler("stoup");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11110000, result[6]);
+    }
 }

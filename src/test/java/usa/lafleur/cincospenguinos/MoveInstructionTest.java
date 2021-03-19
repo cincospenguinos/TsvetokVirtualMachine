@@ -18,7 +18,7 @@ public class MoveInstructionTest {
 
     @Test
     public void test_executeMovesImmediate() {
-        byte machineInstruction = (byte) 0b10011001; // Move $rej2 into $rej1
+        byte machineInstruction = (byte) 0b10011001; // Move 9 into $ak
         Instruction instruction = new MoveInstruction(machineInstruction);
         byte[] registers = new byte[] { 0, 0, 0, 0 };
         instruction.execute(null, registers);

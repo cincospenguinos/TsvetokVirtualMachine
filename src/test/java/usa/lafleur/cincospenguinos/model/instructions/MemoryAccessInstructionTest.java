@@ -14,4 +14,14 @@ public class MemoryAccessInstructionTest {
         instruction.execute(memory, registers);
         assertEquals((byte) 21, registers[0]);
     }
+
+    @Test
+    public void test_executeHandlesWrite() {
+        byte rawInstruction = (byte) 0b00110110;// Write from $ak to address 1
+        byte[] memory = new byte[] { 0, 0 };
+        byte[] registers = new byte[] { 12, 0, 1, 0 };
+        Instruction instruction = new MemoryAccessInstruction(rawInstruction);
+        instruction.execute(memory, registers);
+        assertEquals((byte) 12, memory[1]);
+    }
 }

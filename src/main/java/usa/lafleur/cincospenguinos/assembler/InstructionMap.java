@@ -20,6 +20,7 @@ public class InstructionMap {
         _opcodes.put("ad", (byte) OpCode.ADD);
         _opcodes.put("nult", (byte) OpCode.MULTIPLY);
         _opcodes.put("dif", (byte) OpCode.DIVIDE);
+        _opcodes.put("toug", (byte) OpCode.SIGN_TOGGLE);
     }
 
     public byte opcodeFor(String operation) {

@@ -10,4 +10,5 @@ public class OpCode {
     public static final int ADD = 3;
     public static final int MULTIPLY = 4;
     public static final int DIVIDE = 5;
+    public static final int SIGN_TOGGLE = 6;
 }

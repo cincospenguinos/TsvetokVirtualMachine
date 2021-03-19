@@ -50,8 +50,9 @@ public class TsvetokAssembler {
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:
-                    instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
+                case OpCode.SIGN_TOGGLE:
+                    instructionAssembly.setFirstRegister(pieces[1]);
                     break;
             }
 

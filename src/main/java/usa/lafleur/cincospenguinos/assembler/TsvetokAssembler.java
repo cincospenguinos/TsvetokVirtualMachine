@@ -40,6 +40,7 @@ public class TsvetokAssembler {
                     instructionAssembly.setImmediate(pieces[1]);
                     break;
                 case OpCode.DIVIDE:
+                case OpCode.JUMP_ON_ZERO:
                     instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
                     break;

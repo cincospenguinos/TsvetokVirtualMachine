@@ -21,6 +21,7 @@ public class InstructionMap {
         _opcodes.put("dif", (byte) OpCode.DIVIDE);
         _opcodes.put("loujet", (byte) OpCode.LOGICAL_AND);
         _opcodes.put("loujour", (byte) OpCode.LOGICAL_OR);
+        _opcodes.put("jnps", (byte) OpCode.JUMP_ON_ZERO);
         _opcodes.put("stoup", (byte) OpCode.HALT);
     }
 

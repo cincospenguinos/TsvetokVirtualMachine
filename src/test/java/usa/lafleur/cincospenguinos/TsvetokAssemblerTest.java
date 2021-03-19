@@ -99,6 +99,13 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
+    public void test_assembleHandlesJumpIfZero() {
+        TsvetokAssembler assembler = new TsvetokAssembler("jnps $ak $rej2");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11000010, result[6]);
+    }
+
+    @Test
     public void test_assembleHandlesHalt() {
         TsvetokAssembler assembler = new TsvetokAssembler("stoup");
         byte[] result = assembler.assemble().toByteArray();

@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 public class TsvetokAssembler {
     private static final String WHITESPACE_PATTERN = "\\s+";
+    private static final InstructionMap INSTRUCTION_MAP = new InstructionMap();
 
     private String _rawInput;
     private byte[] _bytes;
@@ -28,7 +29,7 @@ public class TsvetokAssembler {
 
         while(scanner.hasNextLine()) {
             String[] pieces = scanner.nextLine().split(WHITESPACE_PATTERN);
-            byte opcode = opcodeFor(pieces[0]);
+            byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
             byte instruction = (byte) (opcode << 4);
 
             switch(opcode) {

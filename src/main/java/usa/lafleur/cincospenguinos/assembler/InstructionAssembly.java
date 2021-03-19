@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.assembler;
 
 public class InstructionAssembly {
     private byte opCode;
+    private boolean opFlag;
     private Byte firstRegister;
     private Byte secondRegister;
     private Byte immediate;
@@ -11,6 +12,10 @@ public class InstructionAssembly {
 
     public byte build() {
         byte constructedInstruction = (byte) (opCode << 5);
+
+        if (opFlag) {
+            constructedInstruction |= 0b00010000;
+        }
 
         if (immediate != null) {
             constructedInstruction |= immediate;
@@ -31,6 +36,7 @@ public class InstructionAssembly {
 
     public void clear() {
         opCode = 0;
+        opFlag = false;
         firstRegister = null;
         secondRegister = null;
         immediate = null;
@@ -55,5 +61,9 @@ public class InstructionAssembly {
 
     public void setAddress(String addressString) {
         address = Byte.parseByte(addressString.replaceAll("#", ""));
+    }
+
+    public void setOpFlag(boolean flag) {
+        opFlag = flag;
     }
 }

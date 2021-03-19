@@ -34,6 +34,19 @@ public class TsvetokAssembler {
             instructionAssembly.setOpCode(opcode);
 
             switch(opcode) {
+                case OpCode.ACCESS_MEMORY:
+                    instructionAssembly.setAddress(pieces[1]);
+                    instructionAssembly.setOpFlag(pieces[0].contains("ou"));
+                    break;
+                case OpCode.MOVE:
+                    if (pieces.length == 2) {
+                        instructionAssembly.setImmediate(pieces[1]);
+                        instructionAssembly.setOpFlag(true);
+                    } else {
+                        instructionAssembly.setFirstRegister(pieces[1]);
+                        instructionAssembly.setSecondRegister(pieces[2]);
+                    }
+                    break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:

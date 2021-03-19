@@ -15,6 +15,34 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
+    public void test_assembleHandlesMemoryRead() {
+        TsvetokAssembler assembler = new TsvetokAssembler("nens #12");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b00101100, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesMemoryWrite() {
+        TsvetokAssembler assembler = new TsvetokAssembler("nensou #12");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b00111100, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesMoveBetweenRegisters() {
+        TsvetokAssembler assembler = new TsvetokAssembler("bouj $rej0 $rej3");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b01000011, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesMoveImmediate() {
+        TsvetokAssembler assembler = new TsvetokAssembler("bouj 7");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b01010111, result[6]);
+    }
+
+    @Test
     public void test_assembleHandlesAdd() {
         TsvetokAssembler assembler = new TsvetokAssembler("ad $rej1 $rej2");
         byte[] result = assembler.assemble().toByteArray();

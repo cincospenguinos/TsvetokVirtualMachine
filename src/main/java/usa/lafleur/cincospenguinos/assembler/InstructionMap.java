@@ -12,7 +12,8 @@ public class InstructionMap {
         _opcodes = new HashMap<>();
 
         _opcodes.put("noup", (byte) OpCode.NO_OP);
-        _opcodes.put("ld", (byte) OpCode.ACCESS_MEMORY);
+        _opcodes.put("nens", (byte) OpCode.ACCESS_MEMORY);
+        _opcodes.put("nensou", (byte) OpCode.ACCESS_MEMORY);
         _opcodes.put("stou", (byte) OpCode.MOVE);
         _opcodes.put("joump", (byte) OpCode.ADD);
         _opcodes.put("bouj", (byte) OpCode.MOVE);

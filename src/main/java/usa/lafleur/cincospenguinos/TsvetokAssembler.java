@@ -4,6 +4,7 @@ import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.model.TsvetokMachine;
 import usa.lafleur.cincospenguinos.model.instructions.Instruction;
+import usa.lafleur.cincospenguinos.model.instructions.OpCode;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -30,7 +31,7 @@ public class TsvetokAssembler {
             byte instruction = 0;
 
             switch(opcode) {
-                case Instruction.MOVE_IMMEDIATE:
+                case OpCode.MOVE_IMMEDIATE:
                     byte immediateValue = Byte.parseByte(pieces[1]);
                     instruction = (byte) ((opcode << 4) | immediateValue);
                     break;
@@ -46,7 +47,7 @@ public class TsvetokAssembler {
 
     private byte opcodeFor(String instruction) {
         if (instruction.equals("bouj")) {
-            return Instruction.MOVE_IMMEDIATE;
+            return OpCode.MOVE_IMMEDIATE;
         }
 
         throw new RuntimeException("\"" + instruction + "\" is not a valid instruction");

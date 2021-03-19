@@ -45,9 +45,13 @@ public class TsvetokAssembler {
                     instructionAssembly.setSecondRegister(pieces[2]);
                     break;
                 case OpCode.ACCESS_MEMORY:
+                case OpCode.LOGICAL_AND:
+                case OpCode.LOGICAL_OR:
                     instructionAssembly.setFirstRegister(pieces[1]);
                     instructionAssembly.setSecondRegister(pieces[2]);
-                    instructionAssembly.setOpFlag(pieces[0].contains("ou"));
+
+                    boolean isMemory = opcode == OpCode.ACCESS_MEMORY;
+                    instructionAssembly.setOpFlag(pieces[0].contains(isMemory ? "ou" : "our"));
                     break;
                 case OpCode.MOVE:
                 case OpCode.ADD:
@@ -59,12 +63,6 @@ public class TsvetokAssembler {
                         instructionAssembly.setFirstRegister(pieces[1]);
                         instructionAssembly.setSecondRegister(pieces[2]);
                     }
-                    break;
-                case OpCode.LOGICAL_AND:
-                case OpCode.LOGICAL_OR:
-                    instructionAssembly.setFirstRegister(pieces[1]);
-                    instructionAssembly.setSecondRegister(pieces[2]);
-                    instructionAssembly.setOpFlag(pieces[0].contains("our"));
                     break;
             }
 

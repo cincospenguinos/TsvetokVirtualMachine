@@ -42,8 +42,15 @@ public class TsvetokAssemblerTest {
 
     @Test
     public void test_assembleHandlesAdd() {
-        TsvetokAssembler assembler = new TsvetokAssembler("ad $reg1 $reg2");
+        TsvetokAssembler assembler = new TsvetokAssembler("ad $rej1 $rej2");
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b10000110, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesMultiply() {
+        TsvetokAssembler assembler = new TsvetokAssembler("nult $rej3 $rej0");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10011100, result[6]);
     }
 }

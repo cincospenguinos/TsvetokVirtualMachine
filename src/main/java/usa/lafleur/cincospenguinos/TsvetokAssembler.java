@@ -45,6 +45,11 @@ public class TsvetokAssembler {
                     byte loadAddress = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
                     instruction |= loadAddress;
                     break;
+                case OpCode.ADD:
+                    byte firstRegister = Byte.parseByte(pieces[1].replaceAll("\\$reg", ""));
+                    byte secondRegister = Byte.parseByte(pieces[2].replaceAll("\\$reg", ""));
+                    instruction |= (byte) ((firstRegister << 2) | secondRegister);
+                    break;
                 case OpCode.NO_OP:
                 case OpCode.JUMP:
                     break;

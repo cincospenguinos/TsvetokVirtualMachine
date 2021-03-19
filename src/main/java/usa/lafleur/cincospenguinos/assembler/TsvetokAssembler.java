@@ -50,6 +50,7 @@ public class TsvetokAssembler {
                     break;
                 case OpCode.MOVE:
                 case OpCode.ADD:
+                case OpCode.MULTIPLY:
                     if (hasImmediate) {
                         instructionAssembly.setImmediate(pieces[1]);
                         instructionAssembly.setOpFlag(true);

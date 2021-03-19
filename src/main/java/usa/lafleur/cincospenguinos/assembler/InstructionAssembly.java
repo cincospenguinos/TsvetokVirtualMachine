@@ -58,6 +58,10 @@ public class InstructionAssembly {
             return (byte) 0;
         }
 
+        if (register.equals("retr")) {
+            return (byte) 3;
+        }
+
         return Byte.parseByte(register.replace("rej", ""));
     }
 

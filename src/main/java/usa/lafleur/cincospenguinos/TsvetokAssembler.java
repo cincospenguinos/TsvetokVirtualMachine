@@ -26,41 +26,39 @@ public class TsvetokAssembler {
         System.arraycopy(TsvetokExecutable.VALID_HEADER, 0, _bytes, 0, 6);
         int index = TsvetokMachine.EXECUTABLE_START_INDEX;
         Scanner scanner = new Scanner(_rawInput);
+        InstructionAssembly instructionAssembly = new InstructionAssembly();
 
         while(scanner.hasNextLine()) {
             String[] pieces = scanner.nextLine().split(WHITESPACE_PATTERN);
             byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
-            byte instruction = (byte) (opcode << 4);
+            instructionAssembly.setOpCode(opcode);
 
             switch(opcode) {
                 case OpCode.MOVE_IMMEDIATE:
-                    byte immediateValue = Byte.parseByte(pieces[1]);
-                    instruction |= immediateValue;
+                    instructionAssembly.setImmediate(pieces[1]);
                     break;
                 case OpCode.STORE:
                 case OpCode.LOAD:
-                    byte address = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
-                    instruction |= address;
+                    instructionAssembly.setAddress(pieces[1]);
                     break;
                 case OpCode.TOGGLE_SIGN:
-                    byte singleReg = Byte.parseByte(pieces[1].replaceAll("\\$rej", ""));
-                    instruction |= (singleReg << 2);
+                    instructionAssembly.setFirstRegister(pieces[1]);
                     break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:
                 case OpCode.BITWISE_AND:
                 case OpCode.BITWISE_OR:
-                    byte firstRegister = Byte.parseByte(pieces[1].replaceAll("\\$rej", ""));
-                    byte secondRegister = Byte.parseByte(pieces[2].replaceAll("\\$rej", ""));
-                    instruction |= (byte) ((firstRegister << 2) | secondRegister);
+                    instructionAssembly.setFirstRegister(pieces[1]);
+                    instructionAssembly.setSecondRegister(pieces[2]);
                     break;
                 case OpCode.NO_OP:
                 case OpCode.JUMP:
                     break;
             }
 
-            _bytes[index] = instruction;
+            _bytes[index] = instructionAssembly.build();
+            instructionAssembly.clear();
         }
 
         scanner.close();

@@ -1,9 +1,9 @@
 package usa.lafleur.cincospenguinos;
 
+import java.util.Arrays;
+
 public class TsvetokExecutable {
-    public static final byte TSVETOK_T = 0x54;
-    public static final byte TSVETOK_V = 0x56;
-    public static final byte TSVETOK_M = 0x4d;
+    public static final byte[] VALID_HEADER = new byte[] { 0x54, 0x56, 0x4d, 97, 71, 12 };
 
     private byte[] _rawBytes;
 
@@ -12,30 +12,9 @@ public class TsvetokExecutable {
     }
 
     public boolean isValid() {
-        if (_rawBytes[0] != TSVETOK_T) {
-            return false;
-        }
+        byte[] header = new byte[6];
+        System.arraycopy(_rawBytes, 0, header, 0, 6);
 
-        if (_rawBytes[1] != TSVETOK_V) {
-            return false;
-        }
-
-        if (_rawBytes[2] != TSVETOK_M) {
-            return false;
-        }
-
-        if (_rawBytes[3] != 97) {
-            return false;
-        }
-
-        if (_rawBytes[4] != 71) {
-            return false;
-        }
-
-        if (_rawBytes[5] != 12) {
-            return false;
-        }
-
-        return true;
+        return Arrays.equals(header, VALID_HEADER);
     }
 }

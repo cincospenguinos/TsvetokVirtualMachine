@@ -38,6 +38,10 @@ public class TsvetokAssembler {
                     break;
                 case OpCode.NO_OP:
                     break;
+                case OpCode.LOAD:
+                    byte register = Byte.parseByte(pieces[1]);
+                    instruction = (byte) ((opcode << 4) | (register << 2));
+                    break;
             }
 
             _bytes[index] = instruction;
@@ -55,6 +59,10 @@ public class TsvetokAssembler {
 
         if (instruction.equals("noup")) {
             return OpCode.NO_OP;
+        }
+
+        if (instruction.equals("ld")) {
+            return OpCode.LOAD;
         }
 
         throw new RuntimeException("\"" + instruction + "\" is not a valid instruction");

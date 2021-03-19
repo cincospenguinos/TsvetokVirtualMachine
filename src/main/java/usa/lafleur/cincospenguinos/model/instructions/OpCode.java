@@ -5,6 +5,7 @@ package usa.lafleur.cincospenguinos.model.instructions;
  */
 public class OpCode {
     public static final int NO_OP = 0;
+    public static final int LOAD = 1;
     public static final int MOVE_IMMEDIATE = 4;
     public static final int HALT = 15;
 }

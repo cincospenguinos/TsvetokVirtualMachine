@@ -1,13 +1,15 @@
 package usa.lafleur.cincospenguinos;
 
-public class Instruction {
+public abstract class Instruction {
     private byte _rawByte;
 
     public Instruction (byte raw) {
         _rawByte = raw;
     }
 
-    public void execute(TsvetokExecutable executable, byte[] registerArray) {
-        registerArray[0] = 15;
+    public abstract void execute(TsvetokExecutable executable, byte[] registerArray);
+
+    public boolean shouldHalt() {
+        return false;
     }
 }

@@ -18,8 +18,14 @@ public class TsvetokMachine {
             return RETURN_CODE_BAD_EXECUTABLE;
         }
 
-        Instruction instruction = _executable.getAt(EXECUTABLE_START_INDEX);
-        instruction.execute(_executable, _registerArray);
+        int programCounter = EXECUTABLE_START_INDEX;
+        Instruction instruction = _executable.getAt(programCounter);
+
+        while (!instruction.shouldHalt()) {
+            instruction.execute(_executable, _registerArray);
+            programCounter += 1;
+            instruction = _executable.getAt(programCounter);
+        }
 
         return RETURN_CODE_OK;
     }

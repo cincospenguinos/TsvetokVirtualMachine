@@ -21,8 +21,17 @@ public class TsvetokExecutable {
     }
 
     public Instruction getAt(int index) {
+        if (index >= _rawBytes.length) {
+            return new HaltInstruction((byte) 0);
+        }
+
         byte instruction = _rawBytes[index];
-        return new Instruction(instruction);
+
+        if ((instruction & 0xf0) == 0) {
+            return new NoOpInstruction(instruction);
+        }
+
+        return new MoveImmediateInstruction(instruction);
     }
 
     public boolean isValid() {

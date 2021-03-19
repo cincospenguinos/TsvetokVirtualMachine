@@ -29,6 +29,20 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
+    public void test_assembleHandlesMoveRegister() {
+        TsvetokAssembler assembler = new TsvetokAssembler("bouj $ak $rej2");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10000010, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesMoveImmediate() {
+        TsvetokAssembler assembler = new TsvetokAssembler("bouj 13");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10011101, result[6]);
+    }
+
+    @Test
     public void test_assembleHandlesDivide() {
         TsvetokAssembler assembler = new TsvetokAssembler("dif $rej2 $rej1");
         byte[] result = assembler.assemble().toByteArray();

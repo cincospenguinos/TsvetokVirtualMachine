@@ -1,7 +1,5 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
-
 public abstract class Instruction {
     private final byte _rawByte;
 
@@ -15,14 +13,14 @@ public abstract class Instruction {
         switch(opcode) {
             case OpCode.NO_OP:
                 return new NoOpInstruction(rawByte);
-            case OpCode.MULTIPLY:
-                return new MoveImmediateInstruction(rawByte);
+            case OpCode.MOVE:
+                return new MoveInstruction(rawByte);
         }
 
         return new HaltInstruction(rawByte);
     }
 
-    public abstract void execute(TsvetokExecutable executable, byte[] registerArray);
+    public abstract void execute(byte[] memory, byte[] registerArray);
 
     public boolean shouldHalt() {
         return false;

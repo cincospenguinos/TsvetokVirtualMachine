@@ -8,5 +8,5 @@ public class NoOpInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TsvetokExecutable executable, byte[] registerArray) {}
+    public void execute(byte[] memory, byte[] registerArray) {}
 }

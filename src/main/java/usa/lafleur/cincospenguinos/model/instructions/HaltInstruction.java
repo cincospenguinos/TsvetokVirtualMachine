@@ -8,7 +8,7 @@ public class HaltInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TsvetokExecutable executable, byte[] registerArray) {}
+    public void execute(byte[] memory, byte[] registerArray) {}
 
     public boolean shouldHalt() {
         return true;

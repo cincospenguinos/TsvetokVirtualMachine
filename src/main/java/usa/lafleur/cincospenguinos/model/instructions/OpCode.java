@@ -11,4 +11,5 @@ public class OpCode {
     public static final int MULTIPLY = 4;
     public static final int DIVIDE = 5;
     public static final int SIGN_TOGGLE = 6;
+    public static final int SYSTEM_CALL = 7;
 }

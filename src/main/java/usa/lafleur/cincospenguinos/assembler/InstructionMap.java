@@ -21,6 +21,7 @@ public class InstructionMap {
         _opcodes.put("nult", (byte) OpCode.MULTIPLY);
         _opcodes.put("dif", (byte) OpCode.DIVIDE);
         _opcodes.put("toug", (byte) OpCode.SIGN_TOGGLE);
+        _opcodes.put("sis", (byte) OpCode.SYSTEM_CALL);
     }
 
     public byte opcodeFor(String operation) {

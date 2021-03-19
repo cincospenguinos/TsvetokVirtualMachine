@@ -47,6 +47,9 @@ public class TsvetokAssembler {
                         instructionAssembly.setSecondRegister(pieces[2]);
                     }
                     break;
+                case OpCode.SYSTEM_CALL:
+                    instructionAssembly.setImmediate(pieces[1]);
+                    break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
                 case OpCode.DIVIDE:

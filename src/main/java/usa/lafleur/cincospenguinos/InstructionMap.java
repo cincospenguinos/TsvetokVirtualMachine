@@ -21,7 +21,7 @@ public class InstructionMap {
         _opcodes.put("dif", (byte) OpCode.DIVIDE);
         _opcodes.put("et", (byte) OpCode.BITWISE_AND);
         _opcodes.put("our", (byte) OpCode.BITWISE_OR);
-        _opcodes.put("toug", (byte) OpCode.TOGGLE_SIGN);
+        _opcodes.put("toujl", (byte) OpCode.TOGGLE_SIGN);
         _opcodes.put("sis", (byte) OpCode.SYSTEM_CALL);
         _opcodes.put("stoup", (byte) OpCode.HALT);
     }

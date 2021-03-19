@@ -42,8 +42,15 @@ public class TsvetokAssembler {
                     byte address = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
                     instruction |= address;
                     break;
+                case OpCode.TOGGLE_SIGN:
+                    byte singleReg = Byte.parseByte(pieces[1].replaceAll("\\$rej", ""));
+                    instruction |= (singleReg << 2);
+                    break;
                 case OpCode.ADD:
                 case OpCode.MULTIPLY:
+                case OpCode.DIVIDE:
+                case OpCode.BITWISE_AND:
+                case OpCode.BITWISE_OR:
                     byte firstRegister = Byte.parseByte(pieces[1].replaceAll("\\$rej", ""));
                     byte secondRegister = Byte.parseByte(pieces[2].replaceAll("\\$rej", ""));
                     instruction |= (byte) ((firstRegister << 2) | secondRegister);

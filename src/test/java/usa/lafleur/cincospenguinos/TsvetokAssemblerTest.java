@@ -53,4 +53,32 @@ public class TsvetokAssemblerTest {
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b10011100, result[6]);
     }
+
+    @Test
+    public void test_assembleHandlesDivide() {
+        TsvetokAssembler assembler = new TsvetokAssembler("dif $rej2 $rej1");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10101001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesBitwiseAnd() {
+        TsvetokAssembler assembler = new TsvetokAssembler("et $rej2 $rej1");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b10111001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesBitwiseOr() {
+        TsvetokAssembler assembler = new TsvetokAssembler("our $rej2 $rej1");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11001001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesSignToggle() {
+        TsvetokAssembler assembler = new TsvetokAssembler("toujl $rej1");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11010100, result[6]);
+    }
 }

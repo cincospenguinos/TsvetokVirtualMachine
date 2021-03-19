@@ -29,18 +29,18 @@ public class TsvetokAssembler {
         while(scanner.hasNextLine()) {
             String[] pieces = scanner.nextLine().split(WHITESPACE_PATTERN);
             byte opcode = opcodeFor(pieces[0]);
-            byte instruction = 0;
+            byte instruction = (byte) (opcode << 4);
 
             switch(opcode) {
                 case OpCode.MOVE_IMMEDIATE:
                     byte immediateValue = Byte.parseByte(pieces[1]);
-                    instruction = (byte) ((opcode << 4) | immediateValue);
+                    instruction |= immediateValue;
                     break;
                 case OpCode.NO_OP:
                     break;
                 case OpCode.LOAD:
                     byte register = Byte.parseByte(pieces[1]);
-                    instruction = (byte) ((opcode << 4) | (register << 2));
+                    instruction |= (register << 2);
                     break;
             }
 

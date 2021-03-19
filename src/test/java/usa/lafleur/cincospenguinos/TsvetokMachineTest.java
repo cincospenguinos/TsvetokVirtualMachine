@@ -20,7 +20,7 @@ public class TsvetokMachineTest {
     }
 
     @Test
-    public void test_executeHandlesLoad() {
+    public void test_handlesMoveImmediate() {
         TsvetokExecutable executable = new TsvetokExecutable(new byte[] {
             0x54, 0x56, 0x4d, 97, 71, 12,
             0b01001111, // Move the immediate value of 15 into the first register

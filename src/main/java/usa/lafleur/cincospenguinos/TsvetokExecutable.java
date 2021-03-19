@@ -27,11 +27,7 @@ public class TsvetokExecutable {
 
         byte instruction = _rawBytes[index];
 
-        if ((instruction & 0xf0) == 0) {
-            return new NoOpInstruction(instruction);
-        }
-
-        return new MoveImmediateInstruction(instruction);
+        return Instruction.instructionFor(instruction);
     }
 
     public boolean isValid() {

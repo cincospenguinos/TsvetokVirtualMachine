@@ -11,6 +11,8 @@ import java.util.Scanner;
  * bytes.
  */
 public class TsvetokAssembler {
+    public static final String COMMENT_CHARS = "#";
+
     private static final String WHITESPACE_PATTERN = "\\s+";
     private static final InstructionMap INSTRUCTION_MAP = new InstructionMap();
 
@@ -30,6 +32,11 @@ public class TsvetokAssembler {
 
         while(scanner.hasNextLine()) {
             String line = scanner.nextLine();
+
+            if (line.startsWith(COMMENT_CHARS)) {
+                continue;
+            }
+
             byte instruction = instructionFor(line, instructionAssembly);
             _bytes[index] = instruction;
             instructionAssembly.clear();
@@ -43,11 +50,8 @@ public class TsvetokAssembler {
 
     private byte instructionFor(String line, InstructionAssembly instructionAssembly) {
         String[] pieces = line.split(WHITESPACE_PATTERN);
-
         byte opcode = INSTRUCTION_MAP.opcodeFor(pieces[0]);
         instructionAssembly.setOpCode(opcode);
-
-        boolean hasImmediate = pieces.length == 2;
 
         switch(opcode) {
             case OpCode.SYSTEM_CALL:
@@ -67,6 +71,8 @@ public class TsvetokAssembler {
             case OpCode.MOVE:
             case OpCode.ADD:
             case OpCode.MULTIPLY:
+                boolean hasImmediate = pieces.length == 2;
+
                 if (hasImmediate) {
                     instructionAssembly.setImmediate(pieces[1]);
                     instructionAssembly.setOpFlag(true);

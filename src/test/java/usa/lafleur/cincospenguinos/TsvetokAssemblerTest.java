@@ -111,4 +111,11 @@ public class TsvetokAssemblerTest {
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b11110000, result[6]);
     }
+
+    @Test
+    public void test_assembleHandlesCodeComments() {
+        TsvetokAssembler assembler = new TsvetokAssembler("# This is a comment\nstoup");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11110000, result[6]);
+    }
 }

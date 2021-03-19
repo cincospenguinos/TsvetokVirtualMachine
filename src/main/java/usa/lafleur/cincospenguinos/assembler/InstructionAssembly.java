@@ -6,12 +6,11 @@ public class InstructionAssembly {
     private Byte firstRegister;
     private Byte secondRegister;
     private Byte immediate;
-    private Byte address;
 
     public InstructionAssembly() {}
 
     public byte build() {
-        byte constructedInstruction = (byte) (opCode << 5);
+        byte constructedInstruction = (byte) (opCode << 4);
 
         if (opFlag) {
             constructedInstruction |= 0b00010000;
@@ -19,8 +18,6 @@ public class InstructionAssembly {
 
         if (immediate != null) {
             constructedInstruction |= immediate;
-        } else if (address != null) {
-            constructedInstruction |= address;
         }
 
         if (firstRegister != null) {
@@ -40,7 +37,6 @@ public class InstructionAssembly {
         firstRegister = null;
         secondRegister = null;
         immediate = null;
-        address = null;
     }
 
     public void setOpCode(byte opCodeValue) {
@@ -57,10 +53,6 @@ public class InstructionAssembly {
 
     public void setImmediate(String value) {
         immediate = Byte.parseByte(value);
-    }
-
-    public void setAddress(String addressString) {
-        address = Byte.parseByte(addressString.replaceAll("#", ""));
     }
 
     public void setOpFlag(boolean flag) {

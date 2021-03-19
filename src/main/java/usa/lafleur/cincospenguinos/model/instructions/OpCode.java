@@ -5,11 +5,15 @@ package usa.lafleur.cincospenguinos.model.instructions;
  */
 public class OpCode {
     public static final int NO_OP = 0;
-    public static final int ACCESS_MEMORY = 1;
-    public static final int MOVE = 2;
-    public static final int ADD = 3;
-    public static final int MULTIPLY = 4;
-    public static final int DIVIDE = 5;
-    public static final int SIGN_TOGGLE = 6;
-    public static final int SYSTEM_CALL = 7;
+    public static final int SYSTEM_CALL = 1;
+    public static final int ACCESS_MEMORY = 2;
+    public static final int ADD = 4;
+    public static final int MULTIPLY = 6;
+    public static final int MOVE = 8;
+    public static final int LOGICAL_AND = 10;
+    public static final int LOGICAL_OR = 11;
+    public static final int JUMP_ON_ZERO = 12;
+    public static final int RETURN = 13;
+    public static final int DIVIDE = 14;
+    public static final int HALT = 15;
 }

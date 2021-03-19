@@ -39,6 +39,10 @@ public class TsvetokAssembler {
                     break;
                 case OpCode.NO_OP:
                     break;
+                case OpCode.STORE:
+                    byte address = Byte.parseByte(pieces[1].replaceAll("\\#", ""));
+                    instruction |= address;
+                    break;
                 case OpCode.LOAD:
                     byte register = Byte.parseByte(pieces[1]);
                     instruction |= (register << 2);
@@ -51,22 +55,6 @@ public class TsvetokAssembler {
         scanner.close();
 
         return this;
-    }
-
-    private byte opcodeFor(String instruction) {
-        if (instruction.equals("bouj")) {
-            return OpCode.MOVE_IMMEDIATE;
-        }
-
-        if (instruction.equals("noup")) {
-            return OpCode.NO_OP;
-        }
-
-        if (instruction.equals("ld")) {
-            return OpCode.LOAD;
-        }
-
-        throw new RuntimeException("\"" + instruction + "\" is not a valid instruction");
     }
 
     public byte[] toByteArray() {

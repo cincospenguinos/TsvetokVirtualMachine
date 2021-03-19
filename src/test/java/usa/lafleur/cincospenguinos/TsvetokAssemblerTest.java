@@ -11,4 +11,11 @@ public class TsvetokAssemblerTest {
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b01001100, result[6]);
     }
+
+    @Test
+    public void test_assembleHandlesNoOp() {
+        TsvetokAssembler assembler = new TsvetokAssembler("noup");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b00000000, result[6]);
+    }
 }

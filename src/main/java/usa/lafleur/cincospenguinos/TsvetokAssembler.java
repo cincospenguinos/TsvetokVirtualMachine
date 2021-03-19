@@ -1,14 +1,15 @@
 package usa.lafleur.cincospenguinos;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import usa.lafleur.cincospenguinos.model.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.model.TsvetokMachine;
-import usa.lafleur.cincospenguinos.model.instructions.Instruction;
 import usa.lafleur.cincospenguinos.model.instructions.OpCode;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
+/**
+ * Assembler for Tsvetok Virtual Machine. Converts human-readable assembly into
+ * bytes.
+ */
 public class TsvetokAssembler {
     private static final String WHITESPACE_PATTERN = "\\s+";
 
@@ -35,6 +36,8 @@ public class TsvetokAssembler {
                     byte immediateValue = Byte.parseByte(pieces[1]);
                     instruction = (byte) ((opcode << 4) | immediateValue);
                     break;
+                case OpCode.NO_OP:
+                    break;
             }
 
             _bytes[index] = instruction;
@@ -48,6 +51,10 @@ public class TsvetokAssembler {
     private byte opcodeFor(String instruction) {
         if (instruction.equals("bouj")) {
             return OpCode.MOVE_IMMEDIATE;
+        }
+
+        if (instruction.equals("noup")) {
+            return OpCode.NO_OP;
         }
 
         throw new RuntimeException("\"" + instruction + "\" is not a valid instruction");

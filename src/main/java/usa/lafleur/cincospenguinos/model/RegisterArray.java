@@ -1,9 +1,9 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.model;
 
 /**
  * Abstraction of an array of registers.
  */
-class RegisterArray {
+public class RegisterArray {
     public static final byte OVERFLOW_FLAG = 0b00000010;
     public static final byte ZERO_FLAG = 0b00000100;
 

@@ -1,5 +1,7 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
+import usa.lafleur.cincospenguinos.model.RegisterArray;
+
 public class AddInstruction extends Instruction {
     public AddInstruction(byte raw) {
         super(raw);

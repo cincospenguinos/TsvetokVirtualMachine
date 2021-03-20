@@ -41,7 +41,7 @@ public class RegisterArray {
         _array[FLAGS_INDEX] |= flagValue;
     }
 
-    public byte[] getArray() {
-        return _array;
+    public boolean isSet(byte flag) {
+        return (_array[FLAGS_INDEX] & flag) != 0;
     }
 }

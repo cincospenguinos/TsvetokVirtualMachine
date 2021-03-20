@@ -1,5 +1,7 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
+import usa.lafleur.cincospenguinos.model.RegisterArray;
+
 public abstract class Instruction {
     public static final int ACCUMULATOR_REGISTER_INDEX = 0;
     private final byte _rawByte;
@@ -21,7 +23,7 @@ public abstract class Instruction {
         return new HaltInstruction(rawByte);
     }
 
-    public abstract void execute(byte[] memory, byte[] registerArray);
+    public abstract void execute(byte[] memory, RegisterArray registerArray);
 
     public boolean shouldHalt() {
         return false;

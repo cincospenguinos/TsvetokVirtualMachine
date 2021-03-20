@@ -1,15 +1,18 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
+import usa.lafleur.cincospenguinos.model.RegisterArray;
+
 public class MoveInstruction extends Instruction {
     public MoveInstruction(byte raw) {
         super(raw);
     }
 
-    public void execute(byte[] memory, byte[] registerArray) {
+    public void execute(byte[] memory, RegisterArray registerArray) {
         if (opFlagSet()) {
-            registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX] = getImmediate();
+            registerArray.setRegister(RegisterArray.ACCUMULATOR_INDEX, getImmediate());
         } else {
-            registerArray[secondRegisterIndex()] = registerArray[firstRegisterIndex()];
+            byte value = registerArray.getRegister(firstRegisterIndex());
+            registerArray.setRegister(secondRegisterIndex(), value);
         }
     }
 }

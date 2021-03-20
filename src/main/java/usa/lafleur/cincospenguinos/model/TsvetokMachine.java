@@ -10,13 +10,13 @@ public class TsvetokMachine {
     public static final int MAXIMUM_MEMORY = 65536; // 64KB
 
     private TsvetokExecutable _executable;
-    private byte[] _registerArray;
+    private RegisterArray _registerArray;
     private byte[] _memory;
 
     public TsvetokMachine(TsvetokExecutable executable) {
         _memory = new byte[MAXIMUM_MEMORY];
         _executable = executable;
-        _registerArray = new byte[5];
+        _registerArray = new RegisterArray();
     }
 
     public byte execute() {

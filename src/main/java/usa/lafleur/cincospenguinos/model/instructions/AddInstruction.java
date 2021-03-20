@@ -8,29 +8,27 @@ public class AddInstruction extends Instruction {
     }
 
     @Override
-    public void execute(byte[] memory, byte[] registerArray) {
-        RegisterArray array = new RegisterArray(registerArray);
+    public void execute(byte[] memory, RegisterArray registerArray) {
         byte first, second;
 
         if (opFlagSet()) {
-            first = array.getRegister(RegisterArray.ACCUMULATOR_INDEX);
+            first = registerArray.getRegister(RegisterArray.ACCUMULATOR_INDEX);
             second = getImmediate();
         } else {
-            first = array.getRegister(firstRegisterIndex());
-            second = array.getRegister(secondRegisterIndex());
+            first = registerArray.getRegister(firstRegisterIndex());
+            second = registerArray.getRegister(secondRegisterIndex());
         }
 
         int result = (first + second);
 
         if (result >= 128) {
-            array.setFlag(RegisterArray.OVERFLOW_FLAG);
+            registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
         }
 
         if (result == 0) {
-            array.setFlag(RegisterArray.ZERO_FLAG);
+            registerArray.setFlag(RegisterArray.ZERO_FLAG);
         }
 
-        array.setRegister(RegisterArray.ACCUMULATOR_INDEX, (byte) result);
-        registerArray = array.getArray();
+        registerArray.setRegister(RegisterArray.ACCUMULATOR_INDEX, (byte) result);
     }
 }

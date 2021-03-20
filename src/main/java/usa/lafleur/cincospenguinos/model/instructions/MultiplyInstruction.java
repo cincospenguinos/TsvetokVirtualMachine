@@ -2,8 +2,8 @@ package usa.lafleur.cincospenguinos.model.instructions;
 
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
-public class AddInstruction extends Instruction {
-    public AddInstruction(byte raw) {
+public class MultiplyInstruction extends Instruction {
+    public MultiplyInstruction(byte raw) {
         super(raw);
     }
 
@@ -19,16 +19,7 @@ public class AddInstruction extends Instruction {
             second = registerArray.getRegister(secondRegisterIndex());
         }
 
-        int result = (first + second);
-
-        if (result >= 128) {
-            registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
-        }
-
-        if ((result & 0xff) == 0) {
-            registerArray.setFlag(RegisterArray.ZERO_FLAG);
-        }
-
+        int result = (first * second);
         registerArray.setRegister(RegisterArray.ACCUMULATOR_INDEX, (byte) result);
     }
 }

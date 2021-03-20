@@ -18,6 +18,12 @@ public abstract class Instruction {
                 return new NoOpInstruction(rawByte);
             case OpCode.MOVE:
                 return new MoveInstruction(rawByte);
+            case OpCode.ACCESS_MEMORY:
+                return new MemoryAccessInstruction(rawByte);
+            case OpCode.ADD:
+                return new AddInstruction(rawByte);
+            case OpCode.MULTIPLY:
+                return new MultiplyInstruction(rawByte);
         }
 
         return new HaltInstruction(rawByte);

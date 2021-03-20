@@ -21,6 +21,10 @@ public class RegisterArray {
         _array = array;
     }
 
+    public byte accumulator() {
+        return getRegister(ACCUMULATOR_INDEX);
+    }
+
     public byte getRegister(int index) {
         if (index == FLAGS_INDEX) {
             throw new RuntimeException("Cannot read flag register!");

@@ -28,9 +28,12 @@ public abstract class Instruction {
             case OpCode.LOGICAL_AND:
             case OpCode.LOGICAL_OR:
                 return new LogicInstruction(rawByte);
+            case OpCode.SYSTEM_CALL:
+                return new SysCallInstruction(rawByte);
+            case OpCode.HALT:
+            default:
+                return new HaltInstruction(rawByte);
         }
-
-        return new HaltInstruction(rawByte);
     }
 
     public abstract void execute(byte[] memory, RegisterArray registerArray);

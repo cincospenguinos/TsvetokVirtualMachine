@@ -1,6 +1,6 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-public class DivisionInstruction extends LogicArithmeticInstruction {
+public class DivisionInstruction extends ArithmeticInstruction {
     public DivisionInstruction(byte raw) {
         super(raw);
     }

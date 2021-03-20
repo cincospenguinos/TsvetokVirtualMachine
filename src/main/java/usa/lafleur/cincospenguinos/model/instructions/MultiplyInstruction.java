@@ -1,8 +1,6 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-import usa.lafleur.cincospenguinos.model.RegisterArray;
-
-public class MultiplyInstruction extends LogicArithmeticInstruction {
+public class MultiplyInstruction extends ArithmeticInstruction {
     public MultiplyInstruction(byte raw) {
         super(raw);
     }

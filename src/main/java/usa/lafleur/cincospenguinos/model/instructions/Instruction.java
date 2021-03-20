@@ -24,6 +24,8 @@ public abstract class Instruction {
                 return new AddInstruction(rawByte);
             case OpCode.MULTIPLY:
                 return new MultiplyInstruction(rawByte);
+            case OpCode.DIVIDE:
+                return new DivisionInstruction(rawByte);
         }
 
         return new HaltInstruction(rawByte);

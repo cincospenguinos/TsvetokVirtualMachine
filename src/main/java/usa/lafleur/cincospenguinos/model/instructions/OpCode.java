@@ -12,8 +12,7 @@ public class OpCode {
     public static final int MOVE = 8;
     public static final int LOGICAL_AND = 10;
     public static final int LOGICAL_OR = 11;
-    public static final int JUMP_ON_ZERO = 12;
-    public static final int RETURN = 13;
-    public static final int DIVIDE = 14;
+    public static final int DIVIDE = 12;
+    public static final int JUMP_ON_ZERO = 14;
     public static final int HALT = 15;
 }

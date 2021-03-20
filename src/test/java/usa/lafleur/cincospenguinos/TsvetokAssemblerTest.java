@@ -81,7 +81,7 @@ public class TsvetokAssemblerTest {
     public void test_assembleHandlesDivide() {
         TsvetokAssembler assembler = new TsvetokAssembler("dif $rej2 $rej1");
         byte[] result = assembler.assemble().toByteArray();
-        assertEquals((byte) 0b11101001, result[6]);
+        assertEquals((byte) 0b11001001, result[6]);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TsvetokAssemblerTest {
     public void test_assembleHandlesJumpIfZero() {
         TsvetokAssembler assembler = new TsvetokAssembler("jnps $ak $rej2");
         byte[] result = assembler.assemble().toByteArray();
-        assertEquals((byte) 0b11000010, result[6]);
+        assertEquals((byte) 0b11100010, result[6]);
     }
 
     @Test

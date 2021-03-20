@@ -7,17 +7,26 @@ public class AddInstruction extends Instruction {
 
     @Override
     public void execute(byte[] memory, byte[] registerArray) {
-        if (opFlagSet()) {
-            byte immediate = getImmediate();
-            registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX] += immediate;
-        } else {
-            byte first = registerArray[firstRegisterIndex()];
-            byte second = registerArray[secondRegisterIndex()];
+        byte first, second;
 
-            // TODO: Carry bit?
-            // TODO: Zero bit?
-            byte result = (byte) (first + second);
-            registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX] = result;
+        if (opFlagSet()) {
+            first = registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX];
+            second = getImmediate();
+        } else {
+            first = registerArray[firstRegisterIndex()];
+            second = registerArray[secondRegisterIndex()];
         }
+
+        int result = (first + second);
+
+        if (result >= 128) {
+            registerArray[4] |= (byte) 0b00000010;
+        }
+
+        if (result == 0) {
+            registerArray[4] |= (byte) 0b00000100;
+        }
+
+        registerArray[Instruction.ACCUMULATOR_REGISTER_INDEX] = (byte) result;
     }
 }

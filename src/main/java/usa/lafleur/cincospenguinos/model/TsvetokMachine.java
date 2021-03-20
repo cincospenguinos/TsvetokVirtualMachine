@@ -16,7 +16,7 @@ public class TsvetokMachine {
     public TsvetokMachine(TsvetokExecutable executable) {
         _memory = new byte[MAXIMUM_MEMORY];
         _executable = executable;
-        _registerArray = new byte[4];
+        _registerArray = new byte[5];
     }
 
     public byte execute() {

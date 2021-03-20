@@ -9,7 +9,7 @@ public class MoveInstruction extends Instruction {
 
     public void execute(byte[] memory, RegisterArray registerArray) {
         if (opFlagSet()) {
-            registerArray.setRegister(RegisterArray.ACCUMULATOR_INDEX, getImmediate());
+            registerArray.accumulator(getImmediate());
         } else {
             byte value = registerArray.getRegister(firstRegisterIndex());
             registerArray.setRegister(secondRegisterIndex(), value);

@@ -33,6 +33,10 @@ public class RegisterArray {
         return _array[index];
     }
 
+    public void accumulator(byte value) {
+        setRegister(ACCUMULATOR_INDEX, value);
+    }
+
     public void setRegister(int index, byte value) {
         if (index == FLAGS_INDEX) {
             throw new RuntimeException("Cannot write to flag register!");

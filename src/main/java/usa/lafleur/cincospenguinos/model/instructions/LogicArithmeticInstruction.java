@@ -11,7 +11,7 @@ public abstract class LogicArithmeticInstruction extends Instruction {
     public void execute(byte[] memory, RegisterArray registerArray) {
         byte first, second;
 
-        if (opFlagSet()) {
+        if (immediateFlagSet()) {
             first = registerArray.accumulator();
             second = getImmediate();
         } else {
@@ -20,16 +20,22 @@ public abstract class LogicArithmeticInstruction extends Instruction {
         }
 
         int result = performOperation(first, second);
+        setFlags(result, registerArray);
+        registerArray.accumulator((byte) result);
+    }
 
-        if (result >= 127) {
+    private boolean immediateFlagSet() {
+        return opFlagSet();
+    }
+
+    private void setFlags(int operationResult, RegisterArray registerArray) {
+        if (operationResult >= 127) {
             registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
         }
 
-        if ((result & 0xff) == 0) {
+        if ((operationResult & 0xff) == 0) {
             registerArray.setFlag(RegisterArray.ZERO_FLAG);
         }
-
-        registerArray.setRegister(RegisterArray.ACCUMULATOR_INDEX, (byte) result);
     }
 
     protected abstract int performOperation(byte left, byte right);

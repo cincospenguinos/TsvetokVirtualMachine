@@ -23,6 +23,6 @@ public class MoveInstructionTest {
         Instruction instruction = new MoveInstruction(machineInstruction);
         RegisterArray registers = new RegisterArray(new byte[] { 0, 0, 0, 0 });
         instruction.execute(null, registers);
-        assertEquals((byte) 9, registers.getRegister(RegisterArray.ACCUMULATOR_INDEX));
+        assertEquals((byte) 9, registers.accumulator());
     }
 }

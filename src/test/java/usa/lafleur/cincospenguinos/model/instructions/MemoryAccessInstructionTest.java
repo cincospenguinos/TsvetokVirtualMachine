@@ -13,7 +13,7 @@ public class MemoryAccessInstructionTest {
         RegisterArray registers = new RegisterArray(new byte[] { 0, 0, 1, 0 });
         Instruction instruction = new MemoryAccessInstruction(rawInstruction);
         instruction.execute(memory, registers);
-        assertEquals((byte) 21, registers.getRegister(RegisterArray.ACCUMULATOR_INDEX));
+        assertEquals((byte) 21, registers.accumulator());
     }
 
     @Test

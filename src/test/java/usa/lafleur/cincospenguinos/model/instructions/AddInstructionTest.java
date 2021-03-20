@@ -12,7 +12,7 @@ public class AddInstructionTest {
         Instruction instruction = new AddInstruction(machineInstruction);
         RegisterArray registers = new RegisterArray(new byte[] { 0, 0, 0, 12, 0 });
         instruction.execute(null, registers);
-        assertEquals((byte) 24, registers.getRegister(RegisterArray.ACCUMULATOR_INDEX));
+        assertEquals((byte) 24, registers.accumulator());
     }
 
     @Test
@@ -21,7 +21,7 @@ public class AddInstructionTest {
         Instruction instruction = new AddInstruction(machineInstruction);
         RegisterArray registers = new RegisterArray(new byte[] { 15, 0, 0, 0, 0 });
         instruction.execute(null, registers);
-        assertEquals((byte) 30, registers.getRegister(RegisterArray.ACCUMULATOR_INDEX));
+        assertEquals((byte) 30, registers.accumulator());
     }
 
     @Test

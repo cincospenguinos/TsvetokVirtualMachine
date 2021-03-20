@@ -78,10 +78,17 @@ public class TsvetokAssemblerTest {
     }
 
     @Test
-    public void test_assembleHandlesDivide() {
+    public void test_assembleHandlesDivideWithRegisters() {
         TsvetokAssembler assembler = new TsvetokAssembler("dif $rej2 $rej1");
         byte[] result = assembler.assemble().toByteArray();
         assertEquals((byte) 0b11001001, result[6]);
+    }
+
+    @Test
+    public void test_assembleHandlesDivideImmediate() {
+        TsvetokAssembler assembler = new TsvetokAssembler("dif 2");
+        byte[] result = assembler.assemble().toByteArray();
+        assertEquals((byte) 0b11010010, result[6]);
     }
 
     @Test

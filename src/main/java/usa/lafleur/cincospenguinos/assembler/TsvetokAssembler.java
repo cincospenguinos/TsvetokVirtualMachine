@@ -57,7 +57,6 @@ public class TsvetokAssembler {
             case OpCode.SYSTEM_CALL:
                 instructionAssembly.setImmediate(pieces[1]);
                 break;
-            case OpCode.DIVIDE:
             case OpCode.JUMP_ON_ZERO:
                 setRegisters(pieces, instructionAssembly);
                 break;
@@ -71,6 +70,7 @@ public class TsvetokAssembler {
             case OpCode.MOVE:
             case OpCode.ADD:
             case OpCode.MULTIPLY:
+            case OpCode.DIVIDE:
                 boolean hasImmediate = pieces.length == 2;
 
                 if (hasImmediate) {

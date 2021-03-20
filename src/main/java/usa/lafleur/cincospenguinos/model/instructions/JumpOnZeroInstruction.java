@@ -1,5 +1,6 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.model.instructions;
 
+import usa.lafleur.cincospenguinos.model.RegisterArray;
 import usa.lafleur.cincospenguinos.model.instructions.Instruction;
 
 public class JumpOnZeroInstruction extends Instruction {

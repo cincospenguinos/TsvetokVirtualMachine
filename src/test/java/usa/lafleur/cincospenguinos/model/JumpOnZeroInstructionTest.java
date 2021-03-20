@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.model;
 
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.model.instructions.Instruction;
+import usa.lafleur.cincospenguinos.model.instructions.JumpOnZeroInstruction;
 
 import static org.junit.Assert.*;
 

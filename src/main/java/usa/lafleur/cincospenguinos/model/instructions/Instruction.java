@@ -1,6 +1,5 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-import usa.lafleur.cincospenguinos.model.JumpOnZeroInstruction;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 public abstract class Instruction {

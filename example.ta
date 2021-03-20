@@ -1,0 +1,15 @@
+# Aight we are going to get 144 and set it to memory address 0x01
+bouj 12
+nult 12
+bouj $ak $rej2
+# rej2 has 144 now
+bouj 1
+bouj $ak $rej1
+# rej1 has the lower part of the address
+bouj 0
+bouj $ak $retr
+# $rentr has the upper part of the address
+bouj $rej2 $ak
+# $ak is loaded with what we wanted
+nensou $retr $rej1
+stoup

@@ -10,15 +10,14 @@ import java.util.Arrays;
  */
 public class TsvetokExecutable {
     public static final byte[] VALID_HEADER = new byte[] { 0x54, 0x56, 0x4d, 97, 71, 12 };
-    private static final int MAX_EXECUTABLE_SIZE = 0xffff;
 
     private byte[] _rawBytes;
 
     public TsvetokExecutable(byte[] bytes) {
         _rawBytes = bytes;
 
-        if (_rawBytes.length < MAX_EXECUTABLE_SIZE) {
-            byte[] fullExecutable = new byte[MAX_EXECUTABLE_SIZE];
+        if (_rawBytes.length < TsvetokMachine.MAXIMUM_MEMORY) {
+            byte[] fullExecutable = new byte[TsvetokMachine.MAXIMUM_MEMORY];
             System.arraycopy(_rawBytes, 0, fullExecutable, 0, _rawBytes.length);
             _rawBytes = fullExecutable;
         }
@@ -42,6 +41,6 @@ public class TsvetokExecutable {
             return false;
         }
 
-        return _rawBytes.length <= MAX_EXECUTABLE_SIZE;
+        return _rawBytes.length <= TsvetokMachine.MAXIMUM_MEMORY;
     }
 }

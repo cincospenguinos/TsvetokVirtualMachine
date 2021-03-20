@@ -13,12 +13,12 @@ public class InstructionMap {
 
         _opcodes.put("noup", (byte) OpCode.NO_OP);
         _opcodes.put("sis", (byte) OpCode.SYSTEM_CALL);
-        _opcodes.put("nens", (byte) OpCode.ACCESS_MEMORY);
-        _opcodes.put("nensou", (byte) OpCode.ACCESS_MEMORY);
-        _opcodes.put("bouj", (byte) OpCode.MOVE);
-        _opcodes.put("ad", (byte) OpCode.ADD);
-        _opcodes.put("nult", (byte) OpCode.MULTIPLY);
-        _opcodes.put("dif", (byte) OpCode.DIVIDE);
+        _opcodes.put("nens", (byte) OpCode.LOAD_MEMORY);
+        _opcodes.put("nensou", (byte) OpCode.STORE_MEMORY);
+        _opcodes.put("bouj", (byte) OpCode.MOVE_IMMEDIATE);
+        _opcodes.put("ad", (byte) OpCode.ADD_IMMEDIATE);
+        _opcodes.put("nult", (byte) OpCode.MULTIPLY_REGISTER);
+        _opcodes.put("dif", (byte) OpCode.DIVIDE_REGISTER);
         _opcodes.put("loujet", (byte) OpCode.LOGICAL_AND);
         _opcodes.put("loujour", (byte) OpCode.LOGICAL_OR);
         _opcodes.put("jnps", (byte) OpCode.JUMP_ON_ZERO);

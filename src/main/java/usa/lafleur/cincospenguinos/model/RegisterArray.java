@@ -10,15 +10,19 @@ public class RegisterArray {
     public static final int ACCUMULATOR_INDEX = 0;
     public static final int FLAGS_INDEX = 4;
 
+    public static final short DEFAULT_STARTING_PROGRAM_COUNTER = 6;
+
     private byte[] _array;
     private short _programCounter;
 
     public RegisterArray() {
         _array = new byte[6];
+        _programCounter = DEFAULT_STARTING_PROGRAM_COUNTER;
     }
 
     public RegisterArray(byte[] array) {
         _array = array;
+        _programCounter = DEFAULT_STARTING_PROGRAM_COUNTER;
     }
 
     public byte accumulator() {

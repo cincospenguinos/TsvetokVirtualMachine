@@ -1,6 +1,13 @@
 package usa.lafleur.cincospenguinos.assembler;
 
+import usa.lafleur.cincospenguinos.model.instructions.OpCode;
+
 public class InstructionAssembly {
+    private static final int[] OP_FLAG_INSTRUCTIONS = new int[] { OpCode.STORE_MEMORY, OpCode.LOAD_MEMORY,
+            OpCode.MOVE_IMMEDIATE, OpCode.MOVE_REGISTER, OpCode.ADD_IMMEDIATE, OpCode.ADD_REGISTER,
+            OpCode.MULTIPLY_REGISTER, OpCode.MULTIPLY_IMMEDIATE, OpCode.LOGICAL_AND, OpCode.LOGICAL_OR,
+            OpCode.DIVIDE_REGISTER, OpCode.DIVIDE_IMMEDIATE,
+    };
     private byte opCode;
     private boolean opFlag;
     private Byte firstRegister;
@@ -12,8 +19,12 @@ public class InstructionAssembly {
     public byte build() {
         byte constructedInstruction = (byte) (opCode << 4);
 
-        if (opFlag) {
-            constructedInstruction |= 0b00010000;
+        if (isOpFlagInstruction()) {
+            if (opFlag) {
+                constructedInstruction |= 0b00010000;
+            } else {
+                constructedInstruction &= 0b11101111;
+            }
         }
 
         if (immediate != null) {
@@ -29,6 +40,16 @@ public class InstructionAssembly {
         }
 
         return constructedInstruction;
+    }
+
+    private boolean isOpFlagInstruction() {
+        for (int opFlagInstruction : OP_FLAG_INSTRUCTIONS) {
+            if (opFlagInstruction == opCode) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void clear() {

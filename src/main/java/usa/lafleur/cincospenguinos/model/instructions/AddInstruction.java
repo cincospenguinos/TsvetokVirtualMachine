@@ -25,7 +25,7 @@ public class AddInstruction extends Instruction {
             registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
         }
 
-        if (result == 0) {
+        if ((result & 0xff) == 0) {
             registerArray.setFlag(RegisterArray.ZERO_FLAG);
         }
 

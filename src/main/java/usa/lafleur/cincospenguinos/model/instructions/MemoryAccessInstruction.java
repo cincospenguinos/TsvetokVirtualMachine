@@ -14,10 +14,10 @@ public class MemoryAccessInstruction extends Instruction {
         int memoryAddress = (upper << 8) | lower;
 
         if (opFlagSet()) {
-            memory[memoryAddress] = registerArray.getRegister(Instruction.ACCUMULATOR_REGISTER_INDEX);
+            memory[memoryAddress] = registerArray.accumulator();
         } else {
             byte value = memory[memoryAddress];
-            registerArray.setRegister(Instruction.ACCUMULATOR_REGISTER_INDEX, value);
+            registerArray.accumulator(value);
         }
     }
 }

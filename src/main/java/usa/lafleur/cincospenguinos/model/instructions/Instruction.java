@@ -3,7 +3,6 @@ package usa.lafleur.cincospenguinos.model.instructions;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 public abstract class Instruction {
-    public static final int ACCUMULATOR_REGISTER_INDEX = 0;
     private final byte _rawByte;
 
     public Instruction (byte raw) {
@@ -59,5 +58,15 @@ public abstract class Instruction {
         rawByte = (byte) (rawByte >> 4);
 
         return rawByte == (byte) 0x01;
+    }
+
+    protected void setFlags(int operationResult, RegisterArray registerArray) {
+        if (operationResult >= 127) {
+            registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
+        }
+
+        if ((operationResult & 0xff) == 0) {
+            registerArray.setFlag(RegisterArray.ZERO_FLAG);
+        }
     }
 }

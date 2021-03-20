@@ -28,15 +28,5 @@ public abstract class ArithmeticInstruction extends Instruction {
         return opFlagSet();
     }
 
-    private void setFlags(int operationResult, RegisterArray registerArray) {
-        if (operationResult >= 127) {
-            registerArray.setFlag(RegisterArray.OVERFLOW_FLAG);
-        }
-
-        if ((operationResult & 0xff) == 0) {
-            registerArray.setFlag(RegisterArray.ZERO_FLAG);
-        }
-    }
-
     protected abstract int performOperation(byte left, byte right);
 }

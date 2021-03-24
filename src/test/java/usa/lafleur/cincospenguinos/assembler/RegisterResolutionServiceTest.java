@@ -22,4 +22,12 @@ public class RegisterResolutionServiceTest {
             assertEquals((byte) i, registerByte);
         }
     }
+
+    @Test
+    public void test_resolvesTemporaryRegisters() {
+        byte registerByte = service.resolve("$tnp0");
+        assertEquals((byte) 0x6, registerByte);
+        registerByte = service.resolve("$tnp1");
+        assertEquals((byte) 0x7, registerByte);
+    }
 }

@@ -11,6 +11,11 @@ public class RegisterResolutionService {
             return 0x0;
         }
 
+        if (register.contains("tnp")) {
+            byte registerByte = Byte.parseByte(register.replace("tnp", ""));
+            return (byte) (registerByte + 0x6);
+        }
+
         return Byte.parseByte(register.replace("rej", ""));
     }
 }

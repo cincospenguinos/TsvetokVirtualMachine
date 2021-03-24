@@ -1,15 +1,31 @@
-# Aight we are going to get 144 and set it to memory address 0x01
-bouj 12
-nult 12
-bouj $ak $rej2
-# rej2 has 144 now
-bouj 1
-bouj $ak $rej1
-# rej1 has the lower part of the address
-bouj 0
-bouj $ak $retr
-# $rentr has the upper part of the address
-bouj $rej2 $ak
-# $ak is loaded with what we wanted
-nensou $retr $rej1
-stoup
+# Let's try this coin change thing again
+.main
+    bouj 15
+    nult 6
+    ad 3
+    bouj $ak $rej1  # rej1 has 93
+    bouj 15
+    ad 10
+    bouj $ak $rej2  # rej2 has 25
+    dif $rej1 $rej2 # 93 / 25 = 3
+    sis 2           # Output the 3 via STDOUT
+    nult $ak $rej2
+    nult -1         # $ak now has -75
+    ad $ak $rej1    # We now have 93 - 75 = 18
+    bouj $ak $rej1  # rej1 has 18
+    # Okay, here's the state of things now:
+    # $ak   = 18
+    # $rej1 = 18 -> Total that we need to calculate from now
+    # $rej2 = 25 -> The amount we just handled
+
+# OBSERVATIONS:
+# 1. We don't need loujet and loujour for this problem
+# 2. Loading/storing into memory is currently pointless, as we have too few registers to create addresses and hang onto values
+# 3. Without a way to interact with memory, we can't store more values or anything, leaving us at a catch-22
+# So we need more registers, no matter what. Perhaps only some registers can be left-hand values or something?
+# I keep attempting this thinking that I'm going to turn this into actual hardware. The more I think about it though,
+# the more I think that I'm uninterested in the literal hardware of a machine (although that would be cool to pull off.)
+# I care a lot more about making the machine virtually, and then creating an operating system for it, and then creating
+# a language to compile to it, etc.
+# I'm thinking I should be able to make it more complex, and let it rise with me. That way I can keep moving and don't
+# have to waste any more pages in my notebook.

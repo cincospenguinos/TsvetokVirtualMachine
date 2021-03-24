@@ -48,4 +48,16 @@ public class RegisterResolutionServiceTest {
         registerByte = service.resolve("$retra");
         assertEquals((byte) 0xc, registerByte);
     }
+
+    @Test
+    public void test_resolvesStackPointerRegister() {
+        byte registerByte = service.resolve("$fn");
+        assertEquals((byte) 0xe, registerByte);
+    }
+
+    @Test
+    public void test_resolvesProgramCounterRegister() {
+        byte registerByte = service.resolve("$pn");
+        assertEquals((byte) 0xf, registerByte);
+    }
 }

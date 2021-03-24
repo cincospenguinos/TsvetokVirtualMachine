@@ -40,4 +40,12 @@ public class RegisterResolutionServiceTest {
         registerByte = service.resolve("$arj2");
         assertEquals((byte) 0xa, registerByte);
     }
+
+    @Test
+    public void test_resolvesSubroutineRegisters() {
+        byte registerByte = service.resolve("$retrf");
+        assertEquals((byte) 0xb, registerByte);
+        registerByte = service.resolve("$retra");
+        assertEquals((byte) 0xc, registerByte);
+    }
 }

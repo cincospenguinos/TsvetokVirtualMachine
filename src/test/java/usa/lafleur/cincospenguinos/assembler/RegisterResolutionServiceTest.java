@@ -50,6 +50,12 @@ public class RegisterResolutionServiceTest {
     }
 
     @Test
+    public void test_resolvesFlagsRegister() {
+        byte registerByte = service.resolve("$flj");
+        assertEquals((byte) 0xd, registerByte);
+    }
+
+    @Test
     public void test_resolvesStackPointerRegister() {
         byte registerByte = service.resolve("$fn");
         assertEquals((byte) 0xe, registerByte);

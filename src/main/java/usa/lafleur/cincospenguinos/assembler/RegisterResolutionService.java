@@ -7,6 +7,7 @@ public class RegisterResolutionService {
     private static final String SUBROUTINE_REGISTER_NAMESPACE = "retr";
     public static final String STACK_POINTER_REGISTER_NAME = "fn";
     public static final String PROGRAM_COUNTER_REGISTER_NAME = "pn";
+    public static final String FLAG_REGISTER_NAME = "flj";
 
     public RegisterResolutionService() {}
 
@@ -33,6 +34,10 @@ public class RegisterResolutionService {
             int offsetAmount = 0xb;
             String letter = register.replace(SUBROUTINE_REGISTER_NAMESPACE, "");
             return letter.equals("f") ? (byte) offsetAmount : (byte) (offsetAmount + 1);
+        }
+
+        if (register.equals(FLAG_REGISTER_NAME)) {
+            return 0xd;
         }
 
         if (register.equals(STACK_POINTER_REGISTER_NAME)) {

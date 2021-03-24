@@ -30,4 +30,14 @@ public class RegisterResolutionServiceTest {
         registerByte = service.resolve("$tnp1");
         assertEquals((byte) 0x7, registerByte);
     }
+
+    @Test
+    public void test_resolvesArgumentRegisters() {
+        byte registerByte = service.resolve("$arj0");
+        assertEquals((byte) 0x8, registerByte);
+        registerByte = service.resolve("$arj1");
+        assertEquals((byte) 0x9, registerByte);
+        registerByte = service.resolve("$arj2");
+        assertEquals((byte) 0xa, registerByte);
+    }
 }

@@ -7,6 +7,8 @@ import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 import static org.junit.Assert.*;
 
 public class TsvetokAssemblerTest {
+    // TODO: Consider dropping these tests
+
     @Test
     public void test_assemblerHandlesNoOp() {
         TsvetokAssembler assembler = new TsvetokAssembler();

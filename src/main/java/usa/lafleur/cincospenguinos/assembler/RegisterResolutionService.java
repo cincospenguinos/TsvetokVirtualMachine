@@ -5,9 +5,9 @@ public class RegisterResolutionService {
     private static final String TEMPORARY_REGISTER_NAMESPACE = "tnp";
     private static final String ARGUMENT_REGISTER_NAMESPACE = "arj";
     private static final String SUBROUTINE_REGISTER_NAMESPACE = "retr";
-    public static final String STACK_POINTER_REGISTER_NAME = "fn";
-    public static final String PROGRAM_COUNTER_REGISTER_NAME = "pn";
-    public static final String FLAG_REGISTER_NAME = "flj";
+    private static final String STACK_POINTER_REGISTER_NAME = "fn";
+    private static final String PROGRAM_COUNTER_REGISTER_NAME = "pn";
+    private static final String FLAG_REGISTER_NAME = "flj";
 
     public RegisterResolutionService() {}
 

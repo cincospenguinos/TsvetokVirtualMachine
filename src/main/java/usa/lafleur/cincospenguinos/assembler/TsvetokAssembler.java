@@ -11,14 +11,10 @@ public class TsvetokAssembler {
 
     public TsvetokInstruction createInstruction(String line) {
         String[] pieces = line.trim().split("\\s+");
+        byte opcode = opCodeResolver.codeFor(pieces[0]);
 
         if (pieces.length == 1) {
-            if (pieces[0].equals("noup")) {
-                byte opcode = opCodeResolver.codeFor(pieces[0]);
-                return new TsvetokInstruction(opcode, (byte) 0x0);
-            }
-
-            return new TsvetokInstruction((byte) 0xf0, (byte) 0x0);
+            return new TsvetokInstruction(opcode, (byte) 0x0);
         }
 
         return null;

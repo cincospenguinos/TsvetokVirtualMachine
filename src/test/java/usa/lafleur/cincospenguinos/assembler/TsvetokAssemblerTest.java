@@ -13,4 +13,11 @@ public class TsvetokAssemblerTest {
         TsvetokInstruction instruction = assembler.createInstruction("noup");
         assertEquals(instruction.toBytes(), new Tuple<>((byte) 0x0, (byte) 0x0));
     }
+
+    @Test
+    public void test_assemblerHandlesHalt() {
+        TsvetokAssembler assembler = new TsvetokAssembler();
+        TsvetokInstruction instruction = assembler.createInstruction("stoup");
+        assertEquals((byte) instruction.toBytes().getA(), (byte) 0xf0);
+    }
 }

@@ -24,4 +24,12 @@ public class Tuple<A, B> {
     public int hashCode() {
         return Objects.hash(_a, _b);
     }
+
+    public A getA() {
+        return _a;
+    }
+
+    public B getB() {
+        return _b;
+    }
 }

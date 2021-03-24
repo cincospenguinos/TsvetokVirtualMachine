@@ -27,10 +27,10 @@ _ sens "0 => rej" ou "1 => falou"
 ```text
 ak     0000
 rej1   0001
-rej1   0010
-rej1   0011
-rej1   0100
-rej1   0101
+rej2   0010
+rej3   0011
+rej4   0100
+rej5   0101
 tnp0   0110
 tnp1   0111
 arj0   1000

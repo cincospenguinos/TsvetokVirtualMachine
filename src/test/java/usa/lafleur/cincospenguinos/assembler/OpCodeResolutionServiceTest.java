@@ -46,6 +46,30 @@ public class OpCodeResolutionServiceTest {
     }
 
     @Test
+    public void test_resolverHandlesJump() {
+        byte code = resolver.codeFor("jnp");
+        assertEquals(code, (byte) 0x80);
+    }
+
+    @Test
+    public void test_resolverHandlesJumpOnZero() {
+        byte code = resolver.codeFor("jnps");
+        assertEquals(code, (byte) 0x90);
+    }
+
+    @Test
+    public void test_resolverHandlesJumpOnNotZero() {
+        byte code = resolver.codeFor("jnpns");
+        assertEquals(code, (byte) 0xa0);
+    }
+
+    @Test
+    public void test_resolverHandlesReturn() {
+        byte code = resolver.codeFor("retr");
+        assertEquals(code, (byte) 0xb0);
+    }
+
+    @Test
     public void test_resolverHandlesHalt() {
         byte code = resolver.codeFor("stoup");
         assertEquals(code, (byte) 0xf0);

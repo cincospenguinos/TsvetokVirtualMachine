@@ -19,6 +19,10 @@ public class OpCodeResolutionService {
         _opCodeMap.put("nultf", (byte) OpCodes.MULTIPLY_IMMEDIATE);
         _opCodeMap.put("difr", (byte) OpCodes.DIVIDE_REGISTERS);
         _opCodeMap.put("diff", (byte) OpCodes.DIVIDE_IMMEDIATE);
+        _opCodeMap.put("jnp", (byte) OpCodes.JUMP_UNCONDITIONAL);
+        _opCodeMap.put("jnps", (byte) OpCodes.JUMP_ON_ZERO);
+        _opCodeMap.put("jnpns", (byte) OpCodes.JUMP_ON_NON_ZERO);
+        _opCodeMap.put("retr", (byte) OpCodes.RETURN);
         _opCodeMap.put("stoup", (byte) OpCodes.HALT);
     }
 

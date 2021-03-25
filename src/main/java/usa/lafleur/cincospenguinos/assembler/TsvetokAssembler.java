@@ -3,12 +3,14 @@ package usa.lafleur.cincospenguinos.assembler;
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 public class TsvetokAssembler {
-    private OpCodeResolutionService opCodeResolver;
-    private FlagResolutionService flagResolver;
+    private final OpCodeResolutionService opCodeResolver;
+    private final FlagResolutionService flagResolver;
+    private final RegisterResolutionService registerResolver;
 
     public TsvetokAssembler() {
         opCodeResolver = new OpCodeResolutionService();
         flagResolver = new FlagResolutionService();
+        registerResolver = new RegisterResolutionService();
     }
 
     public TsvetokInstruction createInstruction(String line) {
@@ -17,6 +19,10 @@ public class TsvetokAssembler {
         byte operationNibble = opCodeResolver.codeFor(pieces[0]);
         byte opcode = (byte) ((operationNibble << 4) | flags);
 
-        return new TsvetokInstruction(opcode, (byte) 0x0);
+        byte leftArg = registerResolver.resolve(pieces[1]);
+        byte rightArg = registerResolver.resolve(pieces[2]);
+        byte arguments = (byte) ((leftArg << 4) | rightArg);
+
+        return new TsvetokInstruction(opcode, arguments);
     }
 }

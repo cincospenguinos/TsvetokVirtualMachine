@@ -12,7 +12,7 @@ public class TsvetokAssemblerTest {
     public void test_handlesRegisters() {
         TsvetokInstruction instruction = assembler.createInstruction("nensou $tnp0 $arj2");
         byte registers = instruction.toBytes().getB();
-        assertEquals(0x6, (byte) ((registers & 0xf0) >> 4));
-        assertEquals(0xa, (byte) registers & 0x0f);
+        assertEquals(0x60, registers & 0xf0);
+        assertEquals(0xa, registers & 0x0f);
     }
 }

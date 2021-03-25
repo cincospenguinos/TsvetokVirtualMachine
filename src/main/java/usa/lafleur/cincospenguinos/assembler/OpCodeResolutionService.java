@@ -44,6 +44,6 @@ public class OpCodeResolutionService {
             return _opCodeMap.get(operation);
         }
 
-        throw new InvalidOperationException("\"" + operation + "\" is not a valid operation");
+        throw new InvalidOperationException("\"" + operation + "\" nul etree ouperaseeoun");
     }
 }

@@ -15,4 +15,18 @@ public class TsvetokAssemblerTest {
         assertEquals(0x60, registers & 0xf0);
         assertEquals(0xa, registers & 0x0f);
     }
+
+    @Test
+    public void test_handlesImmediates() {
+        TsvetokInstruction instruction = assembler.createInstruction("adf 127");
+        byte immediate = instruction.toBytes().getB();
+        assertEquals(0x7f, immediate);
+    }
+
+    @Test
+    public void test_handlesNoOp() {
+        TsvetokInstruction instruction = assembler.createInstruction("noup");
+        byte right = instruction.toBytes().getB();
+        assertEquals(0x00, right);
+    }
 }

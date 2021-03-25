@@ -78,6 +78,24 @@ public class OpCodeResolutionServiceTest {
     }
 
     @Test
+    public void test_resolverHandlesPush() {
+        byte code = resolver.codeFor("pous");
+        assertEquals(code, (byte) 0xc0);
+    }
+
+    @Test
+    public void test_resolverHandlesPop() {
+        byte code = resolver.codeFor("pap");
+        assertEquals(code, (byte) 0xd0);
+    }
+
+    @Test
+    public void test_resolverHandlesSystemCall() {
+        byte code = resolver.codeFor("sis");
+        assertEquals(code, (byte) 0xe0);
+    }
+
+    @Test
     public void test_resolverHandlesHalt() {
         byte code = resolver.codeFor("stoup");
         assertEquals(code, (byte) 0xf0);

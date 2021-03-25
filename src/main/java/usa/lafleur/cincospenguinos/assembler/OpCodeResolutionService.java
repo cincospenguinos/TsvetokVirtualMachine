@@ -13,6 +13,8 @@ public class OpCodeResolutionService {
         _opCodeMap.put("noup", (byte) OpCodes.NO_OP);
         _opCodeMap.put("nens", (byte) OpCodes.MOVE);
         _opCodeMap.put("nensou", (byte) OpCodes.MOVE);
+        _opCodeMap.put("boujr", (byte) OpCodes.MOVE);
+        _opCodeMap.put("boujf", (byte) OpCodes.MOVE);
         _opCodeMap.put("adr", (byte) OpCodes.ADD_REGISTERS);
         _opCodeMap.put("adf", (byte) OpCodes.ADD_IMMEDIATE);
         _opCodeMap.put("nultr", (byte) OpCodes.MULTIPLY_REGISTERS);
@@ -23,6 +25,9 @@ public class OpCodeResolutionService {
         _opCodeMap.put("jnps", (byte) OpCodes.JUMP_ON_ZERO);
         _opCodeMap.put("jnpns", (byte) OpCodes.JUMP_ON_NON_ZERO);
         _opCodeMap.put("retr", (byte) OpCodes.RETURN);
+        _opCodeMap.put("pous", (byte) OpCodes.PUSH_STACK);
+        _opCodeMap.put("pap", (byte) OpCodes.POP_STACK);
+        _opCodeMap.put("sis", (byte) OpCodes.SYSTEM_CALL);
         _opCodeMap.put("stoup", (byte) OpCodes.HALT);
     }
 

@@ -9,18 +9,16 @@ public class InstructionBuilder {
     private byte _rightRegister;
 
     private final OpCodeResolutionService opCodeResolver;
+    private final FlagResolutionService flagResolver;
 
     InstructionBuilder() {
         opCodeResolver = new OpCodeResolutionService();
+        flagResolver = new FlagResolutionService();
     }
 
-    public InstructionBuilder setOpcode(String operation) {
+    public InstructionBuilder setOperationByte(String operation) {
         _opcode = opCodeResolver.codeFor(operation);
-        return this;
-    }
-
-    public InstructionBuilder setOperationFlags(byte flags) {
-        _operationFlags = flags;
+        _operationFlags = flagResolver.flagBitsFor(operation);
         return this;
     }
 

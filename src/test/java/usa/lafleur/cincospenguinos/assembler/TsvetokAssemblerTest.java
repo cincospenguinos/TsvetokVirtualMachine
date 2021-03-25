@@ -1,7 +1,6 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import org.junit.Test;
-import usa.lafleur.cincospenguinos.core.Tuple;
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 import static org.junit.Assert.*;

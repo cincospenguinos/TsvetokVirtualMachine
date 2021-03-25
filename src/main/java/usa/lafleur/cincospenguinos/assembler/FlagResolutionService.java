@@ -2,12 +2,12 @@ package usa.lafleur.cincospenguinos.assembler;
 
 public class FlagResolutionService {
     public byte flagBitsFor(String operation) {
-        if (operation.equals("nens")) {
-            return 0x0;
+        if (operation.contains("nens")) {
+            return (byte) (operation.contains("ou") ? 0x8 : 0x0);
         }
 
-        if (operation.equals("nensou")) {
-            return 0b00001000;
+        if (operation.contains("bouj")) {
+            return (byte) (operation.contains("f") ? 0xc : 0x4);
         }
 
         return 0x0;

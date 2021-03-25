@@ -4,19 +4,33 @@ import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 public class TsvetokAssembler {
     private OpCodeResolutionService opCodeResolver;
+    private FlagResolutionService flagResolver;
 
     public TsvetokAssembler() {
         opCodeResolver = new OpCodeResolutionService();
+        flagResolver = new FlagResolutionService();
+    }
+
+    class FlagResolutionService {
+        public byte flagBitsFor(String operation) {
+            if (operation.equals("nens")) {
+                return 0x0;
+            }
+
+            if (operation.equals("nensou")) {
+                return 0b00001000;
+            }
+
+            return 0x0;
+        }
     }
 
     public TsvetokInstruction createInstruction(String line) {
         String[] pieces = line.trim().split("\\s+");
-        byte opcode = opCodeResolver.codeFor(pieces[0]);
+        byte flags = flagResolver.flagBitsFor(pieces[0]);
+        byte operationNibble = opCodeResolver.codeFor(pieces[0]);
+        byte opcode = (byte) ((operationNibble << 4) | flags);
 
-        if (pieces.length == 1) {
-            return new TsvetokInstruction(opcode, (byte) 0x0);
-        }
-
-        return null;
+        return new TsvetokInstruction(opcode, (byte) 0x0);
     }
 }

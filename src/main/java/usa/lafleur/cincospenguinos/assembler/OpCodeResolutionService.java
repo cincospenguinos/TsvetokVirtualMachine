@@ -31,9 +31,17 @@ public class OpCodeResolutionService {
         _opCodeMap.put("stoup", (byte) OpCodes.HALT);
     }
 
+    /**
+     * Responds with the opcode for the operation requested. Note that it responds only with the lower
+     * four bits--this method DOES NOT do bit shifting to prepare for an operation.
+     *
+     * @param operation - Operation to get opcode for
+     * @return the nibble matching the operation
+     * @throws InvalidOperationException when operation does not exist
+     */
     public byte codeFor(String operation) {
         if (_opCodeMap.containsKey(operation)) {
-            return (byte) (_opCodeMap.get(operation) << 4);
+            return _opCodeMap.get(operation);
         }
 
         throw new InvalidOperationException("\"" + operation + "\" is not a valid operation");

@@ -7,9 +7,12 @@ Ida fouree fer Toureen kalkoulatsee.
 ```text
 noup   0000
 nens   0001_
-ad     001_
-nult   010_
-dif    011_
+adr    0010
+adf    0011
+nultr  0100
+nultf  0101
+difr   0110
+diff   0111
 jnp    1000
 jnps   1001
 jnpns  1010

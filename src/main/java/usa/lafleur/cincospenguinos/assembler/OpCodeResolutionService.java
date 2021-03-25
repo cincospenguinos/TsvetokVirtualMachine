@@ -13,6 +13,12 @@ public class OpCodeResolutionService {
         _opCodeMap.put("noup", (byte) OpCodes.NO_OP);
         _opCodeMap.put("nens", (byte) OpCodes.MEMORY);
         _opCodeMap.put("nensou", (byte) OpCodes.MEMORY);
+        _opCodeMap.put("adr", (byte) OpCodes.ADD_REGISTERS);
+        _opCodeMap.put("adf", (byte) OpCodes.ADD_IMMEDIATE);
+        _opCodeMap.put("nultr", (byte) OpCodes.MULTIPLY_REGISTERS);
+        _opCodeMap.put("nultf", (byte) OpCodes.MULTIPLY_IMMEDIATE);
+        _opCodeMap.put("difr", (byte) OpCodes.DIVIDE_REGISTERS);
+        _opCodeMap.put("diff", (byte) OpCodes.DIVIDE_IMMEDIATE);
         _opCodeMap.put("stoup", (byte) OpCodes.HALT);
     }
 

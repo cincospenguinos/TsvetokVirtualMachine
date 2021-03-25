@@ -1,31 +1,39 @@
-# Let's try this coin change thing again
-.main
-    bouj 15
-    nult 6
-    ad 3
-    bouj $ak $rej1  # rej1 has 93
-    bouj 15
-    ad 10
-    bouj $ak $rej2  # rej2 has 25
-    dif $rej1 $rej2 # 93 / 25 = 3
-    sis 2           # Output the 3 via STDOUT
-    nult $ak $rej2
-    nult -1         # $ak now has -75
-    ad $ak $rej1    # We now have 93 - 75 = 18
-    bouj $ak $rej1  # rej1 has 18
-    # Okay, here's the state of things now:
-    # $ak   = 18
-    # $rej1 = 18 -> Total that we need to calculate from now
-    # $rej2 = 25 -> The amount we just handled
+# Next steps:
+# * stripping comments from lines
+# * Adding label hooks
+# * Ensure jnp commands has a label vs. register flag
+# * Adding a variable input command of some sort. Not sure how to do that.
+# * Designing an executable file format--I'm leaning towards top-down, and let
+#   the compiler determine how movement should work
+    bouj 5
+    bouj $ak $rej5
+    bouj 0
+.loop
+    adf 1
+    sis 2 # Print whatever's in the accumulator to STDOUT or something
+    bouj $ak $rej4
+    difr $ak $rej5
+    jnpns .end
+    bouj $rej4 $ak
+    jnp .loop
+.end
+    stoup
 
-# OBSERVATIONS:
-# 1. We don't need loujet and loujour for this problem
-# 2. Loading/storing into memory is currently pointless, as we have too few registers to create addresses and hang onto values
-# 3. Without a way to interact with memory, we can't store more values or anything, leaving us at a catch-22
-# So we need more registers, no matter what. Perhaps only some registers can be left-hand values or something?
-# I keep attempting this thinking that I'm going to turn this into actual hardware. The more I think about it though,
-# the more I think that I'm uninterested in the literal hardware of a machine (although that would be cool to pull off.)
-# I care a lot more about making the machine virtually, and then creating an operating system for it, and then creating
-# a language to compile to it, etc.
-# I'm thinking I should be able to make it more complex, and let it rise with me. That way I can keep moving and don't
-# have to waste any more pages in my notebook.
+# The program above has
+# - 11 instructions
+# - 2 labels
+# Each of those costs 2 bytes, making this simple loop a total of 26 bytes
+# This program would take up 0.0397% of available RAM, and it just prints
+# the numbers 1-5. In C it would look like this
+
+#include<stdio.h>
+
+int main() {
+    int limit = 5;
+
+    for (int i = 1; i <= 5; i++) {
+        printf("%d", i);
+    }
+
+    return 0;
+}

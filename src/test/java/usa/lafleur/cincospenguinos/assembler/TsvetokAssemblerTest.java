@@ -29,4 +29,13 @@ public class TsvetokAssemblerTest {
         byte right = instruction.toBytes().getB();
         assertEquals(0x00, right);
     }
+
+    @Test
+    public void test_handlesCommentsInLine() {
+        try {
+            assembler.createInstruction("adf 1 #comment");
+        } catch (RuntimeException e) {
+            fail("Comments need to be handled");
+        }
+    }
 }

@@ -3,6 +3,7 @@ package usa.lafleur.cincospenguinos.assembler;
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 public class TsvetokAssembler {
+    private static final String COMMENT_REGEX = "#.*";
     private final InstructionBuilder instructionBuilder;
 
     public TsvetokAssembler() {
@@ -10,15 +11,14 @@ public class TsvetokAssembler {
     }
 
     public TsvetokInstruction createInstruction(String line) {
-        String[] pieces = line.trim().toLowerCase().split("\\s+");
+        String[] pieces = instructionPiecesFrom(line);
 
         instructionBuilder
                 .clear()
                 .setOperationByte(pieces[0]);
 
         if (pieces.length == 2) {
-            instructionBuilder
-                    .setImmediate(pieces[1]);
+            instructionBuilder.setImmediate(pieces[1]);
         } else if (pieces.length == 3) {
             instructionBuilder
                     .setLeftRegister(pieces[1])
@@ -26,5 +26,13 @@ public class TsvetokAssembler {
         }
 
         return instructionBuilder.build();
+    }
+
+    private String[] instructionPiecesFrom(String line) {
+        return line
+                .replaceAll(COMMENT_REGEX, "")
+                .trim()
+                .toLowerCase()
+                .split("\\s+");
     }
 }

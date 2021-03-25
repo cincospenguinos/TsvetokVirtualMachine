@@ -14,6 +14,14 @@ public class OpCodeResolutionServiceTest {
     }
 
     @Test
+    public void test_resolverHandlesMovement() {
+        byte code = resolver.codeFor("boujr");
+        assertEquals(code, 0x10);
+        code = resolver.codeFor("boujf");
+        assertEquals(code, 0x10);
+    }
+
+    @Test
     public void test_resolverHandlesMemory() {
         byte code = resolver.codeFor("nens");
         assertEquals(code, 0x10);

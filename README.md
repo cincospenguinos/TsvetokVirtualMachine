@@ -6,7 +6,7 @@ Ida fouree fer Toureen kalkoulatsee.
 
 ```text
 noup   0000
-nens   0001_
+nens   0001__ # assee bouj rej et falou => "boujr" ou "boujf"
 adr    0010
 adf    0011
 nultr  0100

@@ -2,7 +2,7 @@ package usa.lafleur.cincospenguinos.model;
 
 public class OpCodes {
     public static final int NO_OP = 0;
-    public static final int MEMORY = 1;
+    public static final int MOVE = 1;
     public static final int ADD_REGISTERS = 2;
     public static final int ADD_IMMEDIATE = 3;
     public static final int MULTIPLY_REGISTERS = 4;

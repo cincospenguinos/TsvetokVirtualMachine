@@ -11,8 +11,8 @@ public class OpCodeResolutionService {
     public OpCodeResolutionService() {
         _opCodeMap = new HashMap<>();
         _opCodeMap.put("noup", (byte) OpCodes.NO_OP);
-        _opCodeMap.put("nens", (byte) OpCodes.MEMORY);
-        _opCodeMap.put("nensou", (byte) OpCodes.MEMORY);
+        _opCodeMap.put("nens", (byte) OpCodes.MOVE);
+        _opCodeMap.put("nensou", (byte) OpCodes.MOVE);
         _opCodeMap.put("adr", (byte) OpCodes.ADD_REGISTERS);
         _opCodeMap.put("adf", (byte) OpCodes.ADD_IMMEDIATE);
         _opCodeMap.put("nultr", (byte) OpCodes.MULTIPLY_REGISTERS);

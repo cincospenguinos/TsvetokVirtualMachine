@@ -10,10 +10,12 @@ public class InstructionBuilder {
 
     private final OpCodeResolutionService opCodeResolver;
     private final FlagResolutionService flagResolver;
+    private final RegisterResolutionService registerResolver;
 
     InstructionBuilder() {
         opCodeResolver = new OpCodeResolutionService();
         flagResolver = new FlagResolutionService();
+        registerResolver = new RegisterResolutionService();
     }
 
     public InstructionBuilder setOperationByte(String operation) {
@@ -22,13 +24,13 @@ public class InstructionBuilder {
         return this;
     }
 
-    public InstructionBuilder setLeftRegister(byte lefty) {
-        _leftRegister = lefty;
+    public InstructionBuilder setLeftRegister(String leftRegister) {
+        _leftRegister = registerResolver.resolve(leftRegister);
         return this;
     }
 
-    public InstructionBuilder setRightRegister(byte righty) {
-        _rightRegister = righty;
+    public InstructionBuilder setRightRegister(String rightRegister) {
+        _rightRegister = registerResolver.resolve(rightRegister);
         return this;
     }
 

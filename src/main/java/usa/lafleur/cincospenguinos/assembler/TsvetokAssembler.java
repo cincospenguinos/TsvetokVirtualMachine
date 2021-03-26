@@ -13,11 +13,17 @@ public class TsvetokAssembler {
     public TsvetokExecutable assemble(String sourceCode) {
         TsvetokExecutable executable = new TsvetokExecutable();
 
-        for (String line : sourceCode.split("(\\n|\\r\\n)")) {
-            String operation = line.replaceAll(COMMENT_REGEX, "");
+        for (String sourceLine : sourceCode.split("(\\n|\\r\\n)")) {
+            String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
 
-            if (!operation.isEmpty()) {
-                TsvetokInstruction instruction = createInstruction(operation);
+            if (line.isEmpty()) {
+                continue;
+            }
+
+            if (line.startsWith(".")) {
+                executable.addLabelAtCurrentPosition(line);
+            } else {
+                TsvetokInstruction instruction = createInstruction(line);
                 executable.addInstruction(instruction);
             }
         }

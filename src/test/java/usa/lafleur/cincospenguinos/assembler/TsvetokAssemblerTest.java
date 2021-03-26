@@ -49,4 +49,11 @@ public class TsvetokAssemblerTest {
         List<TsvetokInstruction> list = assembler.assemble(sourceCode).getInstructions();
         assertEquals(2, list.size());
     }
+
+    @Test
+    public void test_assembleHandlesLabels() {
+        String sourceCode = ".main\n\tboujf -10\n.loop\n\tstoup";
+        TsvetokExecutable executable = assembler.assemble(sourceCode);
+        assertTrue(executable.getLabels().containsKey("main"));
+    }
 }

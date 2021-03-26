@@ -3,6 +3,8 @@ package usa.lafleur.cincospenguinos.assembler;
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TsvetokAssemblerTest {
@@ -37,5 +39,14 @@ public class TsvetokAssemblerTest {
         } catch (RuntimeException e) {
             fail("Comments need to be handled");
         }
+    }
+
+    @Test
+    public void test_assembleRespondsWithInstructions() {
+        String sourceCode = "# okay we are going to make a program\n" +
+                "boujf 127\n" +
+                "adf 1";
+        List<TsvetokInstruction> list = assembler.assemble(sourceCode);
+        assertEquals(2, list.size());
     }
 }

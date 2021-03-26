@@ -56,3 +56,7 @@ flj    1101
 fn     1110
 pn     1111
 ```
+
+* Outilisee `tnp0` et `tnp1` pour tenpouraree rejister
+* `arj` foudree deer arjoument, ou paraneeter
+* `a` foudree deer adress, et `f` foudree deer falou

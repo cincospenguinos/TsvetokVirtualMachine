@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.assembler.exceptions.InvalidOperationException;
 
 import static org.junit.Assert.*;
 

@@ -4,6 +4,7 @@ import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 public class TsvetokAssembler {
     private static final String COMMENT_REGEX = "#.*";
+    public static final String LABEL_PREFIX = "\\.\\w+";
     private final InstructionBuilder instructionBuilder;
 
     public TsvetokAssembler() {
@@ -20,7 +21,7 @@ public class TsvetokAssembler {
                 continue;
             }
 
-            if (line.startsWith(".")) {
+            if (line.matches(LABEL_PREFIX)) {
                 executable.addLabelAtCurrentPosition(line);
             } else {
                 TsvetokInstruction instruction = createInstruction(line);

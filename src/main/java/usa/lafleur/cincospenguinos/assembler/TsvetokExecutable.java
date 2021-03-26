@@ -1,5 +1,6 @@
 package usa.lafleur.cincospenguinos.assembler;
 
+import usa.lafleur.cincospenguinos.assembler.exceptions.DuplicateLabelException;
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
 import java.util.ArrayList;
@@ -21,7 +22,13 @@ public class TsvetokExecutable {
     }
 
     public void addLabelAtCurrentPosition(String labelName) {
-        labels.put(labelName.replaceAll("\\.", ""), instructions.size());
+        String label = labelName.replaceAll("\\.", "");
+
+        if (labels.containsKey(label)) {
+            throw new DuplicateLabelException(labelName);
+        }
+
+        labels.put(label, instructions.size());
     }
 
     public List<TsvetokInstruction> getInstructions() {

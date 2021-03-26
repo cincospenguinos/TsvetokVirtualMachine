@@ -2,9 +2,6 @@ package usa.lafleur.cincospenguinos.assembler;
 
 import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TsvetokAssembler {
     private static final String COMMENT_REGEX = "#.*";
     private final InstructionBuilder instructionBuilder;
@@ -13,18 +10,19 @@ public class TsvetokAssembler {
         instructionBuilder = new InstructionBuilder();
     }
 
-    public List<TsvetokInstruction> assemble(String sourceCode) {
-        List<TsvetokInstruction> instructionList = new ArrayList<>();
+    public TsvetokExecutable assemble(String sourceCode) {
+        TsvetokExecutable executable = new TsvetokExecutable();
 
         for (String line : sourceCode.split("(\\n|\\r\\n)")) {
             String operation = line.replaceAll(COMMENT_REGEX, "");
 
             if (!operation.isEmpty()) {
-                instructionList.add(createInstruction(operation));
+                TsvetokInstruction instruction = createInstruction(operation);
+                executable.addInstruction(instruction);
             }
         }
 
-        return instructionList;
+        return executable;
     }
 
     public TsvetokInstruction createInstruction(String line) {

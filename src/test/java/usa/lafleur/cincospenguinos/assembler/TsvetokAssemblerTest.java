@@ -46,7 +46,7 @@ public class TsvetokAssemblerTest {
         String sourceCode = "# okay we are going to make a program\n" +
                 "boujf 127\n" +
                 "adf 1";
-        List<TsvetokInstruction> list = assembler.assemble(sourceCode);
+        List<TsvetokInstruction> list = assembler.assemble(sourceCode).getInstructions();
         assertEquals(2, list.size());
     }
 }

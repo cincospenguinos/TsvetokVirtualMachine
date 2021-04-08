@@ -27,12 +27,19 @@ public class AddInstructionTest {
     }
 
     @Test
-    public void test_addRegisterTriggersOverflowFlag() {
+    public void test_addTriggersOverflowFlag() {
         TsvetokInstruction instruction = assembler.createInstruction("adf 1");
-        assertTrue(instruction instanceof AddInstruction);
         RegisterArray registerArray = new RegisterArray(new byte[]{ 0x7f, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
         assertFalse(registerArray.isOverflowFlagSet());
         instruction.execute(registerArray);
         assertTrue(registerArray.isOverflowFlagSet());
+    }
+
+    @Test
+    public void test_addTriggersZeroFlag() {
+        TsvetokInstruction instruction = assembler.createInstruction("adf -1");
+        RegisterArray registerArray = new RegisterArray(new byte[]{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
+        instruction.execute(registerArray);
+        assertTrue(registerArray.isZeroFlagSet());
     }
 }

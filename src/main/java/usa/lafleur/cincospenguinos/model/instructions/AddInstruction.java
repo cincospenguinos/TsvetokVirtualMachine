@@ -28,6 +28,7 @@ public class AddInstruction extends TsvetokInstruction {
         }
 
         registerArray.setOverflowFlag(endValue > 127);
+        registerArray.setZeroFlag(endValue == 0);
         registerArray.setValueOf(accumulatorIndex, (byte) endValue);
     }
 

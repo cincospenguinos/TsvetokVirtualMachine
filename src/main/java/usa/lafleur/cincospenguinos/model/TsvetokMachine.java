@@ -1,5 +1,6 @@
 package usa.lafleur.cincospenguinos.model;
 
+import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.assembler.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
 
@@ -19,6 +20,7 @@ public class TsvetokMachine {
     }
 
     public int valueInRegister(String registerName) {
-        return registerArray.getValueOf(0);
+        int registerIndex = RegisterResolutionService.resolveRegister(registerName);
+        return registerArray.getValueOf(registerIndex);
     }
 }

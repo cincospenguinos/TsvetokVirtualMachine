@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 public class RegisterResolutionService {
-    private static final String ACCUMULATOR_REGISTER_NAME = "ak";
+    public static final String ACCUMULATOR_REGISTER_NAME = "ak";
     private static final String TEMPORARY_REGISTER_NAMESPACE = "tnp";
     private static final String ARGUMENT_REGISTER_NAMESPACE = "arj";
     private static final String SUBROUTINE_REGISTER_NAMESPACE = "retr";

@@ -20,4 +20,12 @@ public abstract class TsvetokInstruction {
     public Tuple<Byte, Byte> toBytes() {
         return new Tuple<>(_operation, _params);
     }
+
+    protected byte getOperationByte() {
+        return _operation;
+    }
+
+    protected byte getParameterByte() {
+        return _params;
+    }
 }

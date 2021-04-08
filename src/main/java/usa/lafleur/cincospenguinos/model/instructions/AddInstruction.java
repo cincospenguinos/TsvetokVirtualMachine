@@ -7,6 +7,10 @@ public class AddInstruction extends TsvetokInstruction {
 
     @Override
     public void execute(byte[] registerArray) {
-        registerArray[0] += 12;
+        if ((getOperationByte() >> 4) == OpCodes.ADD_IMMEDIATE) {
+            registerArray[0] += getParameterByte();
+        } else {
+
+        }
     }
 }

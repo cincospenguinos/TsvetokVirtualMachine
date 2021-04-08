@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.model.instructions;
 
 import usa.lafleur.cincospenguinos.core.Tuple;
 
@@ -13,5 +13,9 @@ public class TsvetokInstruction {
 
     public Tuple<Byte, Byte> toBytes() {
         return new Tuple<>(_operation, _params);
+    }
+
+    public static TsvetokInstruction construct(byte operation, byte params) {
+        return new TsvetokInstruction(operation, params);
     }
 }

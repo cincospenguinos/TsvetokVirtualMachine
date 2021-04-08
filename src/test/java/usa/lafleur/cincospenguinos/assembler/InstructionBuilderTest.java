@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import org.junit.Test;
-import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
 
 import static org.junit.Assert.*;
 

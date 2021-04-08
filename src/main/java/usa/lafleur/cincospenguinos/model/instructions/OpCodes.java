@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.model.instructions;
 
 public class OpCodes {
     public static final int NO_OP = 0;

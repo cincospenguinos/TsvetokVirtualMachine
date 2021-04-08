@@ -50,4 +50,8 @@ public class RegisterResolutionService {
 
         return Byte.parseByte(register.replace("rej", ""));
     }
+
+    public static byte resolveRegister(String registerString) {
+        return new RegisterResolutionService().resolve(registerString);
+    }
 }

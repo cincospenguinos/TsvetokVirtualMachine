@@ -1,6 +1,6 @@
 package usa.lafleur.cincospenguinos.assembler;
 
-import usa.lafleur.cincospenguinos.model.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
 
 public class InstructionBuilder {
     private byte _opcode;
@@ -57,7 +57,7 @@ public class InstructionBuilder {
             lower = (byte) ((_leftRegister << 4) | (_rightRegister));
         }
 
-        return new TsvetokInstruction(upper, lower);
+        return TsvetokInstruction.construct(upper, lower);
     }
 
     public InstructionBuilder setImmediate(String immediate) {

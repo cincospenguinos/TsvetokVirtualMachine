@@ -55,5 +55,6 @@ public class TsvetokAssemblerTest {
         String sourceCode = ".main\n\tboujf -10\n.loop\n\tstoup";
         TsvetokExecutable executable = assembler.assemble(sourceCode);
         assertEquals(0, executable.getLabelSymbolTable().positionFor("main"));
+        assertEquals(1, executable.getLabelSymbolTable().positionFor("loop"));
     }
 }

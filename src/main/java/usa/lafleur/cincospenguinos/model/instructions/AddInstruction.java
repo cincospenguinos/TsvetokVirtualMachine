@@ -10,26 +10,27 @@ public class AddInstruction extends TsvetokInstruction {
 
     @Override
     public void execute(RegisterArray registerArray) {
+        byte endValue;
         int accumulatorIndex = RegisterResolutionService.resolveRegister(
                 RegisterResolutionService.ACCUMULATOR_REGISTER_NAME
         );
 
-        if (addImmediate()) {
+        if (isAddImmediate()) {
             byte value = registerArray.getValueOf(accumulatorIndex);
-            byte endValue = (byte) (value + getParameterByte());
-            registerArray.setValueOf(accumulatorIndex, endValue);
+            endValue = (byte) (value + getParameterByte());
         } else {
             int leftIndex = (getParameterByte() & 0xf0) >> 4;
             int rightIndex = (getParameterByte() & 0x0f) >> 4;
 
             int leftValue = registerArray.getValueOf(leftIndex);
             int rightValue = registerArray.getValueOf(rightIndex);
-            byte endValue = (byte) (leftValue + rightValue);
-            registerArray.setValueOf(accumulatorIndex, endValue);
+            endValue = (byte) (leftValue + rightValue);
         }
+
+        registerArray.setValueOf(accumulatorIndex, endValue);
     }
 
-    private boolean addImmediate() {
+    private boolean isAddImmediate() {
         return (getOperationByte() >> 4) == OpCodes.ADD_IMMEDIATE;
     }
 }

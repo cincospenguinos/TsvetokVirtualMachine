@@ -25,7 +25,7 @@ stoup  1111
 _ sens "0 => rej" ou "1 => falou"
 ```
 
-### nens et bouj
+### `nens` et `bouj`
 
 Ida oublee `bouj`, dank ida feree `bouj` afek `nens`:
 
@@ -35,6 +35,10 @@ nensou 000110 #=> rej tou nens
 boujr  000101 #=> rej tou rej
 boujf  000111 #=> falou tou rej
 ```
+
+### `jnp` ouperaseeoun
+
+
 
 ## REJ
 

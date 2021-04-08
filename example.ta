@@ -1,5 +1,4 @@
 # Next steps:
-# * stripping comments from lines
 # * Adding label hooks
 # * Ensure jnp commands has a label vs. register flag
 # * Adding a variable input command of some sort. Not sure how to do that.

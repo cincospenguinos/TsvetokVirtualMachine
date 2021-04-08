@@ -9,12 +9,38 @@ import java.util.List;
 import java.util.Map;
 
 public class TsvetokExecutable {
+    public class SymbolTable {
+        private final Map<String, Integer> labels;
+
+        public SymbolTable() {
+            labels = new HashMap<>();
+        }
+
+        public void addLabelAtPosition(String labelName, int position) {
+            String label = labelName.replaceAll("\\.", "");
+
+            if (labels.containsKey(label)) {
+                throw new DuplicateLabelException(label);
+            }
+
+            labels.put(label, position);
+        }
+
+        public int positionFor(String label) {
+            if (labels.containsKey(label)) {
+                return labels.get(label);
+            }
+
+            return -1;
+        }
+    }
+
     private final List<TsvetokInstruction> instructions;
-    private final Map<String, Integer> labels;
+    private final SymbolTable symbolTable;
 
     public TsvetokExecutable() {
         instructions = new ArrayList<>();
-        labels = new HashMap<>();
+        symbolTable = new SymbolTable();
     }
 
     public void addInstruction(TsvetokInstruction instruction) {
@@ -22,20 +48,14 @@ public class TsvetokExecutable {
     }
 
     public void addLabelAtCurrentPosition(String labelName) {
-        String label = labelName.replaceAll("\\.", "");
-
-        if (labels.containsKey(label)) {
-            throw new DuplicateLabelException(labelName);
-        }
-
-        labels.put(label, instructions.size());
+        symbolTable.addLabelAtPosition(labelName, instructions.size());
     }
 
     public List<TsvetokInstruction> getInstructions() {
         return instructions;
     }
 
-    public Map<String, Integer> getLabels() {
-        return labels;
+    public SymbolTable getLabelSymbolTable() {
+        return symbolTable;
     }
 }

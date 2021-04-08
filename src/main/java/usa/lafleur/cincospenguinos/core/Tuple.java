@@ -2,6 +2,9 @@ package usa.lafleur.cincospenguinos.core;
 
 import java.util.Objects;
 
+/**
+ * Every language has a Pair class, amiright!?
+ */
 public class Tuple<A, B> {
     private A _a;
     private B _b;

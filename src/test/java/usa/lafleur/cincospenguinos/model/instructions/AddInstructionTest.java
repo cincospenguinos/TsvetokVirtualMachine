@@ -17,4 +17,13 @@ public class AddInstructionTest {
         instruction.execute(new RegisterArray(registerArray));
         assertEquals(0, registerArray[0]);
     }
+
+    @Test
+    public void test_addRegisterWorksAsDesired() {
+        TsvetokInstruction instruction = assembler.createInstruction("adr $ak $ak");
+        assertTrue(instruction instanceof AddInstruction);
+        byte[] registerArray = new byte[]{ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        instruction.execute(new RegisterArray(registerArray));
+        assertEquals(6, registerArray[0]);
+    }
 }

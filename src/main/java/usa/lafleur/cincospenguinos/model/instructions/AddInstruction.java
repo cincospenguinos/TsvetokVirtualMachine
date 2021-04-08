@@ -18,7 +18,15 @@ public class AddInstruction extends TsvetokInstruction {
             byte value = registerArray.getValueOf(accumulatorIndex);
             byte endValue = (byte) (value + getParameterByte());
             registerArray.setValueOf(accumulatorIndex, endValue);
-        } else {}
+        } else {
+            int leftIndex = (getParameterByte() & 0xf0) >> 4;
+            int rightIndex = (getParameterByte() & 0x0f) >> 4;
+
+            int leftValue = registerArray.getValueOf(leftIndex);
+            int rightValue = registerArray.getValueOf(rightIndex);
+            byte endValue = (byte) (leftValue + rightValue);
+            registerArray.setValueOf(accumulatorIndex, endValue);
+        }
     }
 
     private boolean addImmediate() {

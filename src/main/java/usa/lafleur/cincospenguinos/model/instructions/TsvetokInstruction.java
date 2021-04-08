@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
 import usa.lafleur.cincospenguinos.core.Tuple;
+import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 public abstract class TsvetokInstruction {
     private byte _operation;
@@ -15,7 +16,7 @@ public abstract class TsvetokInstruction {
         return new AddInstruction(operation, params);
     }
 
-    public abstract void execute(byte[] registerArray);
+    public abstract void execute(RegisterArray registerArray);
 
     public Tuple<Byte, Byte> toBytes() {
         return new Tuple<>(_operation, _params);

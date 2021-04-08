@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.model.instructions;
 
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.assembler.TsvetokAssembler;
+import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +14,7 @@ public class AddInstructionTest {
         TsvetokInstruction instruction = assembler.createInstruction("adf -1");
         assertTrue(instruction instanceof AddInstruction);
         byte[] registerArray = new byte[]{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        instruction.execute(registerArray);
+        instruction.execute(new RegisterArray(registerArray));
         assertEquals(0, registerArray[0]);
     }
 }

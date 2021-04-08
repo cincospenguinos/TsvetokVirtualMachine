@@ -5,11 +5,11 @@ import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
 
 public class TsvetokMachine {
     private TsvetokExecutable _executable;
-    private byte[] registerArray;
+    private RegisterArray registerArray;
 
     public TsvetokMachine(TsvetokExecutable executable) {
         _executable = executable;
-        registerArray = new byte[16];
+        registerArray = new RegisterArray();
     }
 
     public void execute() {
@@ -19,6 +19,6 @@ public class TsvetokMachine {
     }
 
     public int valueInRegister(String registerName) {
-        return registerArray[0];
+        return registerArray.getValueOf(0);
     }
 }

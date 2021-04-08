@@ -6,7 +6,7 @@ public class AddInstruction extends TsvetokInstruction {
     }
 
     @Override
-    public void execute() {
-
+    public void execute(byte[] registerArray) {
+        registerArray[0] += 12;
     }
 }

@@ -15,7 +15,7 @@ public abstract class TsvetokInstruction {
         return new AddInstruction(operation, params);
     }
 
-    public abstract void execute();
+    public abstract void execute(byte[] registerArray);
 
     public Tuple<Byte, Byte> toBytes() {
         return new Tuple<>(_operation, _params);

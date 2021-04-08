@@ -14,10 +14,8 @@ public class TsvetokMachine {
 
     public void execute() {
         for (TsvetokInstruction instruction : _executable.getInstructions()) {
-
+            instruction.execute(registerArray);
         }
-
-        registerArray[0] = 12;
     }
 
     public int valueInRegister(String registerName) {

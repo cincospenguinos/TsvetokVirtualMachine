@@ -1,13 +1,12 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import usa.lafleur.cincospenguinos.core.Tuple;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 public abstract class TsvetokInstruction {
-    private byte _operation;
-    private byte _params;
+    private final byte _operation;
+    private final byte _params;
 
     public TsvetokInstruction(byte operation, byte params) {
         _operation = operation;

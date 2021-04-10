@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.model.instructions;
 
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
+import usa.lafleur.cincospenguinos.model.exceptions.DivisionByZeroException;
 
 public class DivisionInstruction extends ArithmeticInstruction {
     public DivisionInstruction(byte operation, byte params) {
@@ -12,7 +13,11 @@ public class DivisionInstruction extends ArithmeticInstruction {
     protected int executeImmediate(RegisterArray registerArray, RandomAccessMemory memory) {
         byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
 
-        return value / getParameterByte();
+        try {
+            return value / getParameterByte();
+        } catch (ArithmeticException e) {
+            throw new DivisionByZeroException();
+        }
     }
 
     @Override
@@ -20,6 +25,10 @@ public class DivisionInstruction extends ArithmeticInstruction {
         int leftValue = registerArray.getValueOf(leftRegisterIndex());
         int rightValue = registerArray.getValueOf(rightRegisterIndex());
 
-        return leftValue / rightValue;
+        try {
+            return leftValue / rightValue;
+        } catch (ArithmeticException e) {
+            throw new DivisionByZeroException();
+        }
     }
 }

@@ -4,33 +4,23 @@ import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
-public class AddInstruction extends TsvetokInstruction {
+public class AddInstruction extends ArithmeticInstruction {
     public AddInstruction(byte operation, byte params) {
         super(operation, params);
     }
 
     @Override
-    public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
-        int endValue;
-        int accumulatorIndex = RegisterResolutionService.resolveRegister(
-                RegisterResolutionService.ACCUMULATOR_REGISTER_NAME
-        );
+    protected int executeImmediate(RegisterArray registerArray, RandomAccessMemory memory) {
+        byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
 
-        if (isAddImmediate()) {
-            byte value = registerArray.getValueOf(accumulatorIndex);
-            endValue = value + getParameterByte();
-        } else {
-            int leftValue = registerArray.getValueOf(leftRegisterIndex());
-            int rightValue = registerArray.getValueOf(rightRegisterIndex());
-            endValue = leftValue + rightValue;
-        }
-
-        registerArray.setOverflowFlag(endValue > 127);
-        registerArray.setZeroFlag(endValue == 0);
-        registerArray.setValueOf(accumulatorIndex, (byte) endValue);
+        return value + getParameterByte();
     }
 
-    private boolean isAddImmediate() {
-        return (getOperationByte() >> 4) == OpCodes.ADD_IMMEDIATE;
+    @Override
+    protected int executeRegister(RegisterArray registerArray, RandomAccessMemory memory) {
+        int leftValue = registerArray.getValueOf(leftRegisterIndex());
+        int rightValue = registerArray.getValueOf(rightRegisterIndex());
+
+        return leftValue + rightValue;
     }
 }

@@ -4,8 +4,11 @@ import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.machine.RegisterArray;
 
 public class JumpInstruction extends TsvetokInstruction {
+    private boolean _handledJump;
+
     public JumpInstruction(byte operation, byte params) {
         super(operation, params);
+        _handledJump = false;
     }
 
     @Override
@@ -21,5 +24,11 @@ public class JumpInstruction extends TsvetokInstruction {
         }
 
         registerArray.setProgramCounter(getParameterByte());
+        _handledJump = true;
+    }
+
+    @Override
+    public boolean incrementProgramCounter() {
+        return !_handledJump;
     }
 }

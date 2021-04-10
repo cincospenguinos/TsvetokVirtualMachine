@@ -9,7 +9,6 @@
     bouj 0
 .loop
     adf 1
-    sis 2 # Print whatever's in the accumulator to STDOUT or something
     bouj $ak $rej4
     difr $ak $rej5
     jnpns .end
@@ -28,11 +27,9 @@
 #include<stdio.h>
 
 int main() {
-    int limit = 5;
+    int limit = 3;
 
-    for (int i = 1; i <= 5; i++) {
-        printf("%d", i);
-    }
+    for (int i = 1; i <= limit; i++) {}
 
     return 0;
 }

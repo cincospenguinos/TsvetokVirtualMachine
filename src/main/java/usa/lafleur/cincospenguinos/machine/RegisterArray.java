@@ -48,4 +48,8 @@ public class RegisterArray {
     public void setProgramCounter(int address) {
         _programCounter = address;
     }
+
+    public void incrementProgramCounter() {
+        _programCounter += 1;
+    }
 }

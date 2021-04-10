@@ -3,6 +3,8 @@ package usa.lafleur.cincospenguinos.machine;
 import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
+import java.util.List;
+
 public class TsvetokMachine {
     private final TsvetokExecutable _executable;
     private final RegisterArray _registerArray;
@@ -15,8 +17,19 @@ public class TsvetokMachine {
     }
 
     public void execute() {
-        for (TsvetokInstruction instruction : _executable.getInstructions()) {
+        List<TsvetokInstruction> program = _executable.getInstructions();
+
+        while (true) {
+            TsvetokInstruction instruction = program.get(_registerArray.getProgramCounter());
             instruction.execute(_registerArray, _memory);
+
+            if (instruction.endExecution()) {
+                break;
+            }
+
+            if (instruction.incrementProgramCounter()) {
+                _registerArray.incrementProgramCounter();
+            }
         }
     }
 

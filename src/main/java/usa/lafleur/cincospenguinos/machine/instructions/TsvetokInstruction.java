@@ -36,10 +36,22 @@ public abstract class TsvetokInstruction {
             return new JumpInstruction(operation, params);
         }
 
+        if (opcode == OpCodes.HALT) {
+            return new HaltInstruction(operation, params);
+        }
+
         return new NoOperationInstruction(operation, params);
     }
 
     public abstract void execute(RegisterArray registerArray, RandomAccessMemory memory);
+
+    public boolean incrementProgramCounter() {
+        return !(this instanceof JumpInstruction);
+    }
+
+    public boolean endExecution() {
+        return this instanceof HaltInstruction;
+    }
 
     public Tuple<Byte, Byte> toBytes() {
         return new Tuple<>(_operation, _params);

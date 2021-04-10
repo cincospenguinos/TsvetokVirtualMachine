@@ -27,7 +27,6 @@ public class MemoryRegisterMoveInstructionTest {
     @Test
     public void test_storeValueWorksAsDesired() {
         TsvetokInstruction instruction = assembler.createInstruction("nensou $tnp0 $tnp1");
-        assertTrue(instruction instanceof MemoryRegisterMoveInstruction);
         RegisterArray registerArray = new RegisterArray(
                 new byte[]{ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         );
@@ -39,12 +38,21 @@ public class MemoryRegisterMoveInstructionTest {
     @Test
     public void test_moveRegisterWorksAsDesired() {
         TsvetokInstruction instruction = assembler.createInstruction("boujr $ak $rej2");
-        assertTrue(instruction instanceof MemoryRegisterMoveInstruction);
         RegisterArray registerArray = new RegisterArray(
                 new byte[]{ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         );
         instruction.execute(registerArray, null);
         int registerIndex = RegisterResolutionService.resolveRegister("$rej2");
         assertEquals(3, registerArray.getValueOf(registerIndex));
+    }
+
+    @Test
+    public void test_moveValueWorksAsDesired() {
+        TsvetokInstruction instruction = assembler.createInstruction("boujf 29");
+        RegisterArray registerArray = new RegisterArray(
+                new byte[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        );
+        instruction.execute(registerArray, null);
+        assertEquals(29, registerArray.getValueOf(ACCUMULATOR_INDEX));
     }
 }

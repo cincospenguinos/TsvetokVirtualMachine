@@ -8,6 +8,10 @@ import usa.lafleur.cincospenguinos.model.RegisterArray;
 public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
     private enum AccessType {
         LOAD, STORE, MOVE_VALUE, MOVE_REGISTER;
+
+        boolean requiresMemory() {
+            return this == LOAD || this == STORE;
+        }
     }
 
     private static final int ACCUMULATOR_INDEX = RegisterResolutionService.resolveRegister("$ak");
@@ -19,17 +23,23 @@ public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
     @Override
     public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
         AccessType accessType = getAccessType();
-        Tuple<Byte, Byte> address = getAddress(registerArray);
 
-        if (accessType == AccessType.LOAD) {
-            byte value = memory.readAt(address.getA(), address.getB());
-            registerArray.setValueOf(ACCUMULATOR_INDEX, value);
-        } else if (accessType == AccessType.STORE) {
-            byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
-            memory.writeTo(address.getA(), address.getB(), value);
+        if (accessType.requiresMemory()) {
+            Tuple<Byte, Byte> address = getAddress(registerArray);
+
+            if (accessType == AccessType.LOAD) {
+                byte value = memory.readAt(address.getA(), address.getB());
+                registerArray.setValueOf(ACCUMULATOR_INDEX, value);
+            } else if (accessType == AccessType.STORE) {
+                byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
+                memory.writeTo(address.getA(), address.getB(), value);
+            }
         } else if (accessType == AccessType.MOVE_REGISTER) {
             byte value = registerArray.getValueOf(leftRegisterIndex());
             registerArray.setValueOf(rightRegisterIndex(), value);
+        } else {
+            byte value = getParameterByte();
+            registerArray.setValueOf(ACCUMULATOR_INDEX, value);
         }
     }
 

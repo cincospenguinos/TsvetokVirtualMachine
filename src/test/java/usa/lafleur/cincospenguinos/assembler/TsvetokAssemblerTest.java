@@ -60,6 +60,29 @@ public class TsvetokAssemblerTest {
         assertEquals(1, executable.getLabelSymbolTable().positionFor("loop"));
     }
 
+    @Test
+    public void test_assembleProperlyAssignsPositionsOfLabels() {
+        String assemblyCode = "# Let's write a simple program that does some fancy stuff\n" +
+                "   boujf 3\n" +
+                "   boujr $ak $rej5\n" +
+                "   boujf 0\n" +
+                ".loop\n" +
+                "   adf 1\n" +
+                "   boujr $ak $rej4\n" +
+                "   boujr $ak $rej3\n" +
+                "   nultf -1\n" +
+                "   adr $ak $rej4\n" +
+                "   jnpns .end\n" +
+                "   boujr $rej3 $ak\n" +
+                "   jnp .loop\n" +
+                ".end\n" +
+                "   stoup"
+                ;
+        TsvetokExecutable executable = assembler.assemble(assemblyCode);
+        assertEquals(3, executable.getLabelSymbolTable().positionFor("loop"));
+        assertEquals(11, executable.getLabelSymbolTable().positionFor("end"));
+    }
+
     @Test(expected = LabelDoesNotExistException.class)
     public void test_throwsExceptionWhenLabelDoesNotExist() {
         String sourceCode = ".main\n\tboujf -10\n\tjnp mian";

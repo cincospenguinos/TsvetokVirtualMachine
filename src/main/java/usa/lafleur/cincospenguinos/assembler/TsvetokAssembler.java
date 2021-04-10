@@ -17,7 +17,8 @@ public class TsvetokAssembler {
         symbolTable = new SymbolTable();
     }
 
-    public TsvetokExecutable assemble(String sourceCode) {
+    public TsvetokExecutable assemble(String inputSource) {
+        String sourceCode = clearCommentsFrom(inputSource);
         symbolTable.clear();
         TsvetokExecutable executable = new TsvetokExecutable();
 
@@ -36,6 +37,23 @@ public class TsvetokAssembler {
 
         executable.setSymbolTable(symbolTable);
         return executable;
+    }
+
+    private String clearCommentsFrom(String inputSource) {
+        StringBuilder builder = new StringBuilder();
+
+        for (String sourceLine : inputSource.split(NEWLINE_REGEX)) {
+            String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
+
+            if (line.isEmpty()) {
+                continue;
+            }
+
+            builder.append(line);
+            builder.append("\n");
+        }
+
+        return builder.toString();
     }
 
     private void extractLabels(String sourceCode) {

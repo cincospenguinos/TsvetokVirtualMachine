@@ -25,15 +25,7 @@ public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
         AccessType accessType = getAccessType();
 
         if (accessType.requiresMemory()) {
-            Tuple<Byte, Byte> address = getAddress(registerArray);
-
-            if (accessType == AccessType.LOAD) {
-                byte value = memory.readAt(address.getA(), address.getB());
-                registerArray.setValueOf(ACCUMULATOR_INDEX, value);
-            } else if (accessType == AccessType.STORE) {
-                byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
-                memory.writeTo(address.getA(), address.getB(), value);
-            }
+            handleMemoryExecution(accessType, registerArray, memory);
         } else if (accessType == AccessType.MOVE_REGISTER) {
             byte value = registerArray.getValueOf(leftRegisterIndex());
             registerArray.setValueOf(rightRegisterIndex(), value);
@@ -60,6 +52,18 @@ public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
         }
 
         return AccessType.MOVE_VALUE;
+    }
+
+    private void handleMemoryExecution(AccessType accessType, RegisterArray registerArray, RandomAccessMemory memory) {
+        Tuple<Byte, Byte> address = getAddress(registerArray);
+
+        if (accessType == AccessType.LOAD) {
+            byte value = memory.readAt(address.getA(), address.getB());
+            registerArray.setValueOf(ACCUMULATOR_INDEX, value);
+        } else if (accessType == AccessType.STORE) {
+            byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
+            memory.writeTo(address.getA(), address.getB(), value);
+        }
     }
 
     private Tuple<Byte, Byte> getAddress(RegisterArray registerArray) {

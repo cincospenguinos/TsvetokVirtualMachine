@@ -8,14 +8,14 @@ import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 import static org.junit.Assert.*;
 
-public class MemoryRegisterMoveInstructionTest {
+public class MemoryRegisterMovementInstructionTest {
     private final TsvetokAssembler assembler = new TsvetokAssembler();
     private static final int ACCUMULATOR_INDEX = RegisterResolutionService.resolveRegister("$ak");
 
     @Test
     public void test_loadValueWorksAsDesired() {
         TsvetokInstruction instruction = assembler.createInstruction("nens $tnp0 $tnp1");
-        assertTrue(instruction instanceof MemoryRegisterMoveInstruction);
+        assertTrue(instruction instanceof MemoryRegisterMovementInstruction);
         RegisterArray registerArray = new RegisterArray(
             new byte[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         );

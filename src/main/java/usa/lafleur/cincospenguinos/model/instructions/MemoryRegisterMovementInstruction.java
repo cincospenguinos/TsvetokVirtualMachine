@@ -5,8 +5,8 @@ import usa.lafleur.cincospenguinos.core.Tuple;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
-public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
-    private enum AccessType {
+public class MemoryRegisterMovementInstruction extends TsvetokInstruction {
+    private enum MemoryRegisterAccessType {
         LOAD, STORE, MOVE_VALUE, MOVE_REGISTER;
 
         boolean requiresMemory() {
@@ -16,17 +16,17 @@ public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
 
     private static final int ACCUMULATOR_INDEX = RegisterResolutionService.resolveRegister("$ak");
 
-    public MemoryRegisterMoveInstruction(byte operation, byte params) {
+    public MemoryRegisterMovementInstruction(byte operation, byte params) {
         super(operation, params);
     }
 
     @Override
     public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
-        AccessType accessType = getAccessType();
+        MemoryRegisterAccessType accessType = getAccessType();
 
         if (accessType.requiresMemory()) {
             handleMemoryExecution(accessType, registerArray, memory);
-        } else if (accessType == AccessType.MOVE_REGISTER) {
+        } else if (accessType == MemoryRegisterAccessType.MOVE_REGISTER) {
             byte value = registerArray.getValueOf(leftRegisterIndex());
             registerArray.setValueOf(rightRegisterIndex(), value);
         } else {
@@ -35,32 +35,32 @@ public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
         }
     }
 
-    private AccessType getAccessType() {
+    private MemoryRegisterAccessType getAccessType() {
         boolean storeFlagSet = firstFlagSet();
         boolean valueRegisterFlagSet = secondFlagSet();
 
         if (!storeFlagSet && !valueRegisterFlagSet) {
-            return AccessType.LOAD;
+            return MemoryRegisterAccessType.LOAD;
         }
 
         if (storeFlagSet && !valueRegisterFlagSet) {
-            return AccessType.STORE;
+            return MemoryRegisterAccessType.STORE;
         }
 
         if (!storeFlagSet) {
-            return AccessType.MOVE_REGISTER;
+            return MemoryRegisterAccessType.MOVE_REGISTER;
         }
 
-        return AccessType.MOVE_VALUE;
+        return MemoryRegisterAccessType.MOVE_VALUE;
     }
 
-    private void handleMemoryExecution(AccessType accessType, RegisterArray registerArray, RandomAccessMemory memory) {
+    private void handleMemoryExecution(MemoryRegisterAccessType accessType, RegisterArray registerArray, RandomAccessMemory memory) {
         Tuple<Byte, Byte> address = getAddress(registerArray);
 
-        if (accessType == AccessType.LOAD) {
+        if (accessType == MemoryRegisterAccessType.LOAD) {
             byte value = memory.readAt(address.getA(), address.getB());
             registerArray.setValueOf(ACCUMULATOR_INDEX, value);
-        } else if (accessType == AccessType.STORE) {
+        } else if (accessType == MemoryRegisterAccessType.STORE) {
             byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
             memory.writeTo(address.getA(), address.getB(), value);
         }

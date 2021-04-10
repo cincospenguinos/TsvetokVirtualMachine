@@ -15,7 +15,7 @@ public abstract class TsvetokInstruction {
 
     public static TsvetokInstruction construct(byte operation, byte params) {
         if ((operation & 0xf0) >> 4 == OpCodes.MOVE) {
-            return new MemoryRegisterMoveInstruction(operation, params);
+            return new MemoryRegisterMovementInstruction(operation, params);
         }
 
         return new AddInstruction(operation, params);

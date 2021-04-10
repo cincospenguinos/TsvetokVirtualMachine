@@ -19,7 +19,7 @@ public class TsvetokAssembler {
     public TsvetokExecutable assemble(String sourceCode) {
         symbolTable.clear();
         TsvetokExecutable executable = new TsvetokExecutable();
-        int position = 0;
+        int currentPosition = 0;
 
         for (String sourceLine : sourceCode.split("(\\n|\\r\\n)")) {
             String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
@@ -29,11 +29,11 @@ public class TsvetokAssembler {
             }
 
             if (line.matches(LABEL_PREFIX)) {
-                symbolTable.addLabelAtPosition(line, position);
+                symbolTable.addLabelAtPosition(line, currentPosition);
             } else {
                 TsvetokInstruction instruction = createInstruction(line);
                 executable.addInstruction(instruction);
-                position += 1;
+                currentPosition += 1;
             }
         }
 

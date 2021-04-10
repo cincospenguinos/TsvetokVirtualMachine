@@ -1,6 +1,5 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
-import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 

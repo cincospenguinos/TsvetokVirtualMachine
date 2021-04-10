@@ -3,13 +3,23 @@ package usa.lafleur.cincospenguinos.model.instructions;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
-public class MultiplyInstruction extends TsvetokInstruction {
+public class MultiplyInstruction extends ArithmeticInstruction {
     public MultiplyInstruction(byte operation, byte params) {
         super(operation, params);
     }
 
     @Override
-    public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
+    protected int executeImmediate(RegisterArray registerArray, RandomAccessMemory memory) {
+        byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
 
+        return value * getParameterByte();
+    }
+
+    @Override
+    protected int executeRegister(RegisterArray registerArray, RandomAccessMemory memory) {
+        int leftValue = registerArray.getValueOf(leftRegisterIndex());
+        int rightValue = registerArray.getValueOf(rightRegisterIndex());
+
+        return leftValue * rightValue;
     }
 }

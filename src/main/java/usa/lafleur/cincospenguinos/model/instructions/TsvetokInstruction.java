@@ -1,5 +1,6 @@
 package usa.lafleur.cincospenguinos.model.instructions;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import usa.lafleur.cincospenguinos.core.Tuple;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
@@ -14,11 +15,21 @@ public abstract class TsvetokInstruction {
     }
 
     public static TsvetokInstruction construct(byte operation, byte params) {
-        if ((operation & 0xf0) >> 4 == OpCodes.MOVE) {
+        int opcode = (operation & 0xf0) >> 4;
+
+        if (opcode == OpCodes.MOVE) {
             return new MemoryRegisterMovementInstruction(operation, params);
         }
 
-        return new AddInstruction(operation, params);
+        if (opcode == OpCodes.ADD_IMMEDIATE || opcode == OpCodes.ADD_REGISTERS) {
+            return new AddInstruction(operation, params);
+        }
+
+        if (opcode == OpCodes.MULTIPLY_IMMEDIATE || opcode == OpCodes.MULTIPLY_REGISTERS) {
+            return new MultiplyInstruction(operation, params);
+        }
+
+        return new NoOperationInstruction(operation, params);
     }
 
     public abstract void execute(RegisterArray registerArray, RandomAccessMemory memory);

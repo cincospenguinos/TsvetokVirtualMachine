@@ -5,14 +5,14 @@ import usa.lafleur.cincospenguinos.core.Tuple;
 import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
 import usa.lafleur.cincospenguinos.model.RegisterArray;
 
-public class MemoryAccessInstruction extends TsvetokInstruction {
+public class MemoryRegisterMoveInstruction extends TsvetokInstruction {
     private enum AccessType {
         LOAD, STORE, MOVE_VALUE, MOVE_REGISTER;
     }
 
     private static final int ACCUMULATOR_INDEX = RegisterResolutionService.resolveRegister("$ak");
 
-    public MemoryAccessInstruction(byte operation, byte params) {
+    public MemoryRegisterMoveInstruction(byte operation, byte params) {
         super(operation, params);
     }
 
@@ -27,16 +27,29 @@ public class MemoryAccessInstruction extends TsvetokInstruction {
         } else if (accessType == AccessType.STORE) {
             byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
             memory.writeTo(address.getA(), address.getB(), value);
+        } else if (accessType == AccessType.MOVE_REGISTER) {
+            byte value = registerArray.getValueOf(leftRegisterIndex());
+            registerArray.setValueOf(rightRegisterIndex(), value);
         }
     }
 
     private AccessType getAccessType() {
         boolean storeFlagSet = firstFlagSet();
+        boolean valueRegisterFlagSet = secondFlagSet();
 
-        if (storeFlagSet) {
+        if (!storeFlagSet && !valueRegisterFlagSet) {
+            return AccessType.LOAD;
+        }
+
+        if (storeFlagSet && !valueRegisterFlagSet) {
             return AccessType.STORE;
         }
-        return AccessType.LOAD;
+
+        if (!storeFlagSet) {
+            return AccessType.MOVE_REGISTER;
+        }
+
+        return AccessType.MOVE_VALUE;
     }
 
     private Tuple<Byte, Byte> getAddress(RegisterArray registerArray) {

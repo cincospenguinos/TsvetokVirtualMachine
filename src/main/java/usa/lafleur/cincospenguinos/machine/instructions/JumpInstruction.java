@@ -10,6 +10,6 @@ public class JumpInstruction extends TsvetokInstruction {
 
     @Override
     public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
-
+        registerArray.setProgramCounter(getParameterByte());
     }
 }

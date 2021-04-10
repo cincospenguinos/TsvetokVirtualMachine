@@ -69,6 +69,8 @@ public class InstructionBuilder {
 
     public InstructionBuilder setLabelIdentifier(int position) {
         _immediate = (byte) position;
+        _isImmediateOperation = true;
+
         return this;
     }
 }

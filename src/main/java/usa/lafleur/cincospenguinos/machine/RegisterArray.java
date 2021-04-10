@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.machine;
 
 public class RegisterArray {
     private final byte[] _registers;
+    private int _programCounter;
     private boolean _overflowFlag;
     private boolean _zeroFlag;
 
@@ -13,6 +14,7 @@ public class RegisterArray {
         _registers = registers;
         _overflowFlag = false;
         _zeroFlag = false;
+        _programCounter = 0;
     }
 
     public byte getValueOf(int index) {
@@ -37,5 +39,13 @@ public class RegisterArray {
 
     public boolean isZeroFlagSet() {
         return _zeroFlag;
+    }
+
+    public int getProgramCounter() {
+        return _programCounter;
+    }
+
+    public void setProgramCounter(int address) {
+        _programCounter = address;
     }
 }

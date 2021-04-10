@@ -1,8 +1,7 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.machine;
 
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.assembler.TsvetokAssembler;
-import usa.lafleur.cincospenguinos.assembler.TsvetokExecutable;
 
 import static org.junit.Assert.*;
 

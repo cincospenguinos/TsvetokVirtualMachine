@@ -1,9 +1,9 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.machine.instructions;
 
 import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.core.Tuple;
-import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
-import usa.lafleur.cincospenguinos.model.RegisterArray;
+import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
+import usa.lafleur.cincospenguinos.machine.RegisterArray;
 
 public class MemoryRegisterMovementInstruction extends TsvetokInstruction {
     private enum MemoryRegisterAccessType {

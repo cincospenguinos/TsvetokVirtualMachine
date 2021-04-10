@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.machine;
 
 public class RegisterArray {
     private final byte[] _registers;

@@ -1,10 +1,10 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.machine.instructions;
 
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
 import usa.lafleur.cincospenguinos.assembler.TsvetokAssembler;
-import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
-import usa.lafleur.cincospenguinos.model.RegisterArray;
+import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
+import usa.lafleur.cincospenguinos.machine.RegisterArray;
 
 import static org.junit.Assert.*;
 

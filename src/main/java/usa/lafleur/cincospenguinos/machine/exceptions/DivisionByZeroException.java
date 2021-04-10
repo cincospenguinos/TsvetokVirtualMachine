@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.model.exceptions;
+package usa.lafleur.cincospenguinos.machine.exceptions;
 
 public class DivisionByZeroException extends RuntimeException {
     public DivisionByZeroException() {

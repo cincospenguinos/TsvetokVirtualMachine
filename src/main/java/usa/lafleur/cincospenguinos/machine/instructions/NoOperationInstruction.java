@@ -1,7 +1,7 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.machine.instructions;
 
-import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
-import usa.lafleur.cincospenguinos.model.RegisterArray;
+import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
+import usa.lafleur.cincospenguinos.machine.RegisterArray;
 
 public class NoOperationInstruction extends TsvetokInstruction {
     public NoOperationInstruction(byte operation, byte params) {

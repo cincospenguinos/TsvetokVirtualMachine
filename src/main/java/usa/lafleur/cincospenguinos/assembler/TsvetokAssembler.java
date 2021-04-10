@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
-import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.machine.TsvetokExecutable;
+import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 public class TsvetokAssembler {
     private static final String COMMENT_REGEX = "#.*";

@@ -1,10 +1,10 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.machine.instructions;
 
-import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
-import usa.lafleur.cincospenguinos.model.RegisterArray;
+import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
+import usa.lafleur.cincospenguinos.machine.RegisterArray;
 
-public class AddInstruction extends ArithmeticInstruction {
-    public AddInstruction(byte operation, byte params) {
+public class MultiplyInstruction extends ArithmeticInstruction {
+    public MultiplyInstruction(byte operation, byte params) {
         super(operation, params);
     }
 
@@ -12,7 +12,7 @@ public class AddInstruction extends ArithmeticInstruction {
     protected int executeImmediate(RegisterArray registerArray, RandomAccessMemory memory) {
         byte value = registerArray.getValueOf(ACCUMULATOR_INDEX);
 
-        return value + getParameterByte();
+        return value * getParameterByte();
     }
 
     @Override
@@ -20,6 +20,6 @@ public class AddInstruction extends ArithmeticInstruction {
         int leftValue = registerArray.getValueOf(leftRegisterIndex());
         int rightValue = registerArray.getValueOf(rightRegisterIndex());
 
-        return leftValue + rightValue;
+        return leftValue * rightValue;
     }
 }

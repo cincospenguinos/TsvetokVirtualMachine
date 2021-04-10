@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.machine;
 
 public class RandomAccessMemory {
     private static final int MAXIMUM_MEMORY_AMOUNT = 2 << 16;

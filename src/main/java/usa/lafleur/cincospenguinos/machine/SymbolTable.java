@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.assembler;
+package usa.lafleur.cincospenguinos.machine;
 
 import usa.lafleur.cincospenguinos.assembler.exceptions.DuplicateLabelException;
 

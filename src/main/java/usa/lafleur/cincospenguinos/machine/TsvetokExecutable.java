@@ -1,6 +1,6 @@
-package usa.lafleur.cincospenguinos.assembler;
+package usa.lafleur.cincospenguinos.machine;
 
-import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 import java.util.ArrayList;
 import java.util.List;

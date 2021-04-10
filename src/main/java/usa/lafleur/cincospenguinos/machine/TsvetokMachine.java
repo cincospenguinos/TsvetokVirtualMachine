@@ -1,8 +1,7 @@
-package usa.lafleur.cincospenguinos.model;
+package usa.lafleur.cincospenguinos.machine;
 
 import usa.lafleur.cincospenguinos.assembler.RegisterResolutionService;
-import usa.lafleur.cincospenguinos.assembler.TsvetokExecutable;
-import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 public class TsvetokMachine {
     private final TsvetokExecutable _executable;

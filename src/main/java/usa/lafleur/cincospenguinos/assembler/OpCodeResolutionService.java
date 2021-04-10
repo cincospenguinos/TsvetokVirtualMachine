@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import usa.lafleur.cincospenguinos.assembler.exceptions.InvalidOperationException;
-import usa.lafleur.cincospenguinos.model.instructions.OpCodes;
+import usa.lafleur.cincospenguinos.machine.instructions.OpCodes;
 
 import java.util.HashMap;
 import java.util.Map;

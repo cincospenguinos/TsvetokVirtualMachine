@@ -1,6 +1,6 @@
 package usa.lafleur.cincospenguinos.assembler;
 
-import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 public class InstructionBuilder {
     private byte _opcode;

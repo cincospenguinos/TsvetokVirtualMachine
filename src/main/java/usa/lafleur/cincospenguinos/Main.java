@@ -1,8 +1,8 @@
 package usa.lafleur.cincospenguinos;
 
 import usa.lafleur.cincospenguinos.assembler.TsvetokAssembler;
-import usa.lafleur.cincospenguinos.assembler.TsvetokExecutable;
-import usa.lafleur.cincospenguinos.model.TsvetokMachine;
+import usa.lafleur.cincospenguinos.machine.TsvetokExecutable;
+import usa.lafleur.cincospenguinos.machine.TsvetokMachine;
 
 public class Main {
     public static void main(String[] args) {

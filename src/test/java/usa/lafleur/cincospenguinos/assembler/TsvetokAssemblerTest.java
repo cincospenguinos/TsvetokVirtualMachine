@@ -1,7 +1,8 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import org.junit.Test;
-import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
+import usa.lafleur.cincospenguinos.machine.TsvetokExecutable;
+import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 import java.util.List;
 

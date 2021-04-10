@@ -1,8 +1,8 @@
-package usa.lafleur.cincospenguinos.model.instructions;
+package usa.lafleur.cincospenguinos.machine.instructions;
 
-import usa.lafleur.cincospenguinos.model.RandomAccessMemory;
-import usa.lafleur.cincospenguinos.model.RegisterArray;
-import usa.lafleur.cincospenguinos.model.exceptions.DivisionByZeroException;
+import usa.lafleur.cincospenguinos.machine.RandomAccessMemory;
+import usa.lafleur.cincospenguinos.machine.RegisterArray;
+import usa.lafleur.cincospenguinos.machine.exceptions.DivisionByZeroException;
 
 public class DivisionInstruction extends ArithmeticInstruction {
     public DivisionInstruction(byte operation, byte params) {

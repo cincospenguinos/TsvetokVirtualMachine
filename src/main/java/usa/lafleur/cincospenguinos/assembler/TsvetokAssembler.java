@@ -18,20 +18,18 @@ public class TsvetokAssembler {
     }
 
     public TsvetokExecutable assemble(String inputSource) {
-        String sourceCode = clearCommentsFrom(inputSource);
         symbolTable.clear();
         TsvetokExecutable executable = new TsvetokExecutable();
 
+        String sourceCode = clearCommentsFrom(inputSource);
         extractLabels(sourceCode);
 
         for (String sourceLine : sourceCode.split(NEWLINE_REGEX)) {
-            String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
-
-            if (line.isEmpty() || line.matches(LABEL_PREFIX)) {
+            if (sourceLine.matches(LABEL_PREFIX)) {
                 continue;
             }
 
-            TsvetokInstruction instruction = createInstruction(line);
+            TsvetokInstruction instruction = createInstruction(sourceLine);
             executable.addInstruction(instruction);
         }
 

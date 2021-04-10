@@ -21,10 +21,11 @@ public class TsvetokMachineTest {
                 "   nultf -1\n" +
                 "   adr $ak $rej4\n" +
                 "   jnpns .end\n" +
+                "# YO YO YIGGITY YOLOOOOOO\n" +
                 "   boujr $rej3 $ak\n" +
                 "   jnp .loop\n" +
-                ".end\n" +
-                "   stoup"
+                ".end # This is the end for you my friend\n" +
+                "   stoup # I won't forgive, I won't forget\n"
                 ;
         TsvetokExecutable executable = assembler.assemble(assemblyCode);
         TsvetokMachine machine = new TsvetokMachine(executable);

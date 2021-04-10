@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.assembler;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.assembler.exceptions.LabelDoesNotExistException;
 import usa.lafleur.cincospenguinos.machine.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
@@ -57,5 +58,11 @@ public class TsvetokAssemblerTest {
         TsvetokExecutable executable = assembler.assemble(sourceCode);
         assertEquals(0, executable.getLabelSymbolTable().positionFor("main"));
         assertEquals(1, executable.getLabelSymbolTable().positionFor("loop"));
+    }
+
+    @Test(expected = LabelDoesNotExistException.class)
+    public void test_throwsExceptionWhenLabelDoesNotExist() {
+        String sourceCode = ".main\n\tboujf -10\n\tjnp mian";
+        assembler.assemble(sourceCode);
     }
 }

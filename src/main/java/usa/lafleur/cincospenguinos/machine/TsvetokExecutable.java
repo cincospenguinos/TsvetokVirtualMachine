@@ -7,11 +7,11 @@ import java.util.List;
 
 public class TsvetokExecutable {
     private final List<TsvetokInstruction> instructions;
-    private final SymbolTable symbolTable;
+    private SymbolTable _symbolTable;
 
     public TsvetokExecutable() {
         instructions = new ArrayList<>();
-        symbolTable = new SymbolTable();
+        _symbolTable = new SymbolTable();
     }
 
     public void addInstruction(TsvetokInstruction instruction) {
@@ -19,7 +19,7 @@ public class TsvetokExecutable {
     }
 
     public void addLabelAtCurrentPosition(String labelName) {
-        symbolTable.addLabelAtPosition(labelName, instructions.size());
+        _symbolTable.addLabelAtPosition(labelName, instructions.size());
     }
 
     public List<TsvetokInstruction> getInstructions() {
@@ -27,6 +27,10 @@ public class TsvetokExecutable {
     }
 
     public SymbolTable getLabelSymbolTable() {
-        return symbolTable;
+        return _symbolTable;
+    }
+
+    public void setSymbolTable(SymbolTable symbolTable) {
+        _symbolTable = symbolTable;
     }
 }

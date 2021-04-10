@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SymbolTable {
-    private final Map<String, Integer> labels;
+    private Map<String, Integer> labels;
 
     public SymbolTable() {
         labels = new HashMap<>();
@@ -28,5 +28,9 @@ public class SymbolTable {
         }
 
         return -1;
+    }
+
+    public void clear() {
+        labels = new HashMap<>();
     }
 }

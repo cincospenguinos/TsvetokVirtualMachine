@@ -32,6 +32,10 @@ public abstract class TsvetokInstruction {
             return new DivisionInstruction(operation, params);
         }
 
+        if (opcode == OpCodes.JUMP_UNCONDITIONAL) {
+            return new JumpInstruction(operation, params);
+        }
+
         return new NoOperationInstruction(operation, params);
     }
 

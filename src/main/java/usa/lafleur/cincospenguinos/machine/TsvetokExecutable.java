@@ -11,15 +11,10 @@ public class TsvetokExecutable {
 
     public TsvetokExecutable() {
         instructions = new ArrayList<>();
-        _symbolTable = new SymbolTable();
     }
 
     public void addInstruction(TsvetokInstruction instruction) {
         instructions.add(instruction);
-    }
-
-    public void addLabelAtCurrentPosition(String labelName) {
-        _symbolTable.addLabelAtPosition(labelName, instructions.size());
     }
 
     public List<TsvetokInstruction> getInstructions() {

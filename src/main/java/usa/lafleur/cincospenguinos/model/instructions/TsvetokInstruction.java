@@ -34,4 +34,16 @@ public abstract class TsvetokInstruction {
     protected byte getParameterByte() {
         return _params;
     }
+
+    /**
+     * Returns true if the first flag from the left on the operation byte
+     * is set.
+     */
+    protected boolean firstFlagSet() {
+        return (_operation & 0b00001000) >> 3 == 1;
+    }
+
+    protected boolean secondFlagSet() {
+        return (_operation & 0b00000100) >> 2 == 1;
+    }
 }

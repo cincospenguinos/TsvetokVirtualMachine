@@ -5,24 +5,24 @@ import usa.lafleur.cincospenguinos.assembler.TsvetokExecutable;
 import usa.lafleur.cincospenguinos.model.instructions.TsvetokInstruction;
 
 public class TsvetokMachine {
-    private TsvetokExecutable _executable;
-    private RegisterArray registerArray;
-    private RandomAccessMemory memory;
+    private final TsvetokExecutable _executable;
+    private final RegisterArray _registerArray;
+    private final RandomAccessMemory _memory;
 
     public TsvetokMachine(TsvetokExecutable executable) {
         _executable = executable;
-        registerArray = new RegisterArray();
-        memory = new RandomAccessMemory();
+        _registerArray = new RegisterArray();
+        _memory = new RandomAccessMemory();
     }
 
     public void execute() {
         for (TsvetokInstruction instruction : _executable.getInstructions()) {
-            instruction.execute(registerArray, memory);
+            instruction.execute(_registerArray, _memory);
         }
     }
 
     public int valueInRegister(String registerName) {
         int registerIndex = RegisterResolutionService.resolveRegister(registerName);
-        return registerArray.getValueOf(registerIndex);
+        return _registerArray.getValueOf(registerIndex);
     }
 }

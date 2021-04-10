@@ -16,6 +16,10 @@ public class JumpInstruction extends TsvetokInstruction {
             return;
         }
 
+        if (opcode == OpCodes.JUMP_ON_NON_ZERO && registerArray.isZeroFlagSet()) {
+            return;
+        }
+
         registerArray.setProgramCounter(getParameterByte());
     }
 }

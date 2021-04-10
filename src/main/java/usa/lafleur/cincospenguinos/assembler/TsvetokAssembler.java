@@ -7,6 +7,7 @@ import usa.lafleur.cincospenguinos.machine.instructions.TsvetokInstruction;
 
 public class TsvetokAssembler {
     private static final String COMMENT_REGEX = "#.*";
+    private static final String NEWLINE_REGEX = "(\\n|\\r\\n)";
     public static final String LABEL_PREFIX = "\\.\\w+";
     private final InstructionBuilder instructionBuilder;
     private final SymbolTable symbolTable;
@@ -19,26 +20,36 @@ public class TsvetokAssembler {
     public TsvetokExecutable assemble(String sourceCode) {
         symbolTable.clear();
         TsvetokExecutable executable = new TsvetokExecutable();
-        int currentPosition = 0;
 
-        for (String sourceLine : sourceCode.split("(\\n|\\r\\n)")) {
+        extractLabels(sourceCode);
+
+        for (String sourceLine : sourceCode.split(NEWLINE_REGEX)) {
             String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
 
-            if (line.isEmpty()) {
+            if (line.isEmpty() || line.matches(LABEL_PREFIX)) {
                 continue;
             }
 
-            if (line.matches(LABEL_PREFIX)) {
-                symbolTable.addLabelAtPosition(line, currentPosition);
-            } else {
-                TsvetokInstruction instruction = createInstruction(line);
-                executable.addInstruction(instruction);
-                currentPosition += 1;
-            }
+            TsvetokInstruction instruction = createInstruction(line);
+            executable.addInstruction(instruction);
         }
 
         executable.setSymbolTable(symbolTable);
         return executable;
+    }
+
+    private void extractLabels(String sourceCode) {
+        int currentPosition = 0;
+
+        for (String sourceLine : sourceCode.split(NEWLINE_REGEX)) {
+            String line = sourceLine.replaceAll(COMMENT_REGEX, "").trim();
+
+            if (line.matches(LABEL_PREFIX)) {
+                symbolTable.addLabelAtPosition(line.replaceAll("\\.", ""), currentPosition);
+            } else {
+                currentPosition += 1;
+            }
+        }
     }
 
     public TsvetokInstruction createInstruction(String line) {

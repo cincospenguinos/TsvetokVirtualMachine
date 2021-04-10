@@ -29,6 +29,10 @@ public abstract class TsvetokInstruction {
             return new MultiplyInstruction(operation, params);
         }
 
+        if (opcode == OpCodes.DIVIDE_IMMEDIATE || opcode == OpCodes.DIVIDE_REGISTERS) {
+            return new DivisionInstruction(operation, params);
+        }
+
         return new NoOperationInstruction(operation, params);
     }
 

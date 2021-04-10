@@ -7,7 +7,7 @@ import usa.lafleur.cincospenguinos.model.RegisterArray;
 
 import static org.junit.Assert.*;
 
-public class MulitplyInstructionTest {
+public class MultiplyInstructionTest {
     private final TsvetokAssembler assembler = new TsvetokAssembler();
     private static final int ACCUMULATOR_INDEX = RegisterResolutionService.resolveRegister("$ak");
 
@@ -20,7 +20,7 @@ public class MulitplyInstructionTest {
     }
 
     @Test
-    public void test_addRegisterWorksAsDesired() {
+    public void test_multiplyRegisterWorksAsDesired() {
         TsvetokInstruction instruction = assembler.createInstruction("nultr $ak $ak");
         RegisterArray registerArray = new RegisterArray(
                 new byte[]{ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
@@ -30,7 +30,7 @@ public class MulitplyInstructionTest {
     }
 
     @Test
-    public void test_addTriggersOverflowFlag() {
+    public void test_multiplyTriggersOverflowFlag() {
         TsvetokInstruction instruction = assembler.createInstruction("nultf 2");
         RegisterArray registerArray = new RegisterArray(new byte[]{ 0x7f, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
         assertFalse(registerArray.isOverflowFlagSet());
@@ -39,7 +39,7 @@ public class MulitplyInstructionTest {
     }
 
     @Test
-    public void test_addTriggersZeroFlag() {
+    public void test_multiplyTriggersZeroFlag() {
         TsvetokInstruction instruction = assembler.createInstruction("nultf 0");
         RegisterArray registerArray = new RegisterArray(new byte[]{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
         instruction.execute(registerArray, null);

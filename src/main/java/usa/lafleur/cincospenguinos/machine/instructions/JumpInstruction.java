@@ -10,6 +10,12 @@ public class JumpInstruction extends TsvetokInstruction {
 
     @Override
     public void execute(RegisterArray registerArray, RandomAccessMemory memory) {
+        int opcode = getOpcode();
+
+        if (opcode == OpCodes.JUMP_ON_ZERO && !registerArray.isZeroFlagSet()) {
+            return;
+        }
+
         registerArray.setProgramCounter(getParameterByte());
     }
 }

@@ -36,7 +36,7 @@ public abstract class ArithmeticInstruction extends TsvetokInstruction {
     protected abstract int executeRegister(RegisterArray registerArray, RandomAccessMemory memory);
 
     protected boolean isImmediate() {
-        int opcode = getOperationByte() >> 4;
+        int opcode = getOpcode();
 
         for (int arithmeticCode : ARITHMETIC_OPCODES) {
             if (opcode == arithmeticCode) {

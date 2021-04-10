@@ -32,7 +32,7 @@ public abstract class TsvetokInstruction {
             return new DivisionInstruction(operation, params);
         }
 
-        if (opcode == OpCodes.JUMP_UNCONDITIONAL) {
+        if (opcode == OpCodes.JUMP_UNCONDITIONAL || opcode == OpCodes.JUMP_ON_ZERO || opcode == OpCodes.JUMP_ON_NON_ZERO) {
             return new JumpInstruction(operation, params);
         }
 
@@ -67,5 +67,11 @@ public abstract class TsvetokInstruction {
 
     protected int rightRegisterIndex() {
         return getParameterByte() & 0x0f;
+    }
+
+    protected int getOpcode() {
+        // Turns out java keeps the sign when shifting right, meaning we have to
+        // drop the sign bit to get the operation we want
+        return ((getOperationByte() >> 1) & 0x7f) >> 3;
     }
 }

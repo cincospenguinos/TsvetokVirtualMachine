@@ -1,8 +1,10 @@
 # LEERNIDA.md
 
-Ida fouree fer Toureen kalkoulatsee.
+Ida fouree fer Toureen kalkoulatsee afek 8 bits.
 
-## OUPERASEEOUN
+## Arkitektour
+
+### OUPERASEEOUN
 
 ```text
 noup   0000
@@ -25,7 +27,7 @@ stoup  1111
 _ sens "0 => rej" ou "1 => falou"
 ```
 
-### `nens` et `bouj`
+#### `nens` et `bouj`
 
 Ida oublee `bouj`, dank ida feree `bouj` afek `nens`:
 
@@ -36,11 +38,9 @@ boujr  000101 #=> rej tou rej
 boujf  000111 #=> falou tou rej
 ```
 
-### `jnp` ouperaseeoun
+#### `jnp` ouperaseeoun
 
-
-
-## REJ
+### REJ
 
 ```text
 ak     0000
@@ -65,6 +65,10 @@ pn     1111
 * `arj` foudree deer arjoument, ou paraneeter
 * `a` foudree deer adress, et `f` foudree deer falou
 
-## TODO
+### TODO
 
 - [ ] Interrupts for dividing by zero?
+
+## MeenJaf
+
+Ide fera lanakalkoulatsee. Lana nteda apelee MeenJaf.

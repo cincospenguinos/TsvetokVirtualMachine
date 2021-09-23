@@ -1,35 +1,4 @@
-# Next steps:
-# * Adding label hooks
-# * Ensure jnp commands has a label vs. register flag
-# * Adding a variable input command of some sort. Not sure how to do that.
-# * Designing an executable file format--I'm leaning towards top-down, and let
-#   the compiler determine how movement should work
-    bouj 5
-    bouj $ak $rej5
-    bouj 0
-.loop
-    adf 1
-    bouj $ak $rej4
-    difr $ak $rej5
-    jnpns .end
-    bouj $rej4 $ak
-    jnp .loop
-.end
-    stoup
-
-# The program above has
-# - 11 instructions
-# - 2 labels
-# Each of those costs 2 bytes, making this simple loop a total of 26 bytes
-# This program would take up 0.0397% of available RAM, and it just prints
-# the numbers 1-5. In C it would look like this
-
-#include<stdio.h>
-
-int main() {
-    int limit = 3;
-
-    for (int i = 1; i <= limit; i++) {}
-
-    return 0;
-}
+# Okay, plan for this project:
+# 1) Build a simple compiler for MeenJaf, the TVM spin on MiniJava
+# 2) Design full 8-bit computer, beginning with a screen output that uses a portion of RAM as VRAM
+# 3) Explore writing an operating system in MeenJaf, adding features to the language as needed

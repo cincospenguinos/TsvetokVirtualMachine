@@ -24,7 +24,12 @@ public class TokenizerTest {
                 "public static void main(String[] args) {\n" +
                 "}\n" +
                 "}");
-        List<Token> tokenList = tokenizer.tokenize();
-        assertEquals(correctTokenList, tokenList);
+        List<TokenItem> tokenList = tokenizer.tokenize();
+
+        assertEquals(correctTokenList.size(), tokenList.size());
+        for (int i = 0; i < correctTokenList.size(); i++) {
+            Token actual = tokenList.get(i).getToken();
+            assertEquals(correctTokenList.get(i), actual);
+        }
     }
 }

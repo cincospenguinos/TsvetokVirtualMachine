@@ -10,8 +10,8 @@ public class Tokenizer {
         _program = program;
     }
 
-    public List<Token> tokenize() {
-        List<Token> tokens = new ArrayList<>();
+    public List<TokenItem> tokenize() {
+        List<TokenItem> tokens = new ArrayList<>();
         String[] chunkedProgram = _program
                 .replaceAll("\\(", " ( ")
                 .replaceAll("\\)", " ) ")
@@ -21,7 +21,7 @@ public class Tokenizer {
 
         for (String str: chunkedProgram) {
             Token token = Token.fromString(str);
-            tokens.add(token);
+            tokens.add(new TokenItem(token, str));
         }
 
         return tokens;

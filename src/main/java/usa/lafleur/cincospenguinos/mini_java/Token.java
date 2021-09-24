@@ -1,7 +1,9 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 public enum Token {
-    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN, CLOSE_PAREN, WHILE, TYPE_INT, TYPE_BOOLEAN, TYPE_VOID, IDENTIFIER, OPERATION_ADD, OPERATION_SUBTRACT, OPERATION_MULTIPLY, OPERATION_DIVIDE, NEW;
+    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN,
+    CLOSE_PAREN, WHILE, TYPE_INT, TYPE_BOOLEAN, TYPE_VOID, IDENTIFIER, OPERATION_ADD, OPERATION_SUBTRACT,
+    OPERATION_MULTIPLY, OPERATION_DIVIDE, NEW, OPEN_BRACE, CLOSE_BRACE, SEMICOLON, OPERATION_NOT, OPERATION_ASSIGNMENT, OPERATION_EQUALITY, OPERATION_NOT_EQUALITY;
 
     private static final String INTEGER_LITERAL_PATTERN = "^-?\\d+$";
     private static final String IDENTIFIER_PATTERN = "^[a-zA-Z]+[\\da-zA-Z]+$";
@@ -44,6 +46,20 @@ public enum Token {
                 return Token.OPERATION_DIVIDE;
             case "new":
                 return Token.NEW;
+            case "{":
+                return Token.OPEN_BRACE;
+            case "}":
+                return Token.CLOSE_BRACE;
+            case ";":
+                return Token.SEMICOLON;
+            case "==":
+                return Token.OPERATION_EQUALITY;
+            case "!=":
+                return Token.OPERATION_NOT_EQUALITY;
+            case "=":
+                return Token.OPERATION_ASSIGNMENT;
+            case "!":
+                return Token.OPERATION_NOT;
         }
 
         if (potentialIdentifier.matches(INTEGER_LITERAL_PATTERN)) {

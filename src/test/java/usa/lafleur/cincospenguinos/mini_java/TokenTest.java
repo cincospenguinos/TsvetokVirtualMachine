@@ -98,10 +98,25 @@ public class TokenTest {
         assertEquals(Token.OPERATION_SUBTRACT, Token.fromString("-"));
         assertEquals(Token.OPERATION_MULTIPLY, Token.fromString("*"));
         assertEquals(Token.OPERATION_DIVIDE, Token.fromString("/"));
+        assertEquals(Token.OPERATION_NOT, Token.fromString("!"));
+        assertEquals(Token.OPERATION_ASSIGNMENT, Token.fromString("="));
+        assertEquals(Token.OPERATION_EQUALITY, Token.fromString("=="));
+        assertEquals(Token.OPERATION_NOT_EQUALITY, Token.fromString("!="));
     }
 
     @Test
     public void test_respondsWithNewKeyword() {
         assertEquals(Token.NEW, Token.fromString("new"));
+    }
+
+    @Test
+    public void test_respondsWithBraces() {
+        assertEquals(Token.OPEN_BRACE, Token.fromString("{"));
+        assertEquals(Token.CLOSE_BRACE, Token.fromString("}"));
+    }
+
+    @Test
+    public void test_respondsWithSemicolon() {
+        assertEquals(Token.SEMICOLON, Token.fromString(";"));
     }
 }

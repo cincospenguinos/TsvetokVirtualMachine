@@ -1,0 +1,5 @@
+package usa.lafleur.cincospenguinos.mini_java;
+
+public enum SyntaxError {
+    MISMATCHED_BRACKETS, MISMATCHED_PARENS, CLOSE_PAREN_BEFORE_OPEN, CLOSE_SQUARE_BEFORE_OPEN, CLOSE_BRACE_BEFORE_OPEN, MISMATCHED_BRACES
+}

@@ -19,8 +19,8 @@ public class LexerTest {
         };
         List<Token> correctTokenList = Arrays.asList(correctTokenOrder);
 
-        Lexer lexer = new Lexer("public class MainClass { \n" +
-                "public static void main(String[] args) {\n" +
+        Lexer lexer = new Lexer("public class MainClass{ \n" +
+                "public static void main(String[] args){\n" +
                 "}\n" +
                 "}");
         List<TokenItem> tokenList = lexer.tokenize();

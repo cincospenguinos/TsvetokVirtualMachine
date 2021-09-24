@@ -17,9 +17,15 @@ public class Lexer {
                 .replaceAll("\\)", " ) ")
                 .replaceAll("\\[", " [ ")
                 .replaceAll("]", " ] ")
+                .replaceAll("\\{", " { ")
+                .replaceAll("}", " } ")
                 .split("\\s+");
 
         for (String str: chunkedProgram) {
+            if (str.isEmpty()) {
+                continue;
+            }
+
             Token token = Token.fromString(str);
             tokens.add(new TokenItem(token, str));
         }

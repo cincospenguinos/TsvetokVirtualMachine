@@ -1,8 +1,5 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class BraceErrorAggregate {
     int _braceCount;
     Token _open;
@@ -10,15 +7,27 @@ class BraceErrorAggregate {
     SyntaxError _closeError;
     SyntaxError _mismatchError;
 
-    List<SyntaxErrorItem> _errorItems;
-
     BraceErrorAggregate(Token open, Token close, SyntaxError closeError, SyntaxError mismatchError) {
         _open = open;
         _close = close;
         _closeError = closeError;
         _mismatchError = mismatchError;
         _braceCount = 0;
-        _errorItems = new ArrayList<>();
+    }
+
+    public static BraceErrorAggregate getAggregateFor(String braceType) {
+        if ("{".equals(braceType)) {
+            return new BraceErrorAggregate(Token.OPEN_BRACE, Token.CLOSE_BRACE,
+                    SyntaxError.CLOSE_BRACE_BEFORE_OPEN, SyntaxError.MISMATCHED_BRACES);
+        } else if ("[".equals(braceType)) {
+            return new BraceErrorAggregate(Token.OPEN_SQUARE_BRACE, Token.CLOSE_SQUARE_BRACE,
+                    SyntaxError.CLOSE_SQUARE_BEFORE_OPEN, SyntaxError.MISMATCHED_BRACKETS);
+        } else if ("(".equals(braceType)) {
+            return new BraceErrorAggregate(Token.OPEN_PAREN, Token.CLOSE_PAREN,
+                    SyntaxError.CLOSE_PAREN_BEFORE_OPEN, SyntaxError.MISMATCHED_PARENS);
+        }
+
+        throw new RuntimeException("No aggregate for \"" + braceType + "\"");
     }
 
     /**
@@ -41,6 +50,11 @@ class BraceErrorAggregate {
         return new NullSyntaxErrorItem();
     }
 
+    /**
+     * Indicate that the process of counting braces is complete.
+     *
+     * @return Error if one occurred.
+     */
     SyntaxErrorItem complete() {
         if (_braceCount != 0) {
             return new SyntaxErrorItem(_mismatchError, "");

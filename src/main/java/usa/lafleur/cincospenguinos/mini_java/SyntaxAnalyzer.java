@@ -14,48 +14,19 @@ public class SyntaxAnalyzer {
     public List<SyntaxErrorItem> syntaxErrors() {
         List<SyntaxErrorItem> items = new ArrayList<>();
 
-        BraceErrorAggregate aggregate = new BraceErrorAggregate(Token.OPEN_BRACE, Token.CLOSE_BRACE,
-                SyntaxError.CLOSE_BRACE_BEFORE_OPEN, SyntaxError.MISMATCHED_BRACES);
-
-        int squareBrackets = 0;
-        int parens = 0;
+        BraceErrorAggregate curlyBraceAggregate = BraceErrorAggregate.getAggregateFor("{");
+        BraceErrorAggregate squareBraceAggregate = BraceErrorAggregate.getAggregateFor("[");
+        BraceErrorAggregate parenAggregate = BraceErrorAggregate.getAggregateFor("(");
 
         for (TokenItem item : _tokenStream) {
-            items.add(aggregate.consider(item));
-
-            switch(item.getToken()) {
-                case OPEN_SQUARE_BRACE:
-                    squareBrackets++;
-                    break;
-                case CLOSE_SQUARE_BRACE:
-                    if (squareBrackets == 0) {
-                        items.add(new SyntaxErrorItem(SyntaxError.CLOSE_SQUARE_BEFORE_OPEN, ""));
-                    }
-
-                    squareBrackets--;
-                    break;
-                case OPEN_PAREN:
-                    parens++;
-                    break;
-                case CLOSE_PAREN:
-                    if (parens == 0) {
-                        items.add(new SyntaxErrorItem(SyntaxError.CLOSE_PAREN_BEFORE_OPEN, ""));
-                    }
-
-                    parens--;
-                    break;
-            }
+            items.add(curlyBraceAggregate.consider(item));
+            items.add(squareBraceAggregate.consider(item));
+            items.add(parenAggregate.consider(item));
         }
 
-        items.add(aggregate.complete());
-
-        if (squareBrackets != 0) {
-            items.add(new SyntaxErrorItem(SyntaxError.MISMATCHED_BRACKETS, ""));
-        }
-
-        if (parens != 0) {
-            items.add(new SyntaxErrorItem(SyntaxError.MISMATCHED_PARENS, ""));
-        }
+        items.add(curlyBraceAggregate.complete());
+        items.add(squareBraceAggregate.complete());
+        items.add(parenAggregate.complete());
 
         return items
                 .stream()

@@ -91,4 +91,12 @@ public class TokenTest {
         assertEquals(Token.IDENTIFIER, Token.fromString("SomeClassName"));
         assertEquals(Token.IDENTIFIER, Token.fromString("someMethodName"));
     }
+
+    @Test
+    public void test_respondsWithOperations() {
+        assertEquals(Token.OPERATION_ADD, Token.fromString("+"));
+        assertEquals(Token.OPERATION_SUBTRACT, Token.fromString("-"));
+        assertEquals(Token.OPERATION_MULTIPLY, Token.fromString("*"));
+        assertEquals(Token.OPERATION_DIVIDE, Token.fromString("/"));
+    }
 }

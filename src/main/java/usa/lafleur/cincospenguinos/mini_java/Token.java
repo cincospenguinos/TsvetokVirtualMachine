@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 public enum Token {
-    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN, CLOSE_PAREN, WHILE, TYPE_INT, TYPE_BOOLEAN, TYPE_VOID, IDENTIFIER;
+    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN, CLOSE_PAREN, WHILE, TYPE_INT, TYPE_BOOLEAN, TYPE_VOID, IDENTIFIER, OPERATION_ADD, OPERATION_SUBTRACT, OPERATION_MULTIPLY, OPERATION_DIVIDE;
 
     private static final String INTEGER_LITERAL_PATTERN = "^-?\\d+$";
     private static final String IDENTIFIER_PATTERN = "^[a-zA-Z]+[\\da-zA-Z]+$";
@@ -34,6 +34,14 @@ public enum Token {
                 return Token.TYPE_VOID;
             case "boolean":
                 return Token.TYPE_BOOLEAN;
+            case "+":
+                return Token.OPERATION_ADD;
+            case "-":
+                return Token.OPERATION_SUBTRACT;
+            case "*":
+                return Token.OPERATION_MULTIPLY;
+            case "/":
+                return Token.OPERATION_DIVIDE;
         }
 
         if (potentialIdentifier.matches(INTEGER_LITERAL_PATTERN)) {

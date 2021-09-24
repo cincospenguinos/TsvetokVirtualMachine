@@ -1,6 +1,8 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.mini_java.lexer.Token;
+import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
 
 import static org.junit.Assert.*;
 

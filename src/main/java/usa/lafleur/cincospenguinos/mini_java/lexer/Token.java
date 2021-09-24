@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.mini_java;
+package usa.lafleur.cincospenguinos.mini_java.lexer;
 
 import usa.lafleur.cincospenguinos.mini_java.exceptions.InvalidTokenException;
 

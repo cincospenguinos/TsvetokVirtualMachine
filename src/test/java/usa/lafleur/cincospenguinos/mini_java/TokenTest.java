@@ -1,6 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 import org.junit.Test;
+import usa.lafleur.cincospenguinos.mini_java.exceptions.InvalidTokenException;
 
 import static org.junit.Assert.*;
 

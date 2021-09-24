@@ -1,6 +1,5 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TokenizerTest {
+public class LexerTest {
     @Test
     public void test_respondsWithListOfTokens() {
         Token[] correctTokenOrder = {
@@ -20,11 +19,11 @@ public class TokenizerTest {
         };
         List<Token> correctTokenList = Arrays.asList(correctTokenOrder);
 
-        Tokenizer tokenizer = new Tokenizer("public class MainClass { \n" +
+        Lexer lexer = new Lexer("public class MainClass { \n" +
                 "public static void main(String[] args) {\n" +
                 "}\n" +
                 "}");
-        List<TokenItem> tokenList = tokenizer.tokenize();
+        List<TokenItem> tokenList = lexer.tokenize();
 
         assertEquals(correctTokenList.size(), tokenList.size());
         for (int i = 0; i < correctTokenList.size(); i++) {

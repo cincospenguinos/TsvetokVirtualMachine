@@ -1,5 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
+import usa.lafleur.cincospenguinos.mini_java.exceptions.InvalidTokenException;
+
 public enum Token {
     NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN,
     CLOSE_PAREN, WHILE, TYPE_INT, TYPE_BOOLEAN, TYPE_VOID, IDENTIFIER, OPERATION_ADD, OPERATION_SUBTRACT,

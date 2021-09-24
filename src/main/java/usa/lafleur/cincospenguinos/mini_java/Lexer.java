@@ -3,10 +3,10 @@ package usa.lafleur.cincospenguinos.mini_java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tokenizer {
+public class Lexer {
     private final String _program;
 
-    public Tokenizer(String program) {
+    public Lexer(String program) {
         _program = program;
     }
 

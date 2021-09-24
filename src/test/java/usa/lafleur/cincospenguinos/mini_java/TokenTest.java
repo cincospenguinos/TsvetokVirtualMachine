@@ -93,6 +93,12 @@ public class TokenTest {
     }
 
     @Test
+    public void test_respondsWithSquareBraces() {
+        assertEquals(Token.OPEN_SQUARE_BRACE, Token.fromString("["));
+        assertEquals(Token.CLOSE_SQUARE_BRACE, Token.fromString("]"));
+    }
+
+    @Test
     public void test_respondsWithOperations() {
         assertEquals(Token.OPERATION_ADD, Token.fromString("+"));
         assertEquals(Token.OPERATION_SUBTRACT, Token.fromString("-"));
@@ -118,5 +124,15 @@ public class TokenTest {
     @Test
     public void test_respondsWithSemicolon() {
         assertEquals(Token.SEMICOLON, Token.fromString(";"));
+    }
+
+    @Test
+    public void test_respondsWithClass() {
+        assertEquals(Token.CLASS, Token.fromString("class"));
+    }
+
+    @Test
+    public void test_respondsWithStatic() {
+        assertEquals(Token.STATIC, Token.fromString("static"));
     }
 }

@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 public enum Identifier {
-    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL;
+    NULL, FALSE, TRUE, ACCESS_PUBLIC, INTEGER_LITERAL, THIS_LITERAL, IF_LITERAL, ELSE_LITERAL, OPEN_PAREN, CLOSE_PAREN;
 
     private static final String INTEGER_LITERAL_PATTERN = "^-?\\d+$";
 
@@ -15,6 +15,16 @@ public enum Identifier {
                 return Identifier.TRUE;
             case "public":
                 return Identifier.ACCESS_PUBLIC;
+            case "this":
+                return Identifier.THIS_LITERAL;
+            case "if":
+                return Identifier.IF_LITERAL;
+            case "else":
+                return Identifier.ELSE_LITERAL;
+            case "(":
+                return Identifier.OPEN_PAREN;
+            case ")":
+                return Identifier.CLOSE_PAREN;
         }
 
         if (potentialIdentifier.matches(INTEGER_LITERAL_PATTERN)) {

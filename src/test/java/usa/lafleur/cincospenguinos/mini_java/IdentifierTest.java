@@ -38,4 +38,29 @@ public class IdentifierTest {
         assertEquals(Identifier.INTEGER_LITERAL, Identifier.fromString("-10"));
         assertEquals(Identifier.INTEGER_LITERAL, Identifier.fromString("-0001"));
     }
+
+    @Test
+    public void test_respondsWithThisLiteral() {
+        assertEquals(Identifier.THIS_LITERAL, Identifier.fromString("this"));
+    }
+
+    @Test
+    public void test_respondsWithIfLiteral() {
+        assertEquals(Identifier.IF_LITERAL, Identifier.fromString("if"));
+    }
+
+    @Test
+    public void test_respondsWithElseLiteral() {
+        assertEquals(Identifier.ELSE_LITERAL, Identifier.fromString("else"));
+    }
+
+    @Test
+    public void test_respondsWithOpenParenLiteral() {
+        assertEquals(Identifier.OPEN_PAREN, Identifier.fromString("("));
+    }
+
+    @Test
+    public void test_respondsWithCloseParenLiteral() {
+        assertEquals(Identifier.CLOSE_PAREN, Identifier.fromString(")"));
+    }
 }

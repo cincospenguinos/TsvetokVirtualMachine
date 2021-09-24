@@ -99,4 +99,9 @@ public class TokenTest {
         assertEquals(Token.OPERATION_MULTIPLY, Token.fromString("*"));
         assertEquals(Token.OPERATION_DIVIDE, Token.fromString("/"));
     }
+
+    @Test
+    public void test_respondsWithNewKeyword() {
+        assertEquals(Token.NEW, Token.fromString("new"));
+    }
 }

@@ -63,4 +63,32 @@ public class TokenTest {
     public void test_respondsWithCloseParenLiteral() {
         assertEquals(Token.CLOSE_PAREN, Token.fromString(")"));
     }
+
+    @Test
+    public void test_respondsWithWhileLiteral() {
+        assertEquals(Token.WHILE, Token.fromString("while"));
+    }
+
+    @Test
+    public void test_respondsWithTypeInt() {
+        assertEquals(Token.TYPE_INT, Token.fromString("int"));
+    }
+
+    @Test
+    public void test_respondsWithTypeBoolean() {
+        assertEquals(Token.TYPE_BOOLEAN, Token.fromString("boolean"));
+    }
+
+    @Test
+    public void test_respondsWithTypeVoid() {
+        assertEquals(Token.TYPE_VOID, Token.fromString("void"));
+    }
+
+    @Test
+    public void test_respondsWithIdentifier() {
+        assertEquals(Token.IDENTIFIER, Token.fromString("asdf"));
+        assertEquals(Token.IDENTIFIER, Token.fromString("foo1"));
+        assertEquals(Token.IDENTIFIER, Token.fromString("SomeClassName"));
+        assertEquals(Token.IDENTIFIER, Token.fromString("someMethodName"));
+    }
 }

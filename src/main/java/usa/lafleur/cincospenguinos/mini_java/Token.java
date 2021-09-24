@@ -8,8 +8,8 @@ public enum Token {
     private static final String INTEGER_LITERAL_PATTERN = "^-?\\d+$";
     private static final String IDENTIFIER_PATTERN = "^[a-zA-Z]+[\\da-zA-Z]+$";
 
-    public static Token fromString(String potentialIdentifier) {
-        switch (potentialIdentifier) {
+    public static Token fromString(String potentialToken) {
+        switch (potentialToken) {
             case "null":
                 return Token.NULL;
             case "false":
@@ -70,14 +70,14 @@ public enum Token {
                 return Token.STATIC;
         }
 
-        if (potentialIdentifier.matches(INTEGER_LITERAL_PATTERN)) {
+        if (potentialToken.matches(INTEGER_LITERAL_PATTERN)) {
             return Token.INTEGER_LITERAL;
         }
 
-        if (potentialIdentifier.matches(IDENTIFIER_PATTERN)) {
+        if (potentialToken.matches(IDENTIFIER_PATTERN)) {
             return Token.IDENTIFIER;
         }
 
-        return null;
+        throw new InvalidTokenException(potentialToken);
     }
 }

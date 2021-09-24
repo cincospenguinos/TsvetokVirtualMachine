@@ -135,4 +135,12 @@ public class TokenTest {
     public void test_respondsWithStatic() {
         assertEquals(Token.STATIC, Token.fromString("static"));
     }
+
+    @Test
+    public void test_throwsWhenNothingIsFound() {
+        try {
+            Token.fromString("-blarg");
+            fail("Expected to throw");
+        } catch (InvalidTokenException ignored) {}
+    }
 }

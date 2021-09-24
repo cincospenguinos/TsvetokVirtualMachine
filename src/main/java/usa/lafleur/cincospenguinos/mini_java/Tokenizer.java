@@ -6,21 +6,6 @@ public class Tokenizer {
     public Tokenizer() {}
 
     public Identifier identifierFor(String uninterruptedChunk) {
-        switch (uninterruptedChunk) {
-            case "null":
-                return Identifier.NULL;
-            case "false":
-                return Identifier.FALSE;
-            case "true":
-                return Identifier.TRUE;
-            case "public":
-                return Identifier.ACCESS_PUBLIC;
-        }
-
-        if (uninterruptedChunk.matches(INTEGER_LITERAL_PATTERN)) {
-            return Identifier.INTEGER_LITERAL;
-        }
-
-        return null;
+        return Identifier.fromString(uninterruptedChunk);
     }
 }

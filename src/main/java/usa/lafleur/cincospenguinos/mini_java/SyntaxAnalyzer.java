@@ -2,6 +2,7 @@ package usa.lafleur.cincospenguinos.mini_java;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SyntaxAnalyzer {
     private final List<TokenItem> _tokenStream;
@@ -13,22 +14,16 @@ public class SyntaxAnalyzer {
     public List<SyntaxErrorItem> syntaxErrors() {
         List<SyntaxErrorItem> items = new ArrayList<>();
 
-        int braces = 0;
+        BraceErrorAggregate aggregate = new BraceErrorAggregate(Token.OPEN_BRACE, Token.CLOSE_BRACE,
+                SyntaxError.CLOSE_BRACE_BEFORE_OPEN, SyntaxError.MISMATCHED_BRACES);
+
         int squareBrackets = 0;
         int parens = 0;
 
         for (TokenItem item : _tokenStream) {
-            switch(item.getToken()) {
-                case OPEN_BRACE:
-                    braces++;
-                    break;
-                case CLOSE_BRACE:
-                    if (braces == 0) {
-                        items.add(new SyntaxErrorItem(SyntaxError.CLOSE_BRACE_BEFORE_OPEN, ""));
-                    }
+            items.add(aggregate.consider(item));
 
-                    braces--;
-                    break;
+            switch(item.getToken()) {
                 case OPEN_SQUARE_BRACE:
                     squareBrackets++;
                     break;
@@ -52,9 +47,7 @@ public class SyntaxAnalyzer {
             }
         }
 
-        if (braces != 0) {
-            items.add(new SyntaxErrorItem(SyntaxError.MISMATCHED_BRACES, ""));
-        }
+        items.add(aggregate.complete());
 
         if (squareBrackets != 0) {
             items.add(new SyntaxErrorItem(SyntaxError.MISMATCHED_BRACKETS, ""));
@@ -64,6 +57,9 @@ public class SyntaxAnalyzer {
             items.add(new SyntaxErrorItem(SyntaxError.MISMATCHED_PARENS, ""));
         }
 
-        return items;
+        return items
+                .stream()
+                .filter(e -> !(e instanceof NullSyntaxErrorItem))
+                .collect(Collectors.toList());
     }
 }

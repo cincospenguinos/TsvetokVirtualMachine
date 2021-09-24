@@ -5,7 +5,7 @@ public class Tokenizer {
 
     public Tokenizer() {}
 
-    public Identifier identifierFor(String uninterruptedChunk) {
-        return Identifier.fromString(uninterruptedChunk);
+    public Token identifierFor(String uninterruptedChunk) {
+        return Token.fromString(uninterruptedChunk);
     }
 }

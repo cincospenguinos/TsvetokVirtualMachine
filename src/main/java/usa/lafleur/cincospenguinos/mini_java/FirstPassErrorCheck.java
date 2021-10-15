@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SyntaxAnalyzer {
+public class FirstPassErrorCheck {
     private final List<TokenItem> _tokenStream;
 
-    public SyntaxAnalyzer(List<TokenItem> tokenStream) {
+    public FirstPassErrorCheck(List<TokenItem> tokenStream) {
         _tokenStream = tokenStream;
     }
 

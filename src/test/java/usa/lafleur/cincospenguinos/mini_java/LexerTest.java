@@ -27,11 +27,23 @@ public class LexerTest {
                 "}\n" +
                 "}");
         List<TokenItem> tokenList = lexer.tokenize();
+        assertTokensEqual(correctTokenList, tokenList);
+    }
 
-        assertEquals(correctTokenList.size(), tokenList.size());
-        for (int i = 0; i < correctTokenList.size(); i++) {
-            Token actual = tokenList.get(i).getToken();
-            assertEquals(correctTokenList.get(i), actual);
+    @Test
+    public void test_respondsWithVariableDeclaration() {
+        Token[] correctTokenOrder = { Token.TYPE_INT, Token.IDENTIFIER, Token.SEMICOLON };
+        List<Token> correctTokenList = Arrays.asList(correctTokenOrder);
+        Lexer lexer = new Lexer("int i;");
+        List<TokenItem> tokenList = lexer.tokenize();
+        assertTokensEqual(correctTokenList, tokenList);
+    }
+
+    private void assertTokensEqual(List<Token> expected, List<TokenItem> actual) {
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < expected.size(); i++) {
+            Token actualToken = actual.get(i).getToken();
+            assertEquals(expected.get(i), actualToken);
         }
     }
 }

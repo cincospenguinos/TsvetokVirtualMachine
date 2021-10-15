@@ -19,6 +19,7 @@ public class Lexer {
                 .replaceAll("]", " ] ")
                 .replaceAll("\\{", " { ")
                 .replaceAll("}", " } ")
+                .replaceAll(";", " ; ")
                 .split("\\s+");
 
         for (String str: chunkedProgram) {

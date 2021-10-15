@@ -8,7 +8,7 @@ public enum Token {
     OPERATION_MULTIPLY, OPERATION_DIVIDE, NEW, OPEN_BRACE, CLOSE_BRACE, SEMICOLON, OPERATION_NOT, OPERATION_ASSIGNMENT, OPERATION_EQUALITY, OPERATION_NOT_EQUALITY, OPEN_SQUARE_BRACE, CLOSE_SQUARE_BRACE, CLASS, STATIC;
 
     private static final String INTEGER_LITERAL_PATTERN = "^-?\\d+$";
-    private static final String IDENTIFIER_PATTERN = "^[a-zA-Z]+[\\da-zA-Z]+$";
+    private static final String IDENTIFIER_PATTERN = "^[a-zA-Z]+[\\da-zA-Z]*$";
 
     public static Token fromString(String potentialToken) {
         switch (potentialToken) {

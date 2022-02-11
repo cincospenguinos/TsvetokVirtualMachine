@@ -14,7 +14,11 @@ public class SyntaxParser {
 
     public List<Expression> parse() {
         SyntaxParsingStack stack = new SyntaxParsingStack();
-        stack.pushTokenAndReduce(new TokenItem(Token.INTEGER_LITERAL, "4"));
+
+        while (!_tokenItems.isEmpty()) {
+            TokenItem item = _tokenItems.remove();
+            stack.pushTokenAndReduce(item);
+        }
 
         return stack.toExpressionList();
     }

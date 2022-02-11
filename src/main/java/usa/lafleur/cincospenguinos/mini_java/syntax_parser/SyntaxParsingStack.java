@@ -7,13 +7,15 @@ import java.util.List;
 import java.util.Stack;
 
 class SyntaxParsingStack {
+    private static final Expression[] EXPRESSION_TYPE_ARRAY = new Expression[]{};
+
     private Stack<Expression> expressions;
 
-    SyntaxParsingStack() {
+    public SyntaxParsingStack() {
         expressions = new Stack<>();
     }
 
-    void pushTokenAndReduce(TokenItem item) {
+    public void pushTokenAndReduce(TokenItem item) {
         Expression expression = Expression.getForTokenItem(item);
 
         if (!(expression instanceof UnknownExpression)) {
@@ -22,6 +24,6 @@ class SyntaxParsingStack {
     }
 
     public List<Expression> toExpressionList() {
-        return Arrays.asList(expressions.toArray(new Expression[] {}));
+        return Arrays.asList(expressions.toArray(EXPRESSION_TYPE_ARRAY));
     }
 }

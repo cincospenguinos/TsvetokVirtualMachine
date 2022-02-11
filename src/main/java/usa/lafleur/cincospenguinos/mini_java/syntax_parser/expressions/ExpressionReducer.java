@@ -11,24 +11,19 @@ public class ExpressionReducer {
     private static final Pattern FLAT_ARITHMETIC_PATTERN = Pattern.compile("i[+*\\-/]i");
     private static final Pattern COMPOUND_ARITHMETIC_PATTERN = Pattern.compile("A[+*\\-/]i");
 
-    public Stack<Expression> reduce(Stack<Expression> expressions) {
-        ExpressionStack stack = new ExpressionStack(expressions);
+    public void reduce(ExpressionStack expressionStack) {
+        if (FLAT_ARITHMETIC_PATTERN.matcher(expressionStack.toString()).find()) {
+            int regionStart = FLAT_ARITHMETIC_PATTERN.matcher(expressionStack.toString()).regionStart();
+            int regionEnd = FLAT_ARITHMETIC_PATTERN.matcher(expressionStack.toString()).regionEnd();
 
-        if (FLAT_ARITHMETIC_PATTERN.matcher(stack.toString()).find()) {
-            int regionStart = FLAT_ARITHMETIC_PATTERN.matcher(stack.toString()).regionStart();
-            int regionEnd = FLAT_ARITHMETIC_PATTERN.matcher(stack.toString()).regionEnd();
-
-            List<Expression> relevantExpressions = stack.getSublist(regionStart, regionEnd);
+            List<Expression> relevantExpressions = expressionStack.getSublist(regionStart, regionEnd);
 
             Expression newExpression = new ArithmeticExpression(relevantExpressions.get(0),
                     (UnknownExpression) relevantExpressions.get(1),
                     relevantExpressions.get(2)
             );
 
-            stack.replaceExpressions(regionStart, regionEnd, newExpression);
-            expressions = stack.getStack();
+            expressionStack.replaceExpressions(regionStart, regionEnd, newExpression);
         }
-
-        return expressions;
     }
 }

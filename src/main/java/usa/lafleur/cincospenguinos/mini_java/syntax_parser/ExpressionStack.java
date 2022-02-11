@@ -10,6 +10,11 @@ public class ExpressionStack {
     private Stack<Expression> _expressionStack;
     private ArrayList<Expression> _expressionsAsList;
 
+    public ExpressionStack() {
+        _expressionStack = new Stack<>();
+        _expressionsAsList = new ArrayList<>();
+    }
+
     public ExpressionStack(Stack<Expression> expressionStack) {
         _expressionStack = expressionStack;
         _expressionsAsList = new ArrayList<>(expressionStack);
@@ -26,6 +31,11 @@ public class ExpressionStack {
         _expressionsAsList.forEach(e -> _expressionStack.push(e));
     }
 
+    public void add(Expression expression) {
+        _expressionStack.push(expression);
+        _expressionsAsList.add(expression);
+    }
+
     public List<Expression> getSublist(int start, int end) {
         return new ArrayList<>(_expressionsAsList.subList(start, end));
     }
@@ -34,9 +44,17 @@ public class ExpressionStack {
         return _expressionStack;
     }
 
+    public int size() {
+        return _expressionsAsList.size();
+    }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
         _expressionsAsList.forEach(e -> builder.append(e.toString()));
         return builder.toString();
+    }
+
+    public List<Expression> getList() {
+        return _expressionsAsList;
     }
 }

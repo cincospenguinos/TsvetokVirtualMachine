@@ -12,26 +12,6 @@ public class SyntaxParser {
         _tokenItems = new LinkedList<>(programTokens);
     }
 
-    class SyntaxParsingStack {
-        private Stack<Expression> expressions;
-
-        SyntaxParsingStack() {
-            expressions = new Stack<>();
-        }
-
-        void pushTokenAndReduce(TokenItem item) {
-            Expression expression = Expression.getForTokenItem(item);
-
-            if (!(expression instanceof UnknownExpression)) {
-                expressions.push(expression);
-            }
-        }
-
-        public List<Expression> toExpressionList() {
-            return Arrays.asList(expressions.toArray(new Expression[] {}));
-        }
-    }
-
     public List<Expression> parse() {
         SyntaxParsingStack stack = new SyntaxParsingStack();
         stack.pushTokenAndReduce(new TokenItem(Token.INTEGER_LITERAL, "4"));

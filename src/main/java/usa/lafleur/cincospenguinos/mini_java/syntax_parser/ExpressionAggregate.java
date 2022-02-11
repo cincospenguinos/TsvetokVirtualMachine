@@ -6,18 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class ExpressionStack {
+public class ExpressionAggregate {
     private Stack<Expression> _expressionStack;
     private ArrayList<Expression> _expressionsAsList;
 
-    public ExpressionStack() {
+    public ExpressionAggregate() {
         _expressionStack = new Stack<>();
         _expressionsAsList = new ArrayList<>();
-    }
-
-    public ExpressionStack(Stack<Expression> expressionStack) {
-        _expressionStack = expressionStack;
-        _expressionsAsList = new ArrayList<>(expressionStack);
     }
 
     public void replaceExpressions(int startIndex, int endIndex, Expression newExpression) {

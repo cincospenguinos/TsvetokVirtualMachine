@@ -4,17 +4,16 @@ import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
 import usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions.Expression;
 import usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions.ExpressionReducer;
 
-import java.util.Arrays;
 import java.util.List;
 
 class SyntaxParsingStack {
     private static final Expression[] EXPRESSION_TYPE_ARRAY = new Expression[]{};
 
-    private ExpressionStack expressions;
+    private ExpressionAggregate expressions;
     private ExpressionReducer reducer;
 
     public SyntaxParsingStack() {
-        expressions = new ExpressionStack();
+        expressions = new ExpressionAggregate();
         reducer = new ExpressionReducer();
     }
 

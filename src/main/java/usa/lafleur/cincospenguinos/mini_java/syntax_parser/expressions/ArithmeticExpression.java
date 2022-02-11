@@ -1,7 +1,19 @@
 package usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions;
 
-public class ArithmeticExpression extends Expression {
-    public ArithmeticExpression(Expression left, Expression operation, Expression right) {
+import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
+import usa.lafleur.cincospenguinos.mini_java.syntax_parser.UnknownExpression;
 
+public class ArithmeticExpression extends Expression {
+    private Expression _left, _right;
+    private TokenItem _operationItem;
+
+    public ArithmeticExpression(Expression left, UnknownExpression operation, Expression right) {
+        _left = left;
+        _operationItem = operation.getItem();
+        _right = right;
+    }
+
+    public String toString() {
+        return "A";
     }
 }

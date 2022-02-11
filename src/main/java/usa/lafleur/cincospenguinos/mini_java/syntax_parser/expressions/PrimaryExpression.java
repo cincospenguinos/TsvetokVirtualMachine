@@ -12,7 +12,7 @@ public class PrimaryExpression extends Expression {
     public String toString() {
         switch(_item.getToken()) {
             case INTEGER_LITERAL:
-                return "I_LIT";
+                return "i";
         }
 
         throw new RuntimeException("No string for " + _item);

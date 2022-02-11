@@ -14,4 +14,8 @@ public class UnknownExpression extends Expression {
     public String toString() {
         return _item.getValue();
     }
+
+    public TokenItem getItem() {
+        return _item;
+    }
 }

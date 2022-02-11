@@ -1,7 +1,4 @@
-package usa.lafleur.cincospenguinos.mini_java;
-
-import usa.lafleur.cincospenguinos.mini_java.lexer.Token;
-import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
+package usa.lafleur.cincospenguinos.mini_java.lexer;
 
 class BraceErrorAggregate {
     int _braceCount;

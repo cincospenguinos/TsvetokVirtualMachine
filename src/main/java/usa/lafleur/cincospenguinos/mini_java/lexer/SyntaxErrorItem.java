@@ -1,4 +1,4 @@
-package usa.lafleur.cincospenguinos.mini_java;
+package usa.lafleur.cincospenguinos.mini_java.lexer;
 
 public class SyntaxErrorItem {
     private SyntaxError _reason;

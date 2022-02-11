@@ -1,8 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java;
 
 import org.junit.Test;
-import usa.lafleur.cincospenguinos.mini_java.lexer.Lexer;
-import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
+import usa.lafleur.cincospenguinos.mini_java.lexer.*;
 
 import java.util.List;
 

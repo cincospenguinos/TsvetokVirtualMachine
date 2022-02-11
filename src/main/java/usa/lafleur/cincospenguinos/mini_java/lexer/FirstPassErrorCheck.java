@@ -1,6 +1,4 @@
-package usa.lafleur.cincospenguinos.mini_java;
-
-import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
+package usa.lafleur.cincospenguinos.mini_java.lexer;
 
 import java.util.ArrayList;
 import java.util.List;

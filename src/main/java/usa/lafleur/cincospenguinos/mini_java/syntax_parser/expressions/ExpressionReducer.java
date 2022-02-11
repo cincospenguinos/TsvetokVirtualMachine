@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class ExpressionReducer {
-    private static final Pattern FLAT_ARITHMETIC_PATTERN = Pattern.compile("i[+*\\-/]i");
-    private static final Pattern COMPOUND_ARITHMETIC_PATTERN = Pattern.compile("A[+*\\-/]i");
+    private static final Pattern FLAT_ARITHMETIC_PATTERN = Pattern.compile("^([iv])[+*\\-/]([iv])$");
 
     public void reduce(ExpressionAggregate expressionAggregate) {
         if (FLAT_ARITHMETIC_PATTERN.matcher(expressionAggregate.toString()).find()) {

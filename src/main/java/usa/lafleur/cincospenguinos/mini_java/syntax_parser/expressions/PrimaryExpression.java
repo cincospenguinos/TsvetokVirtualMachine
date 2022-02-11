@@ -13,6 +13,8 @@ public class PrimaryExpression extends Expression {
         switch(_item.getToken()) {
             case INTEGER_LITERAL:
                 return "i";
+            case IDENTIFIER:
+                return "v";
         }
 
         throw new RuntimeException("No string for " + _item);

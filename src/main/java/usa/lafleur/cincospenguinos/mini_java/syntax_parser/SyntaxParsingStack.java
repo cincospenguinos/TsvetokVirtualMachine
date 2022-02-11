@@ -7,8 +7,6 @@ import usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions.Expressio
 import java.util.List;
 
 class SyntaxParsingStack {
-    private static final Expression[] EXPRESSION_TYPE_ARRAY = new Expression[]{};
-
     private ExpressionAggregate expressions;
     private ExpressionReducer reducer;
 

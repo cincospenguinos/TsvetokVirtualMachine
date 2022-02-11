@@ -1,7 +1,7 @@
 package usa.lafleur.cincospenguinos.mini_java.syntax_parser;
 
-import usa.lafleur.cincospenguinos.mini_java.lexer.Token;
 import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
+import usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions.Expression;
 
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions;
 
 import usa.lafleur.cincospenguinos.mini_java.lexer.TokenItem;
-import usa.lafleur.cincospenguinos.mini_java.syntax_parser.UnknownExpression;
 
 public class ArithmeticExpression extends Expression {
     private Expression _left, _right;

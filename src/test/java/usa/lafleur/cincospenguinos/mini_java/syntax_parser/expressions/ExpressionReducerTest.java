@@ -46,4 +46,16 @@ public class ExpressionReducerTest {
         reducer.reduce(stack);
         assertEquals(1, stack.size());
     }
+
+    @Test
+    public void test_reducesAssignmentOperator() {
+        ExpressionAggregate stack = new ExpressionAggregate();
+        new Lexer("int variable = -1").tokenize().stream()
+                .map(Expression::getForTokenItem)
+                .forEach(stack::add);
+
+        assertEquals(4, stack.size());
+        reducer.reduce(stack);
+        assertEquals(1, stack.size());
+    }
 }

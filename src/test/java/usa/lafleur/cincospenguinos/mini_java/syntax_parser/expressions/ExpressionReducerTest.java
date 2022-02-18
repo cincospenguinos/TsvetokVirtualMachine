@@ -1,6 +1,5 @@
 package usa.lafleur.cincospenguinos.mini_java.syntax_parser.expressions;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import usa.lafleur.cincospenguinos.mini_java.lexer.Lexer;
 import usa.lafleur.cincospenguinos.mini_java.syntax_parser.ExpressionAggregate;
@@ -37,7 +36,6 @@ public class ExpressionReducerTest {
     }
 
     @Test
-    @Ignore
     public void test_reducesMultipleArithmeticExpressionsIntoOne() {
         ExpressionAggregate stack = new ExpressionAggregate();
         new Lexer("1 + 2 * 3").tokenize().stream()
